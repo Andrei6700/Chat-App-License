@@ -2,14 +2,9 @@ import React from "react";
 
 export function InputButtons() {
     return (
-        <div
-            style={{
-                justifyContent: "space-between",
-                display: "flex",
-                marginBlockEnd: "40px",
-            }}
-        >
-            <input className="submit" type="submit" value="Inregistrare" />
-        </div>
+        <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="submit" value="Inregistrare">Sign in</button>
+    </div>
+
     );
 }

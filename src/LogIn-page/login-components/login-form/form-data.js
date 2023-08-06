@@ -4,11 +4,6 @@ import { useForm } from "react-hook-form";
 
 export const useFormData = () => {
   const schema = yup.object().shape({
-    name: yup
-      .string()
-      .matches(/^[^\d]+$/, "Invalid name")
-      .max(64, "Maxim 64 characters")
-      .required("Invalid form"),
     email: yup
       .string()
       .email("Invalid email")

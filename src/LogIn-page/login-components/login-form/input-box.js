@@ -7,17 +7,15 @@ export const InputBox = ({ id, register, errors }) => {
   };
 
   return (
-    <div>
+    <div class="mb-3">
+      <label for="{` ${id}`}" class="form-label">{` ${id}`}</label>
       <input
         id={id}
-        className={id}
-        placeholder={`Your ${id}`}
+        className="form-control"
+        placeholder={` ${id}`}
         style={{ borderColor: bordercolor(id) }}
         {...register(id)}
       />
-      <p id={id} className="errors">
-        {errors[id]?.message}
-      </p>
     </div>
   );
 };
