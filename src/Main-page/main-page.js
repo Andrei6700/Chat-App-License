@@ -1,4 +1,4 @@
-import './pagina_main.css'
+import './main-page.css'
 import { Header } from './components/header'
 
 export const MainPage = () => {
