@@ -15,7 +15,7 @@ export const useFormData = () => {
       .required("Invalid form"),
     password: yup
       .string()
-      .matches(/^[a-zA-Z\s.,!?]+$/, "Invalid message")
+      .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Invalid password")
       .max(1024, "Maxim 1024 characters")
       .required("Invalid form"),
   });

@@ -32,7 +32,7 @@ export const SignUpPage = () => {
             </div>
 
             <p>
-              Have an account? <a href="/login" className="">Login here</a>
+              Have an account? <a href="/" className="">Login here</a>
             </p>
           </div>
         </div>

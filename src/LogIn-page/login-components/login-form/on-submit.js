@@ -5,11 +5,11 @@ export const OnSubmit = (data) => {
   axios.post('http://localhost:8081/login', data)
     .then(response => {
       console.log(response.data);
-      alert('Email sent successfully!');
+      alert('ok');
     })
     .catch(error => {
       console.log(error);
-      alert('An error occurred while sending the email.');
+      alert('An error');
     });
 };
 export const OnChange = (e) => {

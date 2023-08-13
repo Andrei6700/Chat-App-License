@@ -32,7 +32,7 @@ export const LogInPage=()=>{
             </div>
 
             <p>
-              Not a member? <a href="/signup" className="">Sign up now</a>
+              Not a member? <a href="/" className="">Sign up now</a>
             </p>
           </div>
         </div>
