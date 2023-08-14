@@ -1,9 +1,9 @@
 .App {
   background-color: #f2ebeb;
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 .App-header {
