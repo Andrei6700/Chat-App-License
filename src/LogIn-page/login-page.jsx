@@ -5,21 +5,21 @@ export const LogInPage=()=>{
     return(
 <div className="sidebar-show">
       <div className="container container-fixed-xl container-modal">
-        <a className="d-inline-block" href="/">
+        {/* <a className="d-inline-block" href="/"> */}
           <svg className="container-modal-close icon-color-gray-600 icon icon-size-32">
             <use href="/images/icons/delete.svg#icon-delete"></use>
           </svg>
-        </a>
+        {/* </a> */}
 
         <div className="row">
           <div className="col-12 col-md-5 mb-2 mb-md-0">
             <div className="mb-2 mb-md-4">
-              <a className="d-inline-block" href="/">
+              {/* <a className="d-inline-block" href="/"> */}
                 
                 <svg className="lb-logo">
                   <use href="/images/land-book-logo-2.svg#lb-logo"></use>
                 </svg>
-              </a>
+              {/* </a> */}
             </div>
             <h2 className="mb-1">Log in to Cocs Company</h2>
             <p>

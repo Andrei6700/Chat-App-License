@@ -1,10 +1,11 @@
 import React from "react";
 
-export function InputButtons() {
-    return (
-            <div class="d-grid gap-2">
-                <button className="btn btn-primary" type="submit" value="Logare">Sign in</button>
-            </div>
-
-    );
+export function InputButtons({ onSubmit }) {
+  return (
+    <div className="d-grid gap-2">
+      <button className="btn btn-primary" type="button" onClick={onSubmit}>
+        Sign up
+      </button>
+    </div>
+  );
 }

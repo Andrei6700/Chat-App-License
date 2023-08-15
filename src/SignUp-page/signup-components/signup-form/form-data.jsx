@@ -18,6 +18,9 @@ export const useFormData = () => {
       .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Invalid password")
       .max(1024, "Maxim 1024 characters")
       .required("Invalid form"),
+      avatarFile: yup
+      .mixed()
+      .required("Please upload an avatar image"),
   });
 
   const {

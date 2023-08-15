@@ -7,7 +7,7 @@ export const InputBox = ({ id, register, errors }) => {
   };
 
   return (
-    <div class="mb-3">
+    <div className="mb-3">
       <label htmlFor={id} className="form-label">{id}</label>
       <input
         id={id}
