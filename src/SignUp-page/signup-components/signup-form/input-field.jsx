@@ -1,6 +1,5 @@
 import React from "react";
 import { InputBox } from './input-box'
-import {InputButtons} from  './input-button'
 
 export function InputField({ register, errors }) {
   return (
