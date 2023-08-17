@@ -4,13 +4,13 @@ import Search from "./Search";
 import Chats from "./Chats"
 
 const Sidebar = () => {
-  return(
+  return (
     <div className="sidebar">
-      <Navbar/>
+      <Navbar />
       <Search/>
       <Chats/>
     </div>
-  )
-}
+  );
+};
 
 export default Sidebar;

@@ -1,5 +1,7 @@
 import './signup-page.css';
 import { Form } from './signup-components/Form';
+import { Link } from "react-router-dom";
+
 
 export const SignUpPage = () => {
   return (
@@ -32,8 +34,8 @@ export const SignUpPage = () => {
             </div>
 
             <p>
-              Have an account? <a href="/login" className="">Login here</a>
-            </p>
+          You do have an account? <Link to="/login">Login</Link>
+        </p>
           </div>
         </div>
       </div>

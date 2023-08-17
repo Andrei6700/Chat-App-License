@@ -1,21 +1,17 @@
 import React from "react";
-import { InputBox } from './input-box'
+import Add from "../../test/img/addAvatar.png";
 
-export function InputField({ register, errors }) {
+export const InputField = () => {
   return (
     <div>
-      <InputBox register={register} errors={errors} id={"name"} />
-      <InputBox register={register} errors={errors} id={"email"} />
-      <InputBox register={register} errors={errors} id={"password"} />
-      <div className="mb-3">
-        <input
-          type="file"
-          accept="image/*"
-          {...register("avatarFile")}
-        />
-        {errors.avatarFile && <span className="error">Avatar is required</span>}
-      </div>
-      
+      <input required type="text" placeholder="display name" />
+      <input required type="email" placeholder="email" />
+      <input required type="password" placeholder="password" />
+      <input required style={{ display: "none" }} type="file" id="file" />
+      <label htmlFor="file">
+        <img src={Add} alt="" />
+        <span>Add an avatar</span>
+      </label>
     </div>
   );
-}
+};
