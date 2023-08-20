@@ -1,4 +1,4 @@
-/* Stiluri mobile */
+
 @media screen and (max-width: 480px) {
   .formContainer,
   .home {
@@ -7,9 +7,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+  } 
 
-  .container {
+   .container {
     width: 90%;
   }
 
@@ -27,7 +27,6 @@
   }
 }
 
-/* Stiluri pentru tablete */
 @media screen and (max-width: 768px) {
   .container {
     width: 90%;
@@ -47,7 +46,6 @@
   }
 }
 
-/* Stiluri pentru laptop */
 @media screen and (max-width: 1200px) {
   .container {
     width: 65%;
@@ -134,16 +132,33 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
-.container {
+
+
+
+
+
+
+
+
+
+
+/* .container {
   border: 1px solid white;
   border-radius: 10px;
   width: 65%;
   height: 80%;
   display: flex;
   overflow: hidden;
-}
+} */
+
+
+
+
+
+
+
 
 .sidebar {
   flex: 1;
@@ -323,9 +338,9 @@ p {
   background-color: #8da4f1;
   color: white;
   border-radius: 10px 0px 10px 10px;
-}
+} */
 
-.input {
+ .input {
   height: 50px;
   background-color: white;
   padding: 10px;
@@ -340,9 +355,9 @@ p {
   outline: none;
   color: #2f2d52;
   font-size: 18px;
-}
+} */
 
-.input input::placeholder {
+ .input input::placeholder {
   color: lightgray;
 }
 
@@ -363,4 +378,4 @@ p {
   color: white;
   background-color: #8da4f1;
   cursor: pointer;
-}
+} 

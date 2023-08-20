@@ -1,2 +1,348 @@
-@import url('../../css/body.css');
-@import url('../../css/styling-body.css');
+.display-flex,.content {
+    display: flex;
+    display: -webkit-flex
+}
+
+.list-type-ulli,ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0
+}
+
+a:focus,a:active {
+    text-decoration: none;
+    outline: none;
+    transition: all 300ms ease 0s;
+    -moz-transition: all 300ms ease 0s;
+    -webkit-transition: all 300ms ease 0s;
+    -o-transition: all 300ms ease 0s;
+    -ms-transition: all 300ms ease 0s
+}
+
+input,select,textarea {
+    outline: none;
+    appearance: unset!important;
+    -moz-appearance: unset!important;
+    -webkit-appearance: unset!important;
+    -o-appearance: unset!important;
+    -ms-appearance: unset!important
+}
+
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+    appearance: none!important;
+    -moz-appearance: none!important;
+    -webkit-appearance: none!important;
+    -o-appearance: none!important;
+    -ms-appearance: none!important;
+    margin: 0
+}
+
+input:focus,select:focus,textarea:focus {
+    outline: none;
+    box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    -webkit-box-shadow: none!important;
+    -o-box-shadow: none!important;
+    -ms-box-shadow: none!important
+}
+
+
+figure {
+    margin: 0
+}
+
+p {
+    margin-bottom: 0
+}
+
+.title {
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: #000000;
+    font-family: Poppins;
+    font-size: 21px;
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.clear {
+    clear: both
+}
+
+.border{
+    border: solid 1px grey;
+    border-radius: 20px;
+    padding: 15%;
+}
+body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #fff;
+    background: #ffffff;
+    font-weight: 400;
+    font-family: Poppins;
+    margin: 0
+}
+
+.main {
+    padding: 115px 0;
+    position: relative
+}
+
+.container {
+    width: 1150px;
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 0 10px 9.9px .1px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 10px 9.9px .1px rgba(0,0,0,.05);
+    -webkit-box-shadow: 0 10px 9.9px .1px rgba(0,0,0,.05);
+    -o-box-shadow: 0 10px 9.9px .1px rgba(0,0,0,.05);
+    -ms-box-shadow: 0 10px 9.9px .1px rgba(0,0,0,.05);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px
+}
+
+.content {
+    flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    -ms-flex-wrap: wrap
+}
+
+.booking-image {
+    width: 58.33%;
+    margin-bottom: -8px
+}
+
+.booking-img {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px
+}
+
+.form {
+    width: 55%;
+    background: #111;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px
+}
+.container-descriere{
+    width: 45%;
+    background: #111;
+}
+
+.active {
+    position: relative;
+    background: #000000;
+    padding: 14px 1px;
+    margin-right: 7px;
+    margin-left: 3px;
+    border-radius: 24px;
+    -moz-border-radius: 24px;
+    -webkit-border-radius: 24px;
+    -o-border-radius: 24px;
+    -ms-border-radius: 24px
+}
+
+.active:after {
+    position: absolute;
+    content: 'Person';
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    font-size: 11px;
+    color: #222;
+    font-weight: 700
+}
+
+.active input+label {
+    margin-right: 59px
+}
+
+form {
+    padding: 72px 70px 70px
+}
+
+.form-group {
+    margin-bottom: 10px;
+    position: relative
+}
+
+.form-input {
+    padding-top: 21px
+}
+
+.form-label {
+    position: absolute;
+    transition: .25s ease;
+    -moz-transition: .25s ease;
+    -webkit-transition: .25s ease;
+    -o-transition: .25s ease;
+    -ms-transition: .25s ease;
+    color: #bebebe;
+    left: 0;
+    top: 23px
+}
+
+input {
+    transition: .3s ease;
+    -moz-transition: .3s ease;
+    -webkit-transition: .3s ease;
+    -o-transition: .3s ease;
+    -ms-transition: .3s ease;
+    padding-top: 10px;
+    -webkit-appearance: none
+}
+
+input:focus+.form-label,input:valid+.form-label {
+    top: 1px;
+    font-size: 11px;
+    color: #000000
+}
+
+input,select {
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    border: none;
+    font-family: Poppins;
+    color: #fff;
+    background: 0 0;
+    border-bottom: 1px solid #999;
+    padding: 4px 0
+}
+
+input:focus,select:focus {
+    border-bottom: 1px solid #000000
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px transparent inset
+}
+
+input::-webkit-input-placeholder {
+    color: #bebebe
+}
+
+input::-moz-placeholder {
+    color: #bebebe
+}
+
+input:-ms-input-placeholder {
+    color: #bebebe
+}
+
+input:-moz-placeholder {
+    color: #bebebe
+}
+
+.submit {
+    width: auto;
+    background: #000000;
+    color: #fff;
+    padding: 15px 43px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer
+}
+
+.submit:hover {
+    background: #e79e50
+}
+
+ul {
+    background: 0 0;
+    z-index: 9;
+    border-bottom: 1px solid #999;
+    padding-top: 15px
+}
+
+ul li {
+    padding: 5px 0;
+    z-index: 2;
+    color: #bebebe
+}
+
+ul li:not(.init) {
+    display: none;
+    background: #fff;
+    color: #222;
+    padding: 5px 10px
+}
+
+ul li:not(.init):hover,ul li.selected:not(.init) {
+    background: #000000
+}
+
+li.init {
+    cursor: pointer;
+    position: relative
+}
+
+li.init:after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    font-size: 20px;
+    color: #bebebe;
+    font-family: material-design-iconic-font;
+    content: '\f2f2'
+}
+
+
+
+.vertify-booking {
+    color: #000000;
+    font-size: 11px;
+    text-decoration: none;
+    margin-top: 14px;
+    display: block;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    -ms-transition: all .3s
+}
+
+.vertify-booking:hover {
+    text-decoration: underline
+}
+
+.select-list {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 47px
+}
+
+.list-item {
+    position: absolute;
+    width: 100%
+}
+
+#time {
+    z-index: 99
+}
+
+#food {
+    z-index: 9
+}
