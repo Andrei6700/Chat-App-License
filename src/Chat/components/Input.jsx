@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import Img from "../../img/add.png"
-import Attach from "../../img/attach.png"
+import Attach from '../../img/attach.png'
+import Img from '../../img/img.png'
 import { AuthContext } from '../../context/AuthContext'
 import { ChatContext } from '../../context/ChatContext'
 import { Timestamp, arrayUnion, doc, updateDoc,serverTimestamp } from "firebase/firestore";
@@ -67,11 +67,17 @@ const Input = () => {
     setText("");
     setImg(null);
   };
+
+  const handleKey = (e) => {
+    e.code === "Enter" && handleSend();
+  };
+
   return (
-    <div className="input">
+    <div className="input" style={{background:"#eee"}}>
       <input
         type="text"
         placeholder="Type something..."
+        onKeyDown={handleKey}
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
@@ -79,7 +85,7 @@ const Input = () => {
         <img src={Attach} alt="" />
         <input
           type="file"
-          style={{ display: "none" }}
+          style={{ display: "none"}}
           id="file"
           onChange={(e) => setImg(e.target.files[0])}
         />
@@ -93,3 +99,4 @@ const Input = () => {
 };
 
 export default Input;
+    

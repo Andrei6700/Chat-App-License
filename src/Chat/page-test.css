@@ -1,8 +1,47 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.test{
+  padding: 10px 15px;
+    display: flex;
+    vertical-align: baseline;
+    background: #fff;
+    transition: 0.3s ease;
+}
+
+hr{
+  margin: 5px auto;
+    width: 60%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}
 
 @media screen and (max-width: 480px) {
   .formContainer,
   .home {
-    background-color: #a7bcff;
+    background-color: grey;
     height: 100vh;
     display: flex;
     align-items: center;
@@ -88,10 +127,14 @@ form {
 }
 
 input {
-  padding: 15px;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  overflow: visible;
   border: none;
-  width: -webkit-fill-available;
-  border-bottom: 1px solid #a7bcff;
+  border-radius: 30px;
+  width: 80%;
 }
 
 input::placeholder {
@@ -142,20 +185,20 @@ p {
 } 
 
 .sidebar {
-  flex: 1;
-  background-color: #3e3c61;
+  flex: 1 1;
+  background-color: #fff;
   position: relative;
+  border-right: 1px solid #dee2e6!important;
 }
 
 .navbar {
   display: flex;
   align-items: center;
-  background-color: #2f2d52;
-  height: 60px;
-  padding: 20px;
   justify-content: space-between;
-  color: #ddddf7;
-  font-size: xx-large;
+  color: black;
+  background: #eee;
+  padding: 10px 15px;
+  border-radius: 7px;
 }
 
 .logo {
@@ -168,14 +211,14 @@ p {
 .user {
   display: flex;
   gap: 20px;
+  flex-direction: row;
+  align-items: center;
 }
 
 .user img {
-  background-color: #ddddf7;
-  height: auto;
   width: 50px;
-  border-radius: 50%;
-  object-fit: cover;
+  height: 50px;
+  border-radius: 40px;
 }
 
 .user button {
@@ -191,7 +234,8 @@ p {
 }
 
 .search {
-  border-bottom: 1px solid gray;
+  background: #fafafa;
+    padding: 10px 13px;
 }
 
 .searchForm {
@@ -199,10 +243,9 @@ p {
 }
 
 .searchForm input {
-  background-color: transparent;
-  border: none;
-  color: white;
+  color: black;
   outline: none;
+  padding: 10px 13px;
 }
 
 .searchForm input::placeholder {
@@ -210,12 +253,11 @@ p {
 }
 
 .userChat {
-  padding: 10px;
+  padding: 10px 15px;
   display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  cursor: pointer;
+  vertical-align: baseline;
+  background: #fff;
+  transition: 0.3s ease;
 }
 
 .userChat:hover {
@@ -236,26 +278,51 @@ p {
 
 .userChatInfo p {
   font-size: 14px;
-  color: lightgray;
+  color: black;
 }
 
 .chat {
-  flex: 2;
+  padding-right: 0;
+  padding-left: 0;
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  background: #fff;
+}
+
+.chats{
+  padding-right: 0;
+  padding-left: 0;
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+}
+
+img{
+  vertical-align: middle;
+    border-style: none;
 }
 
 .chatInfo {
-  height: 50px;
-  background-color: #5d5b8d;
+  background: #eee;
+  border-radius: 7px;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 10px 15px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 25px;
-  color: lightgray;
+  vertical-align: baseline;
+  transition: 0.3s ease;
 }
 
 .chatIcons {
   display: flex;
   gap: 20px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .chatIcons img {
@@ -264,7 +331,7 @@ p {
 }
 
 .messages {
-  background-color: #ddddf7;
+  background-color: #fff;
   height: calc(100% - 160px);
   overflow: scroll;
 }
@@ -279,7 +346,6 @@ p {
 .messageInfo {
   display: flex;
   flex-direction: column;
-  color: gray;
   font-weight: 300;
 }
 
@@ -291,14 +357,17 @@ p {
 }
 
 .messageContent {
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  padding: 10px 14px;
+  margin: 10px 30px;
+  border-radius: 9px;
+  position: relative;
+  animation: fadeIn 1s ease-in;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .messageContent p {
-  background-color: white;
+  background-color: #eee;
   padding: 10px 20px;
   border-radius: 0px 10px 10px 10px;
   max-width: max-content;
