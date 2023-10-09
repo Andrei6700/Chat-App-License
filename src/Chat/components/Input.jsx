@@ -75,6 +75,7 @@ const Input = () => {
   return (
     <div className="input" style={{background:"#eee"}}>
       <input
+      className="inputChatPage"
         type="text"
         placeholder="Type something..."
         onKeyDown={handleKey}

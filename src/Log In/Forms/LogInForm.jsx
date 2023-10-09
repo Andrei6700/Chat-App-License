@@ -33,7 +33,7 @@ const LoginForm = ({ handleSubmit, err }) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="w-1/4 md:w-auto text-center text-2xl font-medium">
-              COX
+              Logo
             </div>
 
             <div className="w-1/4 md:w-auto md:flex text-right">

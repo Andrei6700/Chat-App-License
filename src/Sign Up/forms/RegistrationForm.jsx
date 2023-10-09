@@ -18,7 +18,7 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="w-1/4 md:w-auto text-center text-2xl font-medium">
-              COX
+              logo
             </div>
 
             <div className="w-1/4 md:w-auto md:flex text-right">
@@ -92,13 +92,13 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
               </div>
 
               <div className="flex items-center justify-between">
-              <ActionButton
-  className="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-  type="button"
-  disabled={loading}
-  text="Sign up"
-  onEnterKeyPress={handleEnterKeyPress}
-/>
+                <ActionButton
+                  className="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  type="button"
+                  disabled={loading}
+                  text="Sign up"
+                  onEnterKeyPress={handleEnterKeyPress}
+                />
                 <a className="inline-block ">
                   Already have an acount ?
                   <Link

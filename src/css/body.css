@@ -300,3 +300,15 @@
     }
   }
   
+  
+  .inputSignLog {
+  padding: 15px;
+  border: none;
+  width: -webkit-fill-available;
+  border-bottom: 1px solid #a7bcff;
+}
+
+.inputSignLog::placeholder {
+  color: rgb(175, 175, 175);
+}
+

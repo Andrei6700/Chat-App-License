@@ -4,7 +4,7 @@ import Add from "../../img/addAvatar.png";
 const AvatarUpload = () => {
   return (
     <div>
-      <input
+      <input className="inputSignLog"
         required
         style={{ display: "none" }}
         type="file"

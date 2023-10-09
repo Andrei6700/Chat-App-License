@@ -126,21 +126,6 @@ form {
   gap: 15px;
 }
 
-input {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  overflow: visible;
-  border: none;
-  border-radius: 30px;
-  width: 80%;
-}
-
-input::placeholder {
-  color: rgb(175, 175, 175);
-}
-
 button {
   background-color: #7b96ec;
   color: white;
@@ -209,10 +194,12 @@ p {
 }
 
 .user {
+  width: 100%;
   display: flex;
   gap: 20px;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
 
 .user img {
@@ -242,6 +229,15 @@ p {
   padding: 10px;
 }
 
+.inputChatPage{
+  border: none;
+  border-radius: 30px;
+  width: 80%;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .searchForm input {
   color: black;
   outline: none;
@@ -261,7 +257,7 @@ p {
 }
 
 .userChat:hover {
-  background-color: #2f2d52;
+  background-color: #fafafa;
 }
 
 .userChat img {
@@ -389,26 +385,15 @@ img{
   background-color: #8da4f1;
   color: white;
   border-radius: 10px 0px 10px 10px;
-} */
+} 
 
- .input {
-  height: 50px;
-  background-color: white;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .input input {
-  width: 100%;
-  border: none;
-  outline: none;
-  color: #2f2d52;
-  font-size: 18px;
-} */
+  margin: 0 10px;
+  padding: 6px 2px;
+} 
 
- .input input::placeholder {
+ .input input::placeholder { 
   color: lightgray;
 }
 
