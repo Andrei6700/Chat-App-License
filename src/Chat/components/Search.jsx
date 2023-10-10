@@ -11,18 +11,27 @@ const Search = () => {
   const { currentUser } = useContext(AuthContext);
 
   const handleSearch = async () => {
-    const q = query(
+    setErr(false);
+  
+    let q = query(
       collection(db, "users"),
       where("displayName", "==", username)
     );
-
+  
     try {
       const querySnapshot = await getDocs(q);
+      const users = [];
       querySnapshot.forEach((doc) => {
-        setUser(doc.data());
+        users.push(doc.data());
       });
+  
+      if (users.length === 0) {
+        setErr(true);
+      } else {
+        setUser(users[0]); 
+      }
     } catch (err) {
-      setErr(true);
+      console.error("Error searching for user:", err);
     }
   };
 
@@ -35,12 +44,15 @@ const Search = () => {
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
+  
+    let q;
+  
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
-
+  
       if (!res.exists()) {
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
-
+  
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
@@ -49,7 +61,7 @@ const Search = () => {
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
-
+  
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
@@ -59,11 +71,25 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (err) {}
-
+    } catch (err) {
+      try {
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          setErr(true);
+        } else {
+          querySnapshot.forEach((doc) => {
+            setUser(doc.data());
+          });
+        }
+      } catch (err) {
+        setErr(true);
+      }
+    }
+  
     setUser(null);
-    setUsername("")
+    setUsername("");
   };
+  
   return (
     <div className="search">
       <div className="searchForm">

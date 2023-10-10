@@ -13,7 +13,7 @@ const Chat = () => {
   return (
     <div className="chat">
       <div className="chatInfo">
-        <div className="user">
+        <div className="user" style={{justifyContent:"flex-start"}}>
             <img src={data.user?.photoURL} alt="" />
             <span>{data.user?.displayName}</span>
           </div>

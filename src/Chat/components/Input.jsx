@@ -73,7 +73,7 @@ const Input = () => {
   };
 
   return (
-    <div className="input" style={{background:"#eee"}}>
+    <div className="input" style={{background:"#eee",width:"100%"}}>
       <input
       className="inputChatPage"
         type="text"

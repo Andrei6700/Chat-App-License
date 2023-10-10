@@ -40,13 +40,6 @@ hr{
 
 @media screen and (max-width: 480px) {
   .formContainer,
-  .home {
-    background-color: grey;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } 
 
    .container {
     width: 90%;
@@ -254,6 +247,8 @@ p {
   vertical-align: baseline;
   background: #fff;
   transition: 0.3s ease;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .userChat:hover {
@@ -270,6 +265,10 @@ p {
 .userChatInfo span {
   font-size: 18px;
   font-weight: 500;
+}
+
+.userChatInfo {
+  padding-left: 2%;
 }
 
 .userChatInfo p {

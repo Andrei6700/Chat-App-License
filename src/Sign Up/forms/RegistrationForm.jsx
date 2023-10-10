@@ -99,7 +99,7 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
                   text="Sign up"
                   onEnterKeyPress={handleEnterKeyPress}
                 />
-                <a className="inline-block ">
+                <div className="inline-block ">
                   Already have an acount ?
                   <Link
                     className="inline-block "
@@ -108,7 +108,11 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
                   >
                     Signin
                   </Link>
-                </a>
+                </div>
+                <div>
+                {loading && "Uploading and compressing the image please wait..."}
+                {err && <span>Something went wrong</span>}
+                </div>
               </div>
             </form>
           </div>

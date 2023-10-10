@@ -8,52 +8,53 @@ import RegistrationForm from "../forms/RegistrationForm";
 
 
 const SignUp = () => {
-    const [err, setErr] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
+  const [err, setErr] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Move this line here to prevent default action
   
-    const handleSubmit = async (e) => {
-      setLoading(true);
-      e.preventDefault();
-      const displayName = e.target[0].value;
-      const email = e.target[1].value;
-      const password = e.target[2].value;
-      const file = e.target[3].files[0];
+    setLoading(true);
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const file = e.target[3].files[0];
   
-      try {
-        const res = await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
   
-        const date = new Date().getTime();
-        const storageRef = ref(storage, `${displayName + date}`);
+      const date = new Date().getTime();
+      const storageRef = ref(storage, `${displayName + date}`);
   
-        await uploadBytesResumable(storageRef, file).then(() => {
-          getDownloadURL(storageRef).then(async (downloadURL) => {
-            try {
-              await updateProfile(res.user, {
-                displayName,
-                photoURL: downloadURL,
-              });
-              await setDoc(doc(db, "users", res.user.uid), {
-                uid: res.user.uid,
-                displayName,
-                email,
-                photoURL: downloadURL,
-              });
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
   
-              await setDoc(doc(db, "userChats", res.user.uid), {});
-              navigate("/chat");
-            } catch (err) {
-              console.log(err);
-              setErr(true);
-              setLoading(false);
-            }
-          });
+            await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/chat");
+          } catch (err) {
+            console.log(err);
+            setErr(true);
+            setLoading(false);
+          }
         });
-      } catch (err) {
-        setErr(true);
-        setLoading(false);
-      }
-    };
+      });
+    } catch (err) {
+      setErr(true);
+      setLoading(false);
+    }
+  };    
   
   return (
     <RegistrationForm
