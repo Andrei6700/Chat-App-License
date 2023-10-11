@@ -13,7 +13,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Move this line here to prevent default action
+    e.preventDefault(); 
   
     setLoading(true);
     const displayName = e.target[0].value;

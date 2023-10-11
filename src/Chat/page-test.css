@@ -1,5 +1,6 @@
 *, ::after, ::before {
   box-sizing: border-box;
+  overflow: overlay;
 }
 
 body{
@@ -189,7 +190,7 @@ p {
 .user {
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 2%;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -288,12 +289,10 @@ p {
 }
 
 .chats{
-  padding-right: 0;
-  padding-left: 0;
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
+  width:100%; 
+  overflow-y:scroll; 
+  position:relative;
+  height: 100%;
 }
 
 img{
@@ -414,3 +413,15 @@ img{
   background-color: #8da4f1;
   cursor: pointer;
 } 
+
+::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

@@ -10,8 +10,10 @@
       return (
         <div className='navbar'>
           <div className="user">
-          <span> <img src={currentUser.photoURL} alt="" />
-           {currentUser.displayName}</span>
+         <div style={{width:"20%"}}>
+            <img src={currentUser.photoURL} alt="" />
+            <span style={{paddingLeft:"2%"}}> {currentUser.displayName} </span>
+            </div>
             <button onClick={()=>signOut(auth)}>logout</button>
           </div>
         </div>

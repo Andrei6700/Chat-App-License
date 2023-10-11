@@ -1,15 +1,20 @@
 import React from "react";
 
-const ActionButton = ({ disabled, text, onEnterKeyPress }) => {
+const ActionButton = ({ disabled, text, onClick }) => {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      onEnterKeyPress(); 
+      onClick();
     }
   };
 
   return (
-    <button disabled={disabled} onClick={onEnterKeyPress} onKeyPress={handleKeyPress}>
+    <button
+      disabled={disabled}
+      onClick={onClick}
+      onKeyPress={handleKeyPress}
+      tabIndex="0"
+    >
       {text}
     </button>
   );
