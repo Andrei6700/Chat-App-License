@@ -29,7 +29,7 @@ const Message = ({ message }) => {
         <span>just now</span>
       </div>
       <div className="messageContent">
-        <p style={{fontSize:'20px'}}>{message.text}</p>
+        <p className="ResponsiveTextChat">{message.text}</p>
         {message.img && <img src={message.img} alt="" />}
       </div>
     </div>

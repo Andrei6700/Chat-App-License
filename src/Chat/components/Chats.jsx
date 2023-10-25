@@ -4,7 +4,6 @@ import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 
-
 const Chats = () => {
   const [chats, setChats] = useState([]);
 
@@ -31,20 +30,24 @@ const Chats = () => {
 
   return (
     <div className="chats">
-      {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
-        <div
-          className="userChat"
-          key={chat[0]}
-          onClick={() => handleSelect(chat[1].userInfo)}
-        >
-          <img src={chat[1].userInfo.photoURL} alt="" />
-          <div className="userChatInfo">
-            <span>{chat[1].userInfo.displayName}</span>
-            <p className="responsiveP">{chat[1].lastMessage?.text}</p>
-            
-          </div >
-        </div>
-      ))}
+      {Object.entries(chats)
+        ?.sort((a, b) => b[1].date - a[1].date)
+        .map((chat) => (
+          <div className="div">
+            <div
+              className="userChat"
+              key={chat[0]}
+              onClick={() => handleSelect(chat[1].userInfo)}
+            >
+              <img src={chat[1].userInfo.photoURL} alt="" />
+              <div className="userChatInfo">
+                <span>{chat[1].userInfo.displayName}</span>
+                <p className="responsiveP">{chat[1].lastMessage?.text}</p>
+              </div>
+            </div>
+            <hr />
+          </div>
+        ))}
     </div>
   );
 };

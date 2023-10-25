@@ -1,13 +1,18 @@
 import React, { useContext, useState } from "react";
-import Attach from '../../img/attach.png'
-import Img from '../../img/img.png'
-import { AuthContext } from '../../context/AuthContext'
-import { ChatContext } from '../../context/ChatContext'
-import { Timestamp, arrayUnion, doc, updateDoc,serverTimestamp } from "firebase/firestore";
+import Attach from "../../img/paperclip.svg";
+import Mic from "../../img/mic.svg";
+import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  updateDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db, storage } from "../../firebase/firebase";
 import { v4 as uuid } from "uuid";
-import { uploadBytesResumable,getDownloadURL, ref } from "firebase/storage";
-
+import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -17,14 +22,16 @@ const Input = () => {
   const { data } = useContext(ChatContext);
 
   const handleSend = async () => {
+    if (text.trim() === "") {
+      return;
+    }
     if (img) {
       const storageRef = ref(storage, uuid());
 
       const uploadTask = uploadBytesResumable(storageRef, img);
 
       uploadTask.on(
-        (error) => {
-        },
+        (error) => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             await updateDoc(doc(db, "chats", data.chatId), {
@@ -69,35 +76,40 @@ const Input = () => {
   };
 
   const handleKey = (e) => {
-    e.code === "Enter" && handleSend();
+    if(e.code == "Enter" && text.trim() !== ""){
+      handleSend();
+    }
   };
 
   return (
-    <div className="input" style={{background:"#eee",width:"100%"}}>
+    <div className="bodyinput">
       <input
-      className="inputChatPage"
+        className="inputChatPage"
         type="text"
+        name="text"
         placeholder="Type something..."
         onKeyDown={handleKey}
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
-      <div className="send">
+      {text && (
+        <div className="clear-button" onClick={() => setText("")}>
+          &times;
+        </div>
+      )}
+      <img src={Mic} alt="" />
+      <input
+        type="file"
+        style={{ display: "none" }}
+        id="file"
+        onChange={(e) => setImg(e.target.files[0])}
+      />
+      <label htmlFor="file">
         <img src={Attach} alt="" />
-        <input
-          type="file"
-          style={{ display: "none"}}
-          id="file"
-          onChange={(e) => setImg(e.target.files[0])}
-        />
-        <label htmlFor="file">
-          <img src={Img} alt="" />
-        </label>
-        <button onClick={handleSend}>Send</button>
-      </div>
+      </label>
+      <button onClick={handleSend}>Send</button>
     </div>
   );
 };
 
 export default Input;
-    
