@@ -23,7 +23,7 @@ const Chat = () => {
           <img src={More} alt="" />
         </div>
       </div>
-      <Messages />
+      <Messages/>
       <Input/>
     </div>
   );

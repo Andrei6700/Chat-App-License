@@ -15,7 +15,7 @@ const Message = ({ message }) => {
   return (
     <div
       ref={ref}
-      className={`message ${message.senderId === currentUser.uid && "owner"}`}
+      className={`message ${message.senderId === currentUser.uid && "owner"}`} 
     >
       <div className="messageInfo">
         <img

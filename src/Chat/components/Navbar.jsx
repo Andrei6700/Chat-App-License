@@ -10,7 +10,7 @@
       return (
         <div className='navbar'>
           <div className="user">
-         <div style={{width:"20%"}}>
+         <div style={{width:"100%"}}>
             <img src={currentUser.photoURL} alt="" />
             <span style={{paddingLeft:"2%"}}> {currentUser.displayName} </span>
             </div>

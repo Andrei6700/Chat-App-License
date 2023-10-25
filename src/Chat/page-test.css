@@ -39,52 +39,6 @@ hr{
     border-top: 1px solid rgba(0,0,0,.1);
 }
 
-@media screen and (max-width: 480px) {
-  .formContainer,
-
-   .container {
-    width: 90%;
-  }
-
-  .logo {
-    @include tablet {
-      display: none;
-    }
-  }
-
-  .user {
-    button {
-      position: absolute;
-      bottom: 10px;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .container {
-    width: 90%;
-  }
-
-  .logo {
-    @include tablet {
-      display: none;
-    }
-  }
-
-  .user {
-    button {
-      position: absolute;
-      bottom: 10px;
-    }
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .container {
-    width: 65%;
-  }
-}
-
 .formContainer {
   background-color: #a7bcff;
   height: 100vh;
@@ -167,7 +121,7 @@ p {
   flex: 1 1;
   background-color: #fff;
   position: relative;
-  border-right: 1px solid #dee2e6!important;
+  border-right: 1px solid #dee2e6;
 }
 
 .navbar {
@@ -249,7 +203,6 @@ p {
   background: #fff;
   transition: 0.3s ease;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .userChat:hover {
@@ -298,6 +251,7 @@ p {
 img{
   vertical-align: middle;
     border-style: none;
+    object-fit: cover;
 }
 
 .chatInfo {
@@ -332,8 +286,7 @@ img{
 
 .message {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+  margin: 20px 0px 20px 0px;
   padding: 0 20px;
 }
 
@@ -358,6 +311,7 @@ img{
   animation: fadeIn 1s ease-in;
   padding-right: 0;
   padding-left: 0;
+  font-size: calc(1.5rem + 3vw);
 }
 
 .messageContent p {
@@ -424,4 +378,85 @@ img{
 
 ::-webkit-scrollbar-track {
   background: transparent;
+}
+
+
+/* testing media queries */
+
+/* Smartphone-uri (portret) */
+@media only screen and (max-width: 320px) { 
+  p{
+    font-size: 9vw;
+  }
+  .messages{
+    background-color: rebeccapurple;
+  }
+
+  .responsiveP{
+    display: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+ }
+
+
+/* Smartphone-uri (peisaj) */
+@media only screen and (min-width: 321px) { 
+  .messages{
+    background-color: red;
+  }
+
+  .responsiveP{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+ }
+
+/* Tablete sau iPad */
+@media only screen and (min-width: 480px) and (max-width: 768px) { 
+  .messages{
+    background-color:#a7bcff;
+  }
+
+  .responsiveP{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+ }
+
+/* Laptop-uri sau ecrane de dimensiuni mici */
+@media only screen and (min-width: 769px) and (max-width: 1024px) { 
+  .messages{
+    background-color: yellowgreen;
+  }
+
+  .responsiveP{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+ }
+
+/* Desktop-uri sau ecrane de dimensiuni mari */
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+  .messages{
+    background-color: green;
+  }
+ }
+
+/* Dispozitive de dimensiuni extra-large */
+@media only screen and (min-width: 1201px) { 
+  .messages{
+    background-color:turquoise;
+  }
+
+  .responsiveP{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 }
