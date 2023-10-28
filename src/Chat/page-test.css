@@ -78,6 +78,7 @@ hr {
   font-size: 24px;
 }
 
+
 .title {
   color: #5d5b8d;
   font-size: 12px;
@@ -139,6 +140,208 @@ p {
   border-right: 1px solid #dee2e6;
 }
 
+@media (max-width: 575.98px){
+
+  body {
+      font-size: 0.875rem;
+    }
+  
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 1.5rem;
+    }
+
+    .test {
+      padding: 5px 10px;
+    }
+
+    hr {
+      width: 100%;
+    }
+
+    .formWrapper {
+      padding: 10px 30px;
+    }
+
+    .logo {
+      font-size: 18px;
+    }
+
+    .title {
+      font-size: 10px;
+    }
+    .sidebar {
+      display: none;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body {
+      font-size: 1rem;
+    }
+  
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 2rem;
+    }
+  .test {
+    padding: 10px 20px;
+  }
+  hr {
+      width: 90%;
+    }
+    .formWrapper {
+      padding: 15px 45px;
+    }
+    .logo {
+      font-size: 20px;
+    }
+    .title {
+      font-size: 11px;
+    }
+    .sidebar {
+      width: 25%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  body {
+    font-size: 1.25rem;
+  }
+
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 2.5rem;
+  }
+  .test {
+      padding: 15px 25px;
+    }
+    hr {
+      width: 80%;
+    }
+    .formWrapper {
+      padding: 20px 60px;
+    }
+    .logo {
+      font-size: 22px;
+    }
+    .title {
+      font-size: 12px;
+    }
+    .sidebar {
+      width: 30%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  body {
+      font-size: 1.5rem;
+    }
+  
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 3rem;
+    }
+  .test {
+    padding: 20px 30px;
+  }
+  hr {
+      width: 70%;
+    }
+    .formWrapper {
+      padding: 25px 75px;
+    }
+    .logo {
+      font-size: 24px;
+    }
+    .title {
+      font-size: 13px;
+    }
+    .sidebar {
+      width: 35%;
+    }
+}
+
+@media (min-width: 1200px){
+  body {
+      font-size: 1.75rem;
+    }
+  
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 3.5rem;
+    }
+    .test {
+      padding: 25px 35px;
+    }
+    hr {
+      width: 60%;
+    }
+    .formWrapper {
+      padding: 30px 90px;
+    }
+      .logo {
+  font-size: 26px;
+}
+.title {
+  font-size: 14px;
+}
+.sidebar {
+  width: 40%;
+}
+}
+
+/**/
 .navbar {
   display: flex;
   align-items: center;
@@ -154,9 +357,6 @@ p {
 
 .logo {
   font-weight: bold;
-  @include tablet {
-    display: none;
-  }
 }
 
 .user {
@@ -179,10 +379,6 @@ p {
   font-size: 10px;
   border: none;
   cursor: pointer;
-  @include tablet {
-    position: absolute;
-    bottom: 10px;
-  }
 }
 
 .search {
@@ -338,7 +534,7 @@ img {
   background-color: #eee;
   padding: 10px 20px;
   border-radius: 0px 10px 10px 10px;
-  max-width: max-content;
+  max-width: fit-content;
 }
 
 .messageContent img {
@@ -436,134 +632,242 @@ img {
   background: transparent;
 }
 
-/* testing media queries */
+/* Media queries */
 
-/* Smartphone-uri (portret) */
-@media only screen and (max-width: 320px) {
-  p {
-    font-size: 9vw;
-  }
-  .messages {
-    background-color: rebeccapurple;
+/* Smartphones / portrait */
+@media only screen and (max-width: 480px) {
+  .logo {
+    display: none;
   }
 
   .user {
-    justify-content: center;
-  }
-
-  .responsiveP {
-    display: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .message {
-    padding: 5px 10px;
-  }
-
-  .chatInfo {
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    flex-wrap: nowrap;
+    gap: 10px;
   }
 
-  .ResponsiveTextChat {
-    font-size: 5vw;
-  }
-}
-
-/* Smartphone-uri (peisaj) */
-@media only screen and (min-width: 321px) {
-  .messages {
-    background-color: red;
+  .user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
   }
 
-  .responsiveP {
+  .user button {
+    font-size: 8px;
+  }
+
+  .searchForm {
     display: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .message {
-    padding: 5px 10px;
+  .chat {
+    flex: 1 1;
+    max-width: 100%;
   }
 
-  .ResponsiveTextChat {
-    font-size: 4vw;
+  .inputChatPage {
+    width: 100%;
+  }
+
+  .inputChatPage-container {
+    width: 100%;
+  }
+
+  .inputChatPage-container button {
+    font-size: 8px;
+  }
+
+  .messageContent p {
+    max-width: fit-content;
   }
 }
 
-/* Tablete sau iPad */
-@media only screen and (min-width: 480px) and (max-width: 768px) {
-  .messages {
-    background-color: #a7bcff;
-  }
-
-  .responsiveP {
+/* Smartphones (landscape) */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .logo {
     display: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .ResponsiveTextChat {
-    font-size: 2vw;
+  .user {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+  }
+
+  .user button {
+    font-size: 8px;
+  }
+
+  .searchForm {
+    display: flex;
+    align-items: center;
+  }
+
+  .chat {
+    flex: 2;
+    max-width: 100%;
+  }
+
+  .inputChatPage {
+    width: 100%;
+  }
+
+  .inputChatPage-container {
+    width: 100%;
+  }
+
+  .inputChatPage-container button {
+    font-size: 8px;
+  }
+
+  .messageContent p {
+    max-width:fit-content;
   }
 }
 
-/* Laptop-uri sau ecrane de dimensiuni mici */
+/* Tablets */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
-  .messages {
-    background-color: yellowgreen;
+  .logo {
+    display: none;
   }
 
-  .responsiveP {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .user {
+    flex-direction: column;
+    gap: 10px;
   }
-  .ResponsiveTextChat {
-    /* font-size: 1.3vw; */
-    font-size: 2vw;
+
+  .user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+  }
+
+  .user button {
+    font-size: 8px;
+  }
+
+  .searchForm {
+    display: flex;
+    align-items: center;
+  }
+
+  .chat {
+    flex: 3;
+    max-width: 100%;
+  }
+
+  .inputChatPage {
+    width: 100%;
+  }
+
+  .inputChatPage-container {
+    width: 100%;
+  }
+
+  .inputChatPage-container button {
+    font-size: 8px;
+  }
+
+  .messageContent p {
+    max-width: fit-content;
   }
 }
 
-/* Desktop-uri sau ecrane de dimensiuni mari */
+/* Laptops */
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-  .messages {
-    background-color: green;
+  .logo {
+    display: none;
   }
 
-  .responsiveP {
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .user {
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .ResponsiveTextChat {
-    font-size: 1.4vw;
+  .user img {
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+  }
+
+  .user button {
+    font-size: 8px;
+  }
+
+  .searchForm {
+    display: flex;
+    align-items: center;
+  }
+
+  .chat {
+    flex: 3;
+    max-width: 100%;
+  }
+
+  .inputChatPage {
+    width: 100%;
+  }
+
+  .inputChatPage-container {
+    width: 100%;
+  }
+
+  .inputChatPage-container button {
+    font-size: 8px;
+  }
+
+  .messageContent p {
+    max-width: fit-content;
   }
 }
 
-/* Dispozitive de dimensiuni extra-large */
+/* Desktops*/
 @media only screen and (min-width: 1201px) {
-  .messages {
-    background-color: turquoise;
-  }
-
-  .responsiveP {
+  .logo {
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
-  .ResponsiveTextChat {
-    font-size: 1vw;
+  .user {
+    flex-direction: row;
+    gap: 2%;
+  }
+
+  .user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+  }
+
+  .user button {
+    font-size: 10px;
+  }
+
+  .searchForm {
+    display: block;
+  }
+
+  .chat {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .inputChatPage {
+    width: 80%;
+  }
+
+  .inputChatPage-container {
+    width: 100%;
+  }
+
+  .inputChatPage-container button {
+    font-size: 10px;
+  }
+
+  .messageContent p {
+    max-width: max-content;
   }
 }
