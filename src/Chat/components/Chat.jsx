@@ -7,14 +7,14 @@ import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 import more from "./../../img/menu.svg";
 
-const Chat = () => {
+const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
 
   return (
     <div className="chat">
       <div className="chatInfo">
         <div className="user">
-          <button>
+          <button className="toggle-sidebar-button" onClick={toggleSidebar}>
             <img src={more} style={{ height: "24px", width: "24px" }} />
           </button>
           <img src={data.user?.photoURL} alt="" />
