@@ -1,15 +1,5 @@
-import React, { useContext, useState } from "react";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  setDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+import React, { useContext, useState, useEffect } from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -25,7 +15,7 @@ const Search = () => {
 
     let q = query(
       collection(db, "users"),
-      where("displayName", "==", username)
+      where("displayName", "==", username.toLowerCase())
     );
 
     try {
@@ -37,11 +27,14 @@ const Search = () => {
 
       if (users.length === 0) {
         setErr(true);
+        setTimeout(() => {
+          setErr(false);
+        }, 5000);
       } else {
         setUser(users[0]);
       }
     } catch (err) {
-      console.error("Error searching for user:", err);
+      console.error("error 404 :)", err);
     }
   };
 
@@ -54,50 +47,6 @@ const Search = () => {
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
-
-    let q;
-
-    try {
-      const res = await getDoc(doc(db, "chats", combinedId));
-
-      if (!res.exists()) {
-        await setDoc(doc(db, "chats", combinedId), { messages: [] });
-
-        await updateDoc(doc(db, "userChats", currentUser.uid), {
-          [combinedId + ".userInfo"]: {
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL,
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
-
-        await updateDoc(doc(db, "userChats", user.uid), {
-          [combinedId + ".userInfo"]: {
-            uid: currentUser.uid,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-          },
-          [combinedId + ".date"]: serverTimestamp(),
-        });
-      }
-    } catch (err) {
-      try {
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.empty) {
-          setErr(true);
-        } else {
-          querySnapshot.forEach((doc) => {
-            setUser(doc.data());
-          });
-        }
-      } catch (err) {
-        setErr(true);
-      }
-    }
-
-    setUser(null);
-    setUsername("");
   };
 
   return (
