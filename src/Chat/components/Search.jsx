@@ -12,18 +12,19 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
 
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
-
   const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
 
   const removeDiacritics = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  }
-  
+  };
+
   const handleSearch = async () => {
     setErr(false);
 
@@ -31,6 +32,8 @@ const Search = () => {
       collection(db, "users"),
       where("displayName", "==", removeDiacritics(username).toLowerCase())
     );
+
+    const users = [];
 
     try {
       const querySnapshot = await getDocs(q);
@@ -46,6 +49,9 @@ const Search = () => {
         }, 5000);
       } else {
         setUser(users[0]);
+        setTimeout(() => {
+          setUser(null);
+        }, 5000);
       }
     } catch (err) {
       console.error("error 404 :)", err);
@@ -65,6 +71,16 @@ const Search = () => {
     try {
       const chatDocRef = doc(db, "chats", combinedId);
       const chatDoc = await getDoc(chatDocRef);
+      
+// deschidrea chatului cu x
+      dispatch({
+        type: "CHANGE_USER",
+        payload: {
+          uid: user.uid,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+        },
+      });
 
       if (!chatDoc.exists()) {
         await setDoc(chatDocRef, { messages: [] });
