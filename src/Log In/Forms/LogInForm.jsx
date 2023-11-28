@@ -24,7 +24,8 @@ const LoginForm = ({ handleSubmit, err }) => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        <div className="hidden md:block w-full md:w-1/2 bg-white">
+        <div className="hidden md:block w-full md:w-1/2 bg-white"
+        style={{display:'flex',justifyContent:'center',alignItems:'center',width:'50%'}}>
           <img className="opacity-75 pl-8 md:ml-32" src={animation} alt="" />
         </div>
         <div className="w-full md:w-1/2 bg-white">
