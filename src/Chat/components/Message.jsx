@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
-
-//test
 import { formatRelative } from "date-fns";
-//
+import { format } from "date-fns";
+
 const Message = ({ message }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
@@ -15,10 +14,8 @@ const Message = ({ message }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
-  //test - >   
-  const createdAt = message.createdAt ? message.createdAt.toDate() : new Date();
-const formattedDate = formatRelative(createdAt, new Date());
- //
+  const createdAt = message.date.toDate();
+  const formattedDate = formatRelative(createdAt, new Date()); //sau format(createdAt, "dd/MM/yyyy HH:mm");
   return (
     <div
       ref={ref}
@@ -33,9 +30,7 @@ const formattedDate = formatRelative(createdAt, new Date());
           }
           alt=""
         />
-        <span>
-          {formattedDate}
-        </span>
+        <span>{formattedDate}</span>
       </div>
       <div className="messageContent">
         <p className="ResponsiveTextChat">{message.text}</p>

@@ -1,0 +1,93 @@
+/*---------------------- NOTITA ----------------------|
+| 1. sa fac un root in care zic ca color nu stiu cum  |
+| 2. sa fac un folder separat si sa fie si pt home.etc|
+| 3. sa sterg din .css original background si color   |
+|------------------------  NOTITA -------------------*/
+
+/*------------------------  page-test.jsx -------------------*/
+/*--- SIDEBAR ---*/
+#dark .sidebar {
+    background-color: #fff;
+  }
+  
+  #light .sidebar {
+    background-color: #fff;
+  }
+  
+  /*--- NAVBAR ---*/
+  #dark .navbar {
+    background-color: #fff;
+  }
+  
+  #light .navbar {
+    background-color: #eee;
+  }
+  
+  /*--- CHATINFO ---*/
+  #dark .chatInfo {
+    background-color: #fff;
+  }
+  
+  #light .chatInfo {
+    background-color: #eee;
+  }
+  
+  /*--- MESSAGES ---*/
+  #dark .messages {
+    background-color: #fff;
+  }
+  
+  #light .messages {
+    background-color: #fff;
+  }
+  
+  /*--- BODYINPUT ---*/
+  #dark .bodyinput {
+    background-color: #fff;
+  }
+  
+  #light .bodyinput {
+    background-color: rgb(238, 238, 238);
+  }
+  
+  /*--- SEARCH ---*/
+  #dark .search {
+    background-color: #fff;
+  }
+  
+  #light .search {
+    background-color: #fafafa;
+  }
+  
+  /*------------------------  main-page.jsx -------------------*/
+  
+  /*--- SIDEBAR ---*/
+  #dark {
+    background-color: #fff;
+  }
+  
+  #light {
+    background-color: #fafafa;
+  }
+  
+  /*------------------------  RegistrationForm.jsx -------------------*/
+  
+  /*--- BG-WHITE ---*/
+  #dark .bg-white {
+    background-color: #fff;
+  }
+  
+  #light .bg-white {
+    background-color: rgb(255 255 255);
+  }
+  
+  /*------------------------  LogInForm.jsx -------------------*/
+  
+  /*--- SIDEBAR ---*/
+  #dark {
+    background-color: #fff;
+  }
+  
+  #light {
+    background-color: #fafafa;
+  }

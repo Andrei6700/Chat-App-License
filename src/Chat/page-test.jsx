@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./page-test.css";
+import "./dark - light.css";
 import Sidebar from "./components/Sidebar";
 import Chat from "./components/Chat";
 
@@ -9,7 +10,10 @@ const TestPage = () => {
   return (
     <div className="home">
       <div className="container">
-        <Sidebar className={sidebarVisible ? 'visible' : ''} onChatSelect={() => setSidebarVisible(false)} />
+        <Sidebar
+          className={sidebarVisible ? "visible" : ""}
+          onChatSelect={() => setSidebarVisible(false)}
+        />
         <Chat toggleSidebar={() => setSidebarVisible(!sidebarVisible)} />
       </div>
     </div>

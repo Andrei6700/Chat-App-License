@@ -13,6 +13,7 @@ import {
 import { db, storage } from "../../firebase/firebase";
 import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
+import { formatRelative } from "date-fns";
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -20,6 +21,11 @@ const Input = () => {
 
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
+
+  const Message = ({ message }) => {
+    const createdAt = message.date.toDate();
+    const formattedDate = formatRelative(createdAt, new Date());
+  };
 
   const handleSend = async () => {
     if (text.trim() === "") {
@@ -44,7 +50,7 @@ const Input = () => {
               }),
             });
           });
-        }
+        },
       );
     } else {
       await updateDoc(doc(db, "chats", data.chatId), {
@@ -76,7 +82,7 @@ const Input = () => {
   };
 
   const handleKey = (e) => {
-    if(e.code == "Enter" && text.trim() !== ""){
+    if (e.code == "Enter" && text.trim() !== "") {
       handleSend();
     }
   };
