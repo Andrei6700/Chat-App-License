@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { MainPage } from "./home/main-page";
+import { ThemeProvider } from "./context/dark-mode";
 import TestPage from './Chat/page-test'
 import SignUp from "./Sign Up/pages/Register";
 import LoginPage from "./Log In/page/LogIn";
@@ -20,6 +21,8 @@ function App() {
 
 
   return (
+    <ThemeProvider>
+
     <BrowserRouter>
        <Routes>
   <Route path="/" element={<Navigate to="/main" />} />
@@ -29,6 +32,8 @@ function App() {
   <Route path="/chat" element={<TestPage />} />
 </Routes>
     </BrowserRouter>
+    </ThemeProvider>
+
 );
 }
 

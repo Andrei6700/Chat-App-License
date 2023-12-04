@@ -6,16 +6,18 @@ import Input from "./Input";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 import more from "./../../img/menu.svg";
+import { useTheme } from "../../context/dark-mode";
 // import paginaidk from "./";
 
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
+  const { theme } = useTheme();
 
   return (
     <div className="chat">
       {data.chatId !== "null" ? (
         <>
-          <div className="chatInfo">
+          <div className={`chatInfo ${theme}`}>
             <div className="user">
               <button className="toggle-sidebar-button" onClick={toggleSidebar}>
                 <img src={more} style={{ height: "24px", width: "24px" }} />

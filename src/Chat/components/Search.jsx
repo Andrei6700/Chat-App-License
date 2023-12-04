@@ -30,7 +30,7 @@ const Search = () => {
 
     let q = query(
       collection(db, "users"),
-      where("displayName", "==", removeDiacritics(username).toLowerCase())
+      where("displayName", "==", removeDiacritics(username).toLowerCase()),
     );
 
     const users = [];
@@ -71,8 +71,8 @@ const Search = () => {
     try {
       const chatDocRef = doc(db, "chats", combinedId);
       const chatDoc = await getDoc(chatDocRef);
-      
-// deschidrea chatului cu x
+
+      // deschidrea chatului cu x
       dispatch({
         type: "CHANGE_USER",
         payload: {

@@ -3,9 +3,11 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
+import { useTheme } from "../../context/dark-mode";
 
 const Chats = () => {
   const [chats, setChats] = useState([]);
+  const { theme } = useTheme();
 
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -29,7 +31,7 @@ const Chats = () => {
   };
 
   return (
-    <div className="chats">
+    <div className={`chats ${theme === 'dark' ? 'dark' : ''}`}>
       {Object.entries(chats)
         ?.sort((a, b) => b[1].date - a[1].date)
         .map((chat) => (
