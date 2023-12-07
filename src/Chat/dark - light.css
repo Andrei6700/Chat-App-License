@@ -4,6 +4,10 @@
 | 3. sa sterg din .css original background si color   |
 |------------------------  NOTITA -------------------*/
 
+/*
+pentru input sa nu uit: background: border-box color;
+*/
+
 /*------------------------  page-test.jsx -------------------*/
 /*--- SIDEBAR ---*/
 .dark .sidebar {

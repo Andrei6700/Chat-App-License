@@ -4,10 +4,11 @@ import More from "../../img/more.svg";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../../context/ChatContext";
-import { AuthContext } from "../../context/AuthContext";
+// import { AuthContext } from "../../context/AuthContext";
 import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
-// import paginaidk from "./";
+import BlankPage from "../blankPage.jsx";
+import logoDarkWhite from '../../img/logo_dark-white-removebg-preview.png'
 
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
@@ -38,7 +39,7 @@ const Chat = ({ toggleSidebar }) => {
           <Input />
         </>
       ) : (
-        <paginaidk />
+    <BlankPage />
       )}
     </div>
   );
