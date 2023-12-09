@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   collection,
   query,
@@ -13,6 +13,7 @@ import {
 import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
+import { useTheme } from "../../context/dark-mode";
 
 const Search = () => {
   const [username, setUsername] = useState("");
@@ -20,6 +21,7 @@ const Search = () => {
   const [err, setErr] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
+  const { theme } = useTheme();
 
   const removeDiacritics = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -30,7 +32,7 @@ const Search = () => {
 
     let q = query(
       collection(db, "users"),
-      where("displayName", "==", removeDiacritics(username).toLowerCase()),
+      where("displayName", "==", removeDiacritics(username).toLowerCase())
     );
 
     const users = [];
@@ -51,7 +53,7 @@ const Search = () => {
         setUser(users[0]);
         setTimeout(() => {
           setUser(null);
-        }, 5000);
+        }, 100000);
       }
     } catch (err) {
       console.error("error 404 :)", err);
@@ -116,7 +118,7 @@ const Search = () => {
 
   return (
     <div className="search">
-      <div className="searchForm">
+      <div className={`searchForm ${theme}`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           x="0px"
@@ -141,7 +143,7 @@ const Search = () => {
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
-            <span>{user.displayName}</span>
+            <span style={{background:'#2a3942'}}>{user.displayName}</span>
           </div>
         </div>
       )}

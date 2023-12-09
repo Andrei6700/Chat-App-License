@@ -8,8 +8,8 @@ const Sidebar = ({ className, onChatSelect }) => {
   const { theme } = useTheme();
 
   return (
-    <div className={`sidebar ${className} ${theme === 'dark' ? 'dark' : ''}`}>
-    <Navbar />
+    <div className={`sidebar ${className} ${theme === "dark" ? "dark" : ""}`}>
+      <Navbar />
       <Search />
       <Chats onChatSelect={onChatSelect} />
     </div>

@@ -1,71 +1,104 @@
-/*---------------------- NOTITA ----------------------|
+/*---------------------- NOTITA ----------------------|.sidebar.dark
 | 1. sa fac un root in care zic ca color nu stiu cum  |
 | 2. sa fac un folder separat si sa fie si pt home.etc|
 | 3. sa sterg din .css original background si color   |
 |------------------------  NOTITA -------------------*/
 
 /*
-pentru input sa nu uit: background: border-box color;
+pentru input sa nu uit: background: border-box #202c33;
 */
 
 /*------------------------  page-test.jsx -------------------*/
 /*--- SIDEBAR ---*/
-.dark .sidebar {
-  background-color: #252525;
+.dark.sidebar {
+  background-color: #202c33;
   border-right: 1px solid #232324;
 }
 
 /*--- NAVBAR ---*/
-.dark .navbar {
-background-color: #242424;
-color: white;
+.dark.navbar {
+background-color: #202c33;
 }
+
+.dark.chatInfo  {
+  background-color: #202c33;
+  }
 
 /*--- CHATINFO ---*/
-.dark .chatInfo {
-  background-color: #242424;
-  color: white;
-}
+
 
 /*--- MESSAGES ---*/
-.dark .messages {
+.dark.messages {
+  background-color: #1e282f;
 }
 
 /*--- BODYINPUT ---*/
-.dark .bodyinput {
+.dark.bodyinput {
+  background-color: #202c33;
 }
 
 /*--- SEARCH ---*/
 .dark .search {
-  background-color: #252525;
+  background-color: #111b21;
   border-right: 1px solid #232324;
 }
 
 /*--- USERCHAT ---*/
 .dark .userChat{
-  background-color: #252525;
-  color: white
+  background-color: #111b21;
 }
 
 /*--- RESPONSIVEP ---*/
 .dark .responsiveP{
-color: white;
+  color: #e9edef;
 }
 
+.dark .blankPageContainer{
+  background-color: #222e35;
+}
 
+.dark .blankPageCenter{
+}
 
+.dark .hr{
+  color: rgba(134,150,160,0.15);
+}
 
+.dark .chats{
+  background-color: #111b21;
+}
 
+.dark .blankPageContainer{
+  background-color: #222e35;
+}
 
+.dark .hr{
+  background-color: rgba(134,150,160,0.15);
+}
 
+.dark .splitter{
+  background-color: rgba(134,150,160,0.15);
+}
 
+.dark{
+  color: #e9edef;
+}
 
+.dark.messageContent p{
+  background-color: #202c33;
+}
 
+.dark.message.owner .messageContent p{
+  background-color: #005c4b;
+}
 
+.dark.searchForm input{
+  background: border-box #202c33;
+}
 
-
-
-
+.dark.inputChatPage{
+  background: border-box #2a3942;
+}
 
 
 
@@ -74,21 +107,9 @@ color: white;
 
 /*------------------------  main-page.jsx -------------------*/
 
-/*--- SIDEBAR ---*/
-.dark {
-  background-color: #fff;
-}
 
 /*------------------------  RegistrationForm.jsx -------------------*/
 
-/*--- BG-WHITE ---*/
-.dark .bg-white {
-  background-color: #fff;
-}
 
 /*------------------------  LogInForm.jsx -------------------*/
 
-/*--- SIDEBAR ---*/
-.dark {
-  background-color: #fff;
-}

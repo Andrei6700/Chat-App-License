@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`navbar ${theme === 'dark' ? 'dark' : ''}`}>
+    <div className={`navbar ${theme === "dark" ? "dark" : ""}`}>
       <div className="user">
         <div style={{ width: "100%" }}>
           <img src={currentUser.photoURL} alt="" />

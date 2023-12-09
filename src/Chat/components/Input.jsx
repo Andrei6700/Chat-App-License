@@ -14,11 +14,12 @@ import { db, storage } from "../../firebase/firebase";
 import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { formatRelative } from "date-fns";
+import { useTheme } from "../../context/dark-mode";
 
 const Input = () => {
   const [text, setText] = useState("");
   const [img, setImg] = useState(null);
-
+  const { theme } = useTheme();
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
@@ -50,7 +51,7 @@ const Input = () => {
               }),
             });
           });
-        },
+        }
       );
     } else {
       await updateDoc(doc(db, "chats", data.chatId), {
@@ -88,9 +89,9 @@ const Input = () => {
   };
 
   return (
-    <div className="bodyinput">
+    <div className={`bodyinput ${theme}`}>
       <input
-        className="inputChatPage"
+        className={`inputChatPage ${theme}`}
         type="text"
         name="text"
         placeholder="Type something..."

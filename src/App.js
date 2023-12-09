@@ -22,7 +22,6 @@ function App() {
 
   return (
     <ThemeProvider>
-
     <BrowserRouter>
        <Routes>
   <Route path="/" element={<Navigate to="/main" />} />

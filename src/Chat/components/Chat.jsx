@@ -8,14 +8,13 @@ import { ChatContext } from "../../context/ChatContext";
 import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
-import logoDarkWhite from '../../img/logo_dark-white-removebg-preview.png'
 
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
   const { theme } = useTheme();
 
   return (
-    <div className="chat">
+    <div className={`chat ${theme === "dark" ? "dark" : ""}`}>
       {data.chatId !== "null" ? (
         <>
           <div className={`chatInfo ${theme}`}>
@@ -39,7 +38,7 @@ const Chat = ({ toggleSidebar }) => {
           <Input />
         </>
       ) : (
-    <BlankPage />
+        <BlankPage />
       )}
     </div>
   );
