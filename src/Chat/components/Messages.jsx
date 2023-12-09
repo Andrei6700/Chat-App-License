@@ -20,12 +20,10 @@ const Messages = () => {
     };
   }, [data.chatId]);
 
-  console.log(messages);
-
   return (
     <div className={`messages ${theme}`}>
-      {messages.map((m) => (
-        <Message message={m} key={m.id} />
+      {messages.map((message, index) => (
+        <Message key={index} message={message} />
       ))}
     </div>
   );
