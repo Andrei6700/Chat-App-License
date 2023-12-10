@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { isToday, isYesterday } from "date-fns";
 import { format } from "date-fns";
 import { useTheme } from "../../context/dark-mode";
 
-const Message = ({ message }) => {
+const Message = ({ message, showDate }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
   const { theme } = useTheme();
@@ -15,29 +15,23 @@ const Message = ({ message }) => {
     ? "Today"
     : isYesterday(createdAt)
     ? "Yesterday"
-    : format(createdAt, "dd/MM/yyyy");
+    : format(createdAt, "dd.MM.yyyy");
   console.log(formattedDate);
 
   const ref = useRef();
-  const [showDate, setShowDate] = useState(true);
-
-  useEffect(() => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-    setShowDate(false); // Ascunde data după primul mesaj al zilei
-  }, [message]);
 
   return (
+    <div>{showDate && (
+      <div className="messageDate-Container">
+        <span className={`messageDate ${theme}`}>{formattedDate}</span>
+      </div>
+    )}
     <div
       ref={ref}
       className={`message ${
         message.senderId === currentUser.uid && "owner"
       } ${theme}`}
     >
-      {showDate && (
-        <div className="messageDate">
-          <span>{formattedDate}</span>
-        </div>
-      )}
       <div className="messageInfo">
         <img
           src={
@@ -53,6 +47,7 @@ const Message = ({ message }) => {
         <p className="ResponsiveTextChat">{message.text}</p>
         {message.img && <img src={message.img} alt="" />}
       </div>
+    </div>
     </div>
   );
 };

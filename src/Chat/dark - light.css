@@ -60,6 +60,10 @@ background-color: #202c33;
 .dark .blankPageCenter{
 }
 
+.dark.messageDate{
+  background-color:#182229;
+  color: #8696a0;
+}
 .dark .hr{
   color: rgba(134,150,160,0.15);
 }

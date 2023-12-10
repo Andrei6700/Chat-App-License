@@ -60,6 +60,18 @@ h6 {
   transition: 0.3s ease;
 }
 
+.messageDate-Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.messageDate {
+  background-color: hsla(0, 0%, 100%, 0.95);
+    padding: 5px 12px 6px;
+    border-radius: 10px;
+    color: #54656F;
+}
+
 hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -78,7 +90,7 @@ hr {
   justify-content: center;
 }
 
-.responsiveP{
+.responsiveP {
   overflow: hidden;
   font-weight: 400;
   line-height: 20px;
@@ -315,7 +327,7 @@ img {
 }
 
 .messages {
-  background-color: #fff;
+  background-color: /*#fff*/#c3bcbc;
   height: calc(100% - 140px);
   overflow: scroll;
 }
