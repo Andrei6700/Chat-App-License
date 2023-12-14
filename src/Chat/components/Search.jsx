@@ -35,11 +35,10 @@ const Search = () => {
       where("displayName", "==", removeDiacritics(username).toLowerCase())
     );
 
-    const users = [];
 
+    const users = [];
     try {
       const querySnapshot = await getDocs(q);
-      const users = [];
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
@@ -138,7 +137,8 @@ const Search = () => {
           value={username}
         />
       </div>
-      {err && <span>User not found!</span>}
+      {err && <span>User {`${username}`} not found!</span>}
+      
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
