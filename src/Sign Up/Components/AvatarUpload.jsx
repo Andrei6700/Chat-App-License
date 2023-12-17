@@ -6,7 +6,6 @@ const AvatarUpload = () => {
     <div>
       <input className="inputSignLog"
         required
-        style={{ display: "none" }}
         type="file"
         id="file"
       />
