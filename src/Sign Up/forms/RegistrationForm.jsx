@@ -5,8 +5,13 @@ import AvatarUpload from "../Components/AvatarUpload";
 import ActionButton from "../Components/ActionButton";
 import { Link } from "react-router-dom";
 import animation from "../../img/Messaging.gif";
+<<<<<<< HEAD
 import { OnSubmit } from "../SignUpHandlers/SignUpHandlers";
 import useFormData from "../pages/useFormData";
+=======
+import { OnChange, OnSubmit } from "../SignUpHandlers/SignUpHandlers";
+
+>>>>>>> a4271641edaec1e1bc0388f3a92227d1771fe8f3
 //https://storyset.com/ animatie ca sa nu uit
 
 const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
@@ -44,8 +49,12 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
           <div className="flex flex-col items-center pt-12">
             <h1 className="text-center">Sign U</h1>
             <h2 className="text-xl py-4">text</h2>
+<<<<<<< HEAD
             <form
               onSubmit={formHandleSubmit(OnSubmit)}
+=======
+            <form onSubmit={(e) => handleSubmit(e, OnSubmit)}
+>>>>>>> a4271641edaec1e1bc0388f3a92227d1771fe8f3
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             >
