@@ -6,27 +6,26 @@ import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../forms/RegistrationForm";
 
-
 const SignUp = () => {
   const [err, setErr] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
-  
+    e.preventDefault();
+
     setLoading(true);
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
     const file = e.target[3].files[0];
-  
+
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-  
+
       const date = new Date().getTime();
       const storageRef = ref(storage, `${displayName + date}`);
-  
+
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
           try {
@@ -40,7 +39,7 @@ const SignUp = () => {
               email,
               photoURL: downloadURL,
             });
-  
+
             await setDoc(doc(db, "userChats", res.user.uid), {});
             navigate("/chat");
           } catch (err) {
@@ -54,14 +53,10 @@ const SignUp = () => {
       setErr(true);
       setLoading(false);
     }
-  };    
-  
+  };
+
   return (
-    <RegistrationForm
-      handleSubmit={handleSubmit}
-      loading={loading}
-      err={err}
-    />
+    <RegistrationForm handleSubmit={handleSubmit} loading={loading} err={err} />
   );
 };
 

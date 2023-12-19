@@ -1,19 +1,23 @@
 import React from "react";
 import Add from "../../img/addAvatar.png";
 
-const AvatarUpload = () => {
+const AvatarUpload = ({ register, errors }) => {
+  const bordercolor = errors.file ? "red" : "";
+
   return (
     <div>
-      <input className="inputSignLog"
-        required
-        style={{ display: "none" }}
+      <input
+        className="inputSignLog"
         type="file"
         id="file"
+        style={{ borderColor: bordercolor }}
+        {...register("file")}
       />
       <label htmlFor="file">
         <img src={Add} alt="" />
         <span>Add an avatar</span>
       </label>
+      {errors.file && <p className="errors">{errors.file.message}</p>}
     </div>
   );
 };

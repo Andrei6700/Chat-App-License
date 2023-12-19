@@ -1,13 +1,14 @@
-import './main-page.css'
-import { Header } from './components/header'
+import "./main-page.css";
+import { Header } from "./components/header";
+import { useTheme } from "../context/dark-mode";
 
 export const MainPage = () => {
-    return (
-            <div className="aplicatie">
-                <div>
-                   <Header/>
-                </div>
-                <div>2</div>
-            </div>
-    )
-}
+  const { theme } = useTheme();
+  return (
+    <div className="container">
+      <Header />
+
+      <div className={`backgroundHome ${theme}`}>2</div>
+    </div>
+  );
+};

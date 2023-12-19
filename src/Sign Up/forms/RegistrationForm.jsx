@@ -5,11 +5,18 @@ import AvatarUpload from "../Components/AvatarUpload";
 import ActionButton from "../Components/ActionButton";
 import { Link } from "react-router-dom";
 import animation from "../../img/Messaging.gif";
+import { OnSubmit } from "../SignUpHandlers/SignUpHandlers";
+import useFormData from "../pages/useFormData";
 //https://storyset.com/ animatie ca sa nu uit
 
-const RegistrationForm = ({ handleSubmit, loading, err }) => {
-  const handleEnterKeyPress = () => {
-    handleSubmit();
+const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
+  const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
+
+  const handleEnterKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      formHandleSubmit(handleSubmit)();
+    }
   };
 
   return (
@@ -38,54 +45,15 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
             <h1 className="text-center">Sign U</h1>
             <h2 className="text-xl py-4">text</h2>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={formHandleSubmit(OnSubmit)}
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             >
-              <div className="mb-4">
-                <label
-                  className="block text-grey-darker text-sm font-bold mb-2"
-                  htmlFor="username"
-                >
-                  Name
-                </label>
-                <InputField
-                  className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
-                  type="text"
-                  placeholder="First name"
-                />
-              </div>
-
-              <div className="mb-4">
-                <label
-                  className="block text-grey-darker text-sm font-bold mb-2"
-                  htmlFor="username"
-                >
-                  Email
-                </label>
-                <InputField
-                  className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
-                  type="email"
-                  placeholder="Email address"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  className="block text-grey-darker text-sm font-bold mb-2"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <InputField
-                  className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
-                  type="password"
-                  placeholder="Password"
-                />
-              </div>
-
+              <InputField register={register} errors={errors} type={type} />
               <div className="mb-6">
                 <AvatarUpload
+                  register={register}
+                  errors={errors}
                   className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
                   type="password"
                 />
@@ -110,8 +78,9 @@ const RegistrationForm = ({ handleSubmit, loading, err }) => {
                   </Link>
                 </div>
                 <div>
-                {loading && "Uploading and compressing the image please wait..."}
-                {err && <span>Something went wrong</span>}
+                  {loading &&
+                    "Uploading and compressing the image please wait..."}
+                  {err && <span>Something went wrong</span>}
                 </div>
               </div>
             </form>
