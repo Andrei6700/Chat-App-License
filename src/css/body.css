@@ -302,7 +302,6 @@
 
 .inputSignLog::placeholder {
 color: rgb(175, 175, 175);
-<<<<<<< HEAD
 }
 .displayName,
 .password,
@@ -330,47 +329,6 @@ width: -webkit-fill-available;
 width: -moz-available;
 height: 18px;
 box-shadow: inset 2px 2px 5px #cdd1cf, inset -2px -2px 5px #d8d3d3; */
-
-.invalid-input {
-color: red;
-background-color: rgb(238, 199, 199);
-background-size: 10em;
-border-radius: 5%;
-display: flex;
-justify-content: center;
-flex-direction: row;
-margin-block-start: 10px;
-font-size: medium;
-}
-
-.name input.invalid-input {
-margin-right: 10px;
-}
-
-.password input.invalid-input {
-margin-right: 10px;
-}
-
-.email input.invalid-input {
-margin-right: 10px;
-=======
->>>>>>> a4271641edaec1e1bc0388f3a92227d1771fe8f3
-}
-
-.name,
-.password,
-.email {
-display: flex;
-justify-content: center;
-flex-direction: row;
-border-radius: 5px;
-margin: 5% 0;
-padding: 3px;
-width: -webkit-fill-available;
-width: -moz-available;
-height: 18px;
-box-shadow: inset 2px 2px 5px #cdd1cf, inset -2px -2px 5px #d8d3d3;
-}
 
 .invalid-input {
 color: red;

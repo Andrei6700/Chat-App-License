@@ -6,13 +6,8 @@ const AvatarUpload = ({ register, errors }) => {
 
   return (
     <div>
-<<<<<<< HEAD
       <input
         className="inputSignLog"
-=======
-      <input className="inputSignLog"
-        required
->>>>>>> a4271641edaec1e1bc0388f3a92227d1771fe8f3
         type="file"
         id="file"
         style={{ borderColor: bordercolor }}
