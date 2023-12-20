@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
-import LoginForm from '../Forms/LogInForm'
+import LoginForm from "../Forms/LogInForm";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const email = e.target[0].value;
-    const password = e.target[1].value;
-
+  const handleSubmit = async (data) => {
+    const { email, password } = data;
+  
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/chat"); 
+      navigate("/chat");
     } catch (err) {
-      setErr(true);
+      setErr(true); 
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div>
-
-      <LoginForm handleSubmit={handleSubmit} err={err} />
+      <LoginForm handleSubmit={handleSubmit} loading={loading} err={err} />
     </div>
   );
 };

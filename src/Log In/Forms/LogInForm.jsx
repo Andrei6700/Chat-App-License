@@ -1,13 +1,24 @@
-import React from "react";
-import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import "../styles/styles.css";
 import animation from "../../img/Texting (1).gif";
+import { useTheme } from "../../context/dark-mode";
+import useFormData from "../page/useFormData";
+import InputErrorField from "../components/InputErrorField";
 
-const LoginForm = ({ handleSubmit, err }) => {
+const LoginForm = ({ handleSubmit, loading, err }) => {
+  const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
+  const { theme } = useTheme();
+
+  const handleEnterKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      formHandleSubmit(handleSubmit)();
+    }
+  };
+
   return (
-    <div className="font-sans bg-grey-lighter flex flex-col w-full">
+    <div className={`font-sans bg-grey-lighter flex flex-col w-full ${theme}`}>
       <div className="bg-white border-b">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
@@ -24,50 +35,45 @@ const LoginForm = ({ handleSubmit, err }) => {
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
-        <div className="hidden md:block w-full md:w-1/2 bg-white"
-        style={{display:'flex',justifyContent:'center',alignItems:'center',width:'50%'}}>
+        <div
+          className={`hidden md:block w-full md:w-1/2 bg-white ${theme}`}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "50%",
+          }}
+        >
           <img className="opacity-75 pl-8 md:ml-32" src={animation} alt="" />
         </div>
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">
             <h1 className="text-center">Log in</h1>
             <h2 className="text-xl py-4">text</h2>
-            <form
-              onSubmit={handleSubmit}
-              className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
-            >
-              <div className="mb-4">
-                <label
-                  className="block text-grey-darker text-sm font-bold mb-2"
-                  htmlFor="username"
-                >
-                  Email
-                </label>
-                <Input
-                  className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
-                  type="email"
-                  placeholder="Email address"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label
-                  className="block text-grey-darker text-sm font-bold mb-2"
-                  htmlFor="password"
-                >
-                  Password
-                </label>
-                <Input
-                  className="rounded bg-grey-lighter border border-grey-lighter w-full py-2 px-3 mb-3 focus:outline-none focus:bg-white focus:border-grey"
-                  type="password"
-                  placeholder="Password"
-                />
-              </div>
+            <form onSubmit={formHandleSubmit(handleSubmit)}
+  className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
+>
+              <InputErrorField
+                register={register}
+                errors={errors}
+                id="email"
+                type="email"
+                placeholder="Email"
+              />
+              <InputErrorField
+                register={register}
+                errors={errors}
+                id="password"
+                type="password"
+                placeholder="Password"
+              />
 
               <div className="flex items-center justify-between">
                 <Button
                   className="bg-green hover:bg-green-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="button"
+                  type="submit"
+                  disabled={loading}
+                  onEnterKeyPress={handleEnterKeyPress}
                 >
                   Log In
                 </Button>
@@ -78,11 +84,20 @@ const LoginForm = ({ handleSubmit, err }) => {
                     style={{ marginLeft: "10px" }}
                     to="/signup"
                   >
-                    Sing up
+                    Sign up
                   </Link>
                 </a>
+                <div>
+                  {loading && "Logging in, please wait..."}
+                  {err && (
+                    <span>
+                      Email or password is incorrect. Please try again.
+                    </span>
+                  )}
+                </div>
               </div>
             </form>
+            {err && <p className="text-red-500 mt-4">{err}</p>}
           </div>
         </div>
       </div>
