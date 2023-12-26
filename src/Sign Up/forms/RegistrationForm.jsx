@@ -9,7 +9,7 @@ import { OnSubmit } from "../SignUpHandlers/SignUpHandlers";
 import useFormData from "../pages/useFormData";
 //https://storyset.com/ animatie ca sa nu uit
 
-const RegistrationForm = ({ handleSubmit, loading, err,type }) => {
+const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
   const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
 
   const handleEnterKeyPress = (e) => {
@@ -44,12 +44,17 @@ const RegistrationForm = ({ handleSubmit, loading, err,type }) => {
           <div className="flex flex-col items-center pt-12">
             <h1 className="text-center">Sign U</h1>
             <h2 className="text-xl py-4">text</h2>
+            {/* <form
+              onSubmit={formHandleSubmit(OnSubmit)}
+              id="form"
+              className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
+            > */}
             <form
               onSubmit={formHandleSubmit(OnSubmit)}
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             >
-              <InputField register={register} errors={errors} type={type}/>
+              <InputField register={register} errors={errors} type={type} />
               <div className="mb-6">
                 <AvatarUpload
                   register={register}
@@ -78,8 +83,9 @@ const RegistrationForm = ({ handleSubmit, loading, err,type }) => {
                   </Link>
                 </div>
                 <div>
-                {loading && "Uploading and compressing the image please wait..."}
-                {err && <span>Something went wrong</span>}
+                  {loading &&
+                    "Uploading and compressing the image please wait..."}
+                  {err && <span>Something went wrong</span>}
                 </div>
               </div>
             </form>

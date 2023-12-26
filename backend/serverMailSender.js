@@ -1,16 +1,31 @@
 const express = require("express");
+const cors = require("cors");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
+const creds = require("./config");
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000", 
+    credentials: true, 
+  })
+);
 
-app.post("/api/sendEmail", async (req, res) => {
+app.post("/signup", async (req, res) => {
   const { email, subject, text } = req.body;
 
   const transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    auth: {
+      user: creds.USER,
+      pass: creds.PASS,
+    },
   });
 
   const mailOptions = {

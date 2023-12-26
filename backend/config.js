@@ -1,6 +1,6 @@
-//https://ethereal.email free for all :))
+//https://ethereal.email
 module.exports = {
-  user: 'marc53@ethereal.email',
-  pass: 'vhhqxK1TEQtnqrAEYU'
+  USER: 'marc53@ethereal.email',
+  PASS: 'vhhqxK1TEQtnqrAEYU'
   };
   

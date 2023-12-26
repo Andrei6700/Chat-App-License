@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const OnSubmit = (data) => {
-  axios.get('/api/sendEmail', data)
+  axios.post('http://localhost:3001/signup', data, { withCredentials: true })
     .then(response => {
       console.log(response.data);
       alert('Email sent successfully!');
