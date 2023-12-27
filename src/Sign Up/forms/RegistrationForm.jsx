@@ -50,7 +50,7 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             > */}
             <form
-              onSubmit={formHandleSubmit(OnSubmit)}
+              onSubmit={handleSubmit}
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             >
