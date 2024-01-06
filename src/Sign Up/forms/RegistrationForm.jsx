@@ -52,8 +52,10 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                formHandleSubmit(OnSubmit)();
-                handleSubmit(e);
+                if (Object.keys(errors).length === 0) {
+                  formHandleSubmit(OnSubmit)();
+                  handleSubmit(e);
+                }
               }}
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
