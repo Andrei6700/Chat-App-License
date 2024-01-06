@@ -5,7 +5,6 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import RegistrationForm from "../forms/RegistrationForm";
-import useFormData from "../pages/useFormData";
 
 const SignUp = () => {
   const [err, setErr] = useState(false);

@@ -11,7 +11,7 @@ const AvatarUpload = ({ register, errors }) => {
         type="file"
         id="file"
         style={{ borderColor: bordercolor }}
-        {...register("file")}
+        {...register("file", { required: true })}
       />
       <label htmlFor="file">
         <img src={Add} alt="" />

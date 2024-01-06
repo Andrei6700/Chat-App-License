@@ -20,15 +20,13 @@ const schema = yup.object().shape({
     .test(
       "fileSize",
       "File too large",
-      (value) => value && value[0] && value[0].size <= 1024 * 1024,
+      (value) => value && value[0] && value[0].size <= 1024 * 1024
     )
     .test(
       "fileType",
       "Unsupported Format",
       (value) =>
-        value &&
-        value[0] &&
-        ["image/jpeg", "image/png"].includes(value[0].type),
+        value && value[0] && ["image/jpeg", "image/png"].includes(value[0].type)
     ),
 });
 

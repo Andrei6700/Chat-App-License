@@ -13,7 +13,7 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
   const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
 
   const handleEnterKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e && e.key === "Enter") {
       e.preventDefault();
       formHandleSubmit(handleSubmit)();
     }
@@ -50,11 +50,16 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             > */}
             <form
-              onSubmit={handleSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                formHandleSubmit(OnSubmit)();
+                handleSubmit(e);
+              }}
               id="form"
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
             >
               <InputField register={register} errors={errors} type={type} />
+
               <div className="mb-6">
                 <AvatarUpload
                   register={register}

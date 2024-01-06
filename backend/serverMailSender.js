@@ -10,8 +10,8 @@ const port = process.env.PORT || 3001;
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000", 
-    credentials: true, 
+    origin: "http://localhost:3000",
+    credentials: true,
   })
 );
 
@@ -29,10 +29,11 @@ app.post("/signup", async (req, res) => {
   });
 
   const mailOptions = {
-    from: "",
+    from: '"Fred Foo 👻" <foo@example.com>', // sender address
     to: email,
-    subject: subject,
-    text: text,
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
   };
 
   try {
