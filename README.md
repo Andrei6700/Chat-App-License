@@ -1,5 +1,4 @@
-
-![!\[Alt text\](logo2-removebg-preview.png)](src/img/logo2-removebg-preview.png)
+![Alt text](src/img/logo2-removebg-preview.png)
 
 ## Chat-App (No official name yet)
 
