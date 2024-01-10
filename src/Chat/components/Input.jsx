@@ -15,6 +15,7 @@ import { v4 as uuid } from "uuid";
 import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
 import { formatRelative } from "date-fns";
 import { useTheme } from "../../context/dark-mode";
+import { encrypt } from '../../AES Encryption/encrypt';
 
 const Input = () => {
   const [text, setText] = useState("");
@@ -29,7 +30,8 @@ const Input = () => {
   };
 
   const handleSend = async () => {
-    if (text.trim() === "") {
+    const encryptedText = encrypt(text.trim()); 
+    if (encryptedText === "") {
       return;
     }
     if (img) {
@@ -57,7 +59,7 @@ const Input = () => {
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
-          text,
+          text: encryptedText, // mesajul criptat
           senderId: currentUser.uid,
           date: Timestamp.now(),
         }),

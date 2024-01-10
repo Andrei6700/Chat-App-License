@@ -16,7 +16,7 @@ const Message = ({ message, showDate }) => {
     : isYesterday(createdAt)
       ? "Yesterday"
       : format(createdAt, "dd.MM.yyyy");
-  console.log(formattedDate);
+  // console.log(formattedDate);
 
   const ref = useRef();
 
