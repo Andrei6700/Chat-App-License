@@ -7,6 +7,7 @@ import { db } from "../../firebase/firebase";
 import { useTheme } from "../../context/dark-mode";
 import { format } from "date-fns";
 import { updateDoc } from "firebase/firestore";
+import { decrypt } from '../../AES Encryption/decrypt';
 
 const Messages = () => {
   const { currentUser } = useContext(AuthContext);
@@ -52,13 +53,17 @@ const Messages = () => {
 
   return (
     <div className={`messages ${theme}`}>
-      {messages.map((message, index) => (
-        <Message
-          key={index}
-          message={message}
-          showDate={shouldShowDate(index)}
-        />
-      ))}
+    {messages.map((message, index) => {
+  const decryptedMessage = decrypt(message.text);
+  // console.log('Decrypted message:', decryptedMessage); 
+  return (
+    <Message
+      key={index}
+      message={{...message, text: decryptedMessage}} 
+      showDate={shouldShowDate(index)}
+    />
+  );
+})}
       <div ref={messagesEndRef} />
     </div>
   );
