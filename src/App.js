@@ -7,6 +7,7 @@ import { ThemeProvider } from "./context/dark-mode";
 import TestPage from './Chat/page-test'
 import SignUp from "./Sign Up/pages/SignUp";
 import LoginPage from "./Log In/page/LogIn";
+import VideoCall from "./Video Call/VideoPage"
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -22,18 +23,19 @@ function App() {
 
   return (
     <ThemeProvider>
-    <BrowserRouter>
-       <Routes>
-  <Route path="/" element={<Navigate to="/main" />} />
-  <Route path="/main" element={<MainPage />} />
-  <Route path="/login" element={<LoginPage />} />
-  <Route path="/signup" element={<SignUp />} />
-  <Route path="/chat" element={<TestPage />} />
-</Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/main" />} />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/chat" element={<TestPage />} />
+          <Route path="/call" element={<VideoCall />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
 
-);
+  );
 }
 
 export default App;

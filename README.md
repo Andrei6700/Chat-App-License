@@ -92,6 +92,11 @@ Make sure that **YOU** after ``editing config.js`` put it in ``.gitignore``
 Optimizations, hmmm. 
 I assure you that if you have over a nvidia gtx 1650 goes, give and much RAM :))) that eats a lot 
 
+## Encryption 
+
+In order to encrypt the messages that are loaded in Firebase Database I used a simple algorithm, ``AES Encryption``, where I have documented myself following the following link: https://www.tutorialspoint.com/What-is-JavaScript-AES-Encryption
+
+Despite the fact, that Firebase encrypts all incoming data, I have resorted to a small encryption to provide a security, where to be able to decrypt those messages a key is needed, to which only I have access to it.
 
 ## Features
 ✅ Light/dark mode toggle at:
@@ -106,6 +111,8 @@ I assure you that if you have over a nvidia gtx 1650 goes, give and much RAM :))
 ✅Adding a person and searching for him/her
 
 ✅using a YUP scheme to validate sign up pages
+
+✅ message encryption
 
 ❌ Video call using Firebase + WebRTC
 
