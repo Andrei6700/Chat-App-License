@@ -64,3 +64,6 @@ body {
     --grid-row-size: 0;
   }
   
+  .active {
+    background-color: #ea4335; 
+}

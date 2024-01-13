@@ -8,6 +8,7 @@ import { ChatContext } from "../../context/ChatContext";
 import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
+import { Link } from "react-router-dom";
 
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
@@ -26,9 +27,11 @@ const Chat = ({ toggleSidebar }) => {
               <span>{data.user?.displayName}</span>
             </div>
             <div className="chatIcons">
+            <Link to="/call">
               <button>
                 <img src={Cam} alt="" />
               </button>
+              </Link>
               <button>
                 <img src={More} alt="" />
               </button>

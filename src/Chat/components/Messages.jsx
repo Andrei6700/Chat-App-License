@@ -55,7 +55,7 @@ const Messages = () => {
     <div className={`messages ${theme}`}>
     {messages.map((message, index) => {
   const decryptedMessage = decrypt(message.text);
-  // console.log('Decrypted message:', decryptedMessage); 
+  //  console.log('Decrypted message:', decryptedMessage); 
   return (
     <Message
       key={index}
