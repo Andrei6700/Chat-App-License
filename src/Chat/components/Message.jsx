@@ -14,8 +14,8 @@ const Message = ({ message, showDate }) => {
   const formattedDate = isToday(createdAt)
     ? "Today"
     : isYesterday(createdAt)
-      ? "Yesterday"
-      : format(createdAt, "dd.MM.yyyy");
+    ? "Yesterday"
+    : format(createdAt, "dd.MM.yyyy");
   // console.log(formattedDate);
 
   const ref = useRef();
@@ -47,7 +47,10 @@ const Message = ({ message, showDate }) => {
         <div className="messageContent">
           <p className="ResponsiveTextChat">{message.text}</p>
           {message.img && <img src={message.img} alt="" />}
-          <span>{message.read ? "Seen" : "unseen"}</span>
+          <span>
+            {message.senderId === currentUser.uid &&
+              (message.read ? "Seen" : "Unseen")}
+          </span>{" "}
         </div>
       </div>
     </div>
