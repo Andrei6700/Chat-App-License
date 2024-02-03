@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export const VideoComponent = () => {
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="videoscreenUsers">
-      <div className="participants"></div>
+      <div className="participants">
+        <div className="participant">
+          <div className="card">
+            <video className="video" id="caller" autoPlay playsInline></video>
+            <div className="avatar" style={{ background: "red" }}></div>
+            <div className="name">{currentUser.displayName}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

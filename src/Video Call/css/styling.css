@@ -64,6 +64,54 @@ body {
     --grid-row-size: 0;
   }
   
+  .participant {
+    min-height: 200px;
+}
+
   .active {
     background-color: #ea4335; 
+}
+
+.card{
+  background: #3c4043;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  height: 100%;
+}
+
+.avatar{
+  color: #fff;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  font-size: 150px;
+  font-family: roboto,arial;
+  text-align: center;
+  background: orange;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.video{
+  background-color: #353b48;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.name{
+  bottom: 10px;
+    left: 20px;
+    color: #fff;
+    position: absolute;
 }
