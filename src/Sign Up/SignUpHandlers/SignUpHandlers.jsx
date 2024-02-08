@@ -3,28 +3,29 @@ import EncryptionSignUp from '../../Encryption-SignUp/Encryption/encryption';
 import DecryptionSignUp from '../../Encryption-SignUp/Decryption/decryption';
 import { key } from '../../Encryption-SignUp/Key/Key';
 
+//  functia de decriptare
 const decrypt = DecryptionSignUp();
 
 export const OnSubmit = async (data) => {
-    // formează datele
+    // datele
     const displayName = data.displayName;
     const email = data.email;
     const password = data.password;
 
-    // cripteaza datele
+    // criptarea datelor
     const encryptedEmail = EncryptionSignUp.encrypt(email, key);
     const encryptedPassword = EncryptionSignUp.encrypt(password, key);
     
-    // decripteaza emailul
-    const decryptedEmail = decrypt(encryptedEmail.reversedBinaryCodesEmail);
-    console.log("Email decriptat: " + decryptedEmail); // Afișează emailul decriptat în consolă
+    // decriptarea emailul
+    const decryptedEmail = decrypt(encryptedEmail.reversedBinaryCodesEmail, key);
+    console.log("Email decriptat: " + decryptedEmail); //  emailul decriptat 
 
     // Trimite datele la server
     try {
         const response = await axios.post('http://localhost:3001/signup', {
             displayName: displayName,
             email: decryptedEmail, // Trimite emailul decriptat
-            password: encryptedPassword, // parola criptată
+            password: encryptedPassword, //parola criptata
         }, { withCredentials: true });
         
         console.log(response.data);
