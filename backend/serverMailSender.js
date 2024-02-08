@@ -3,6 +3,8 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const creds = require("./config");
+const DecryptionSignUp = require("../src/Encryption-SignUp/Decryption/decryption");
+const key = require("../src/Encryption-SignUp/Key/Key");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -16,8 +18,18 @@ app.use(
 );
 
 app.post("/signup", async (req, res) => {
-  const { email, subject, text } = req.body;
+  const { email: encryptedEmail } = req.body;
 
+  //Decriptare din binar invers în cod ASCII
+  const reversedBinaryCodesEmail = encryptedEmail.match(/.{1,8}/g);
+  const asciiCodesEmail = reversedBinaryCodesEmail.map(code =>
+    parseInt(code.split("").reverse().join(""), 2)
+  );
+
+  //Decriptare cu  Vigenere
+  const decryptedEmail = DecryptionSignUp()(asciiCodesEmail); // decripteaaz emailul
+
+ 
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
@@ -29,11 +41,11 @@ app.post("/signup", async (req, res) => {
   });
 
   const mailOptions = {
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: email,
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
+    from: '"Fred Foo 👻" <foo@example.com>',
+    to: decryptedEmail, // Trimite emailul decriptat
+    subject: "Hello ✔",
+    text: "Hello world?",
+    html: "<b>Hello world?</b>",
   };
 
   try {
