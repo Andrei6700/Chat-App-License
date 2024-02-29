@@ -1,69 +1,141 @@
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .app {
-    display: -webkit-flex;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-  }
-  
-  .VideoContainer {
-    width: 100%;
-  }
-  
-  .Footer {
-    height: 10vh;
-  }
-  
-  .MeetingFooter {
-    background: #202124;
-    height: 100%;
-  }
-  
-  .MeetingFooter,
-  .MeetingIcon {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
-  }
-  
-  .MeetingIcon {
-    color: #fff;
-    background: #3c4043;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 10px;
-    cursor: pointer;
-  }
-  
-  .VideoContainer .videoscreenUsers {
-    width: 100%;
-    height: 90vh;
-    background: #3c4043;
-  }
-  
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  display: -webkit-flex;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.VideoContainer {
+  width: 100%;
+}
+
+.Footer {
+  height: 10vh;
+}
+
+.MeetingFooter {
+  background: #202124;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MeetingIcon {
+  color: white;
+  border-radius: 50%;
+  background: #3c4043;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.videoscreenUsers {
+  width: 100%;
+  height: 90vh;
+  background: #3c4043;
+}
+
+.participants {
+  --grid-size: 2;
+  --grid-col-size: 1;
+  --grid-row-size: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-gap: 20px;
+  height: 85vh;
+  padding: 10px;
+}
+
+.participants img {
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+}
+
+@media (max-width: 800px) {
   .participants {
-    display: grid;
-    grid-template-columns: repeat(var(--grid-size), 1fr);
-    grid-gap: 20px;
-    height: 85vh;
-    padding: 10px;
-    --grid-size: 2;
-    --grid-col-size: 1;
-    --grid-row-size: 0;
+    grid-template-columns: repeat(var(--grid-col-size), 1fr);
+    grid-template-rows: repeat(var(--grid-row-size), 1fr);
   }
-  
-  .active {
-    background-color: #ea4335; 
+}
+
+.participant {
+  background-color: #353b48;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border-radius: 5px;
+  min-height: 200px;
+}
+
+.active {
+  background-color: #ea4335;
+}
+
+.hide {
+  display: none;
+}
+
+.avatar {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  font-size: 150px;
+  color: white;
+  text-align: center;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  background-color: #353b48;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.name {
+  color: white;
+  bottom: 10px;
+  position: absolute;
+  left: 20px;
+}
+
+@media (max-width: 800px) {
+  .participant {
+    min-height: 0px;
+  }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    font-size: 50px;
+  }
+}
+
+.card {
+  background: #3c4043;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
