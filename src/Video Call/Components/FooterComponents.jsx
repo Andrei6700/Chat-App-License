@@ -1,79 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
   faVideo,
-  faVideoSlash,
-  faMicrophoneSlash,
   faPhoneSlash,
+  faShare,
+  faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 
-const FooterComponent = ({ onMicClick, onVideoToggle, onEndCallClick }) => {
-  const videoRef = React.useRef(null);
-  const [streamState, setStreamState] = useState({
-    mic: true,
-    video: false,
-  });
-
-  const micClick = () => {
-    setStreamState((currentState) => {
-      return {
-        ...currentState,
-        mic: !currentState.mic,
-      };
-    });
+export const FooterComponent = ({
+  onMicClick,
+  onVideoToggle,
+  onEndCallClick,
+  onShareClick,
+  onMuteClick,
+}) => {
+  const muteClick = () => {
+    onMuteClick && onMuteClick();
   };
-
-  const endCallClick = () => {
-    try {
-      let tracks = videoRef.current.srcObject.getTracks();
-      tracks.forEach((track) => track.stop());
-    } catch (e) {
-      console.error("Error stopping tracks:", e);
-    }
-    onEndCallClick && onEndCallClick();
-  };
-
-  const onVideoClick = () => {
-    setStreamState((currentState) => {
-      return {
-        ...currentState,
-        video: !currentState.video,
-      };
-    });
-  };
-
-  useEffect(() => {
-    onMicClick && onMicClick(streamState.mic);
-  }, [streamState.mic]);
-
-  useEffect(() => {
-    onVideoToggle && onVideoToggle(streamState.video);
-  }, [streamState.video]);
 
   return (
     <div className="Footer">
       <div className="MeetingFooter">
-        <div
-          className={"MeetingIcon " + (!streamState.mic ? "active" : "")}
-          onClick={micClick}
-        >
-          <FontAwesomeIcon
-            icon={!streamState.mic ? faMicrophoneSlash : faMicrophone}
-            title={streamState.mic ? "Mute Audio" : "Unmute Audio"}
-          />
+        <div className="MeetingIcon" onClick={onMicClick}>
+          <FontAwesomeIcon icon={faMicrophone} title="Mute Audio" />
         </div>
-        <div
-          className={"MeetingIcon" + (streamState.video ? " active" : "")}
-          onClick={onVideoClick}
-        >
-          <FontAwesomeIcon
-            icon={!streamState.video ? faVideoSlash : faVideo}
-            title={streamState.video ? "Hide Video" : "Show Video"}
-          />
+        <div className="MeetingIcon" onClick={onVideoToggle}>
+          <FontAwesomeIcon icon={faVideo} title="Toggle Video" />
         </div>
-        <div className="MeetingIcon" onClick={endCallClick}>
-          <FontAwesomeIcon icon={faPhoneSlash} />
+        <div className="MeetingIcon" onClick={onEndCallClick}>
+          <FontAwesomeIcon icon={faPhoneSlash} title="End Call" />
+        </div>
+        <div className="MeetingIcon" onClick={muteClick}>
+          <FontAwesomeIcon icon={faVolumeMute} title="Mute" />
+        </div>
+        <div className="MeetingIcon" onClick={onShareClick}>
+          <FontAwesomeIcon icon={faShare} title="Share" />
         </div>
       </div>
     </div>
@@ -84,6 +46,8 @@ FooterComponent.defaultProps = {
   onMicClick: () => {},
   onVideoToggle: () => {},
   onEndCallClick: () => {},
+  onShareClick: () => {},
+  onMuteClick: () => {},
 };
 
 export default FooterComponent;

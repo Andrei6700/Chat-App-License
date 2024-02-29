@@ -19,5 +19,5 @@ export const auth = getAuth();
 export const storage = getStorage();
 export const db = getFirestore();
 export const analytics = getAnalytics(app);
-
+export { firebaseConfig };
 

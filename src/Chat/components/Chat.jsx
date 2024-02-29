@@ -4,7 +4,6 @@ import More from "../../img/more.svg";
 import Messages from "./Messages";
 import Input from "./Input";
 import { ChatContext } from "../../context/ChatContext";
-// import { AuthContext } from "../../context/AuthContext";
 import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
@@ -27,10 +26,10 @@ const Chat = ({ toggleSidebar }) => {
               <span>{data.user?.displayName}</span>
             </div>
             <div className="chatIcons">
-            <Link to="/call">
-              <button>
-                <img src={Cam} alt="" />
-              </button>
+              <Link to="/call">
+                <button>
+                  <img src={Cam} alt="" />
+                </button>
               </Link>
               <button>
                 <img src={More} alt="" />
