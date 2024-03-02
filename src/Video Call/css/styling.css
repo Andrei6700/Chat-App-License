@@ -57,8 +57,11 @@ body {
   display: grid;
   grid-template-columns: repeat(var(--grid-size), 1fr);
   grid-gap: 20px;
-  height: 85vh;
   padding: 10px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  min-height: 200px;
 }
 
 .participants img {
