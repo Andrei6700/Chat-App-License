@@ -2,52 +2,37 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMicrophone,
+  faPhoneAlt,
+  faShareAlt,
   faVideo,
-  faPhoneSlash,
-  faShare,
-  faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const FooterComponent = ({
-  onMicClick,
-  onVideoToggle,
-  onEndCallClick,
-  onShareClick,
-  onMuteClick,
-}) => {
-  const muteClick = () => {
-    onMuteClick && onMuteClick();
-  };
-
+function FooterComponent({ VideoToggle , mute, DisconnectCall, share }) {
   return (
-    <div className="Footer">
+    <div className="Footer" id="controls">
       <div className="MeetingFooter">
-        <div className="MeetingIcon" onClick={onMicClick}>
-          <FontAwesomeIcon icon={faMicrophone} title="Mute Audio" />
-        </div>
-        <div className="MeetingIcon" onClick={onVideoToggle}>
-          <FontAwesomeIcon icon={faVideo} title="Toggle Video" />
-        </div>
-        <div className="MeetingIcon" onClick={onEndCallClick}>
-          <FontAwesomeIcon icon={faPhoneSlash} title="End Call" />
-        </div>
-        <div className="MeetingIcon" onClick={muteClick}>
-          <FontAwesomeIcon icon={faVolumeMute} title="Mute" />
-        </div>
-        <div className="MeetingIcon" onClick={onShareClick}>
-          <FontAwesomeIcon icon={faShare} title="Share" />
-        </div>
+        {/* camera video */}
+         <button className="MeetingIcon" ref={VideoToggle } id="VideoToggle ">
+          <FontAwesomeIcon icon={faVideo} alt="VideoToggle " />
+        </button>
+
+        {/* microfon */}
+        <button className="MeetingIcon" ref={mute} id="mute">
+          <FontAwesomeIcon icon={faMicrophone} alt="mute" />
+        </button>
+
+        {/* leave call */}
+        <button className="MeetingIcon" ref={DisconnectCall} id="DisconnectCall">
+          <FontAwesomeIcon icon={faPhoneAlt} alt="DisconnectCall" />
+        </button>
+
+        {/* share meet id */}
+        <button className="MeetingIcon" ref={share} id="share">
+          <FontAwesomeIcon icon={faShareAlt} alt="share" />
+        </button>
       </div>
     </div>
   );
-};
-
-FooterComponent.defaultProps = {
-  onMicClick: () => {},
-  onVideoToggle: () => {},
-  onEndCallClick: () => {},
-  onShareClick: () => {},
-  onMuteClick: () => {},
-};
+}
 
 export default FooterComponent;
