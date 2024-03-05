@@ -6,28 +6,30 @@ export const VideoComponent = ({ you, friend, isCameraOn }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
-  console.log("isCameraOn:", isCameraOn); 
+  console.log("user 2 camera: " + (data.cameraCreated ? "on" : "off"));
 
   return (
     <div className="videoscreenUsers">
       <div className="participants">
         {/* user 1 */}
         <div className="card">
-          <video className="video" autoPlay id="you" ref={you}></video>
-          <div className="avatar">
-            <img src={currentUser.photoURL} alt="" />
-          </div>
-          <div className="name"> "{currentUser.displayName}"</div>
+          
+        <video className="video" playsInline autoPlay id="you" ref={you}></video>
+         
+             {/* <div className="avatar">
+               <img src={currentUser.photoURL} alt="" />
+             </div> */}
+          
+          <div className="name"> {currentUser.displayName} (You)</div>
         </div>
         <div className="participant">
           {/* user 2 */}
           <div className="card">
-            <video className="video" autoPlay id="friend" ref={friend}></video>
-            <div className="avatar">
+          <video className="video" autoPlay playsInline id="friend" ref={friend}></video>
+            {/* <div className="avatar">
               <img src={data.user?.photoURL} alt="" />
-            </div>
-
-            <div className="name"> "{data.user?.displayName}"</div>
+            </div> */}
+            <div className="name">{data.user?.displayName}</div>
           </div>
         </div>
       </div>
@@ -36,3 +38,5 @@ export const VideoComponent = ({ you, friend, isCameraOn }) => {
 };
 
 export default VideoComponent;
+
+

@@ -7,12 +7,23 @@ import {
   faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 
-function FooterComponent({ VideoToggle , mute, DisconnectCall, share }) {
+function FooterComponent({
+  VideoToggle,
+  mute,
+  DisconnectCall,
+  share,
+  toggleCamera,
+}) {
   return (
     <div className="Footer" id="controls">
       <div className="MeetingFooter">
         {/* camera video */}
-         <button className="MeetingIcon" ref={VideoToggle } id="VideoToggle ">
+        <button
+          className="MeetingIcon"
+          onClick={toggleCamera}
+          ref={VideoToggle}
+          id="VideoToggle "
+        >
           <FontAwesomeIcon icon={faVideo} alt="VideoToggle " />
         </button>
 
@@ -22,7 +33,11 @@ function FooterComponent({ VideoToggle , mute, DisconnectCall, share }) {
         </button>
 
         {/* leave call */}
-        <button className="MeetingIcon" ref={DisconnectCall} id="DisconnectCall">
+        <button
+          className="MeetingIcon"
+          ref={DisconnectCall}
+          id="DisconnectCall"
+        >
           <FontAwesomeIcon icon={faPhoneAlt} alt="DisconnectCall" />
         </button>
 

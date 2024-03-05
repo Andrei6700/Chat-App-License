@@ -7,17 +7,22 @@ import { ChatContext } from "../../context/ChatContext";
 import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
   const { theme } = useTheme();
-  const [value, setValue] = useState("");
+  const [value] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
     console.log(value);
   }, [value]);
+
+  const handleJoin = (roomId) => {
+    if (roomId.length !== 20) return;
+    navigate(`/call/${roomId}`);
+  };
 
   return (
     <div className={`chat ${theme === "dark" ? "dark" : ""}`}>
@@ -26,26 +31,23 @@ const Chat = ({ toggleSidebar }) => {
           <div className={`chatInfo ${theme}`}>
             <div className="user">
               <button className="toggle-sidebar-button" onClick={toggleSidebar}>
-                <img src={more} style={{ height: "24px", width: "24px" }} />
+                <img
+                  src={more}
+                  style={{ height: "24px", width: "24px" }}
+                  alt=""
+                />
               </button>
               <img src={data.user?.photoURL} alt="" />
               <span>{data.user?.displayName}</span>
             </div>
             <div className="chatIcons">
-              <button
-                style={{
-                  display: data.cameraCreated ? "inline-block" : "none",
-                }}
-              >Join meet
-                {/* 1.Afiseaza butonul doar daca camera a fost creată
-                    2.adauga userul in camera creata de catre celalalt utilizator
-                */}
-                <img src={Cam} alt="" />
+              {/* btn join room */}
+              <button type="button" onClick={() => handleJoin(value)}>
+                Join
               </button>
 
-              {/* butonul ce creaza camera  */}
+              {/* btn create room */}
               <button
-                className="create"
                 onClick={() => {
                   navigate(`/call/create`);
                 }}

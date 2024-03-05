@@ -13,35 +13,34 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default function VideoCall() {
-  const [isCameraOn, setIsCameraOn] = useState(true);
-  const [isMicrophoneOn, setIsMicrophoneOn] = useState(true);
   const params = useParams();
   const friend = useRef(null);
   const you = useRef(null);
   const mute = useRef(null);
-  const VideoToggle = useRef(null);
-  const DisconnectCall = useRef(null);
+  const VideoToggle = useRef(null); // VideoToggle
+  const DisconnectCall = useRef(null); //DisconnectCall
   const share = useRef(null);
-  const navigate = useNavigate();
+  const naviagte = useNavigate();
+  let server = {
+    iceServers: [
+      {
+        urls: [
+          "stun:stun1.l.google.com:19302",
+          "stun:stun2.l.google.com:19302",
+        ],
+      },
+    ],
+  };
+  let peerConnection = new RTCPeerConnection(server);
 
   const init = useCallback(async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({
-      video: isCameraOn,
-      audio: isMicrophoneOn,
+      video: {
+        width: { min: 1024, ideal: 1280, max: 1920 },
+        height: { min: 576, ideal: 720, max: 1080 },
+      },
+      audio: true,
     });
-
-    let server = {
-      iceServers: [
-        {
-          urls: [
-            "stun:stun1.l.google.com:19302",
-            "stun:stun2.l.google.com:19302",
-          ],
-        },
-      ],
-    };
-    let peerConnection = new RTCPeerConnection(server);
-
     const remoteStream = new MediaStream();
     friend.current.srcObject = remoteStream;
     you.current.srcObject = localStream;
@@ -53,9 +52,8 @@ export default function VideoCall() {
         remoteStream.addTrack(track);
       });
     };
-
     let roomID = params.roomID;
-    if (params.roomID === "create") {
+    if (params.roomID == "create") {
       const docRef = await addDoc(collection(db, "calls"), {});
       roomID = docRef.id;
       peerConnection.onicecandidate = async (e) => {
@@ -81,7 +79,6 @@ export default function VideoCall() {
       const answer = await peerConnection.createAnswer();
       await peerConnection.setLocalDescription(answer);
     }
-
     onSnapshot(doc(db, "calls", roomID), async (doc) => {
       if (doc.data().answer && !peerConnection.currentRemoteDescription) {
         await peerConnection.setRemoteDescription(
@@ -96,64 +93,57 @@ export default function VideoCall() {
         track.stop();
       });
       peerConnection.close();
-      navigate("/chat");
+      naviagte("/chat");
     });
 
     VideoToggle.current.addEventListener("click", async (e) => {
       const track = localstream
         .getTracks()
-        .find((track) => track.kind === "video");
+        .find((track) => track.kind == "video");
       if (track.enabled) {
         track.enabled = false;
-        VideoToggle.current.style.backgroundColor = "rgba(232, 154, 232, 0.567)";
+        VideoToggle.current.style.backgroundColor = "red";
       } else {
         track.enabled = true;
-        VideoToggle.current.style.backgroundColor = "rgba(232, 154, 232,1)";
+        VideoToggle.current.style.backgroundColor = "green";
       }
     });
     mute.current.addEventListener("click", async () => {
       const track = localstream
         .getTracks()
-        .find((track) => track.kind === "audio");
+        .find((track) => track.kind == "audio");
       if (track.enabled) {
         track.enabled = false;
-        mute.current.style.backgroundColor = "rgb(209, 206, 206)";
+
+        mute.current.style.backgroundColor = "red";
       } else {
         track.enabled = true;
-        mute.current.style.backgroundColor = "rgba(209, 206, 206, 0.35)";
+        mute.current.style.backgroundColor = "green";
       }
     });
 
     peerConnection.oniceconnectionstatechange = function () {
-      if (peerConnection.iceConnectionState === "disconnected") {
-        navigate("/chat");
+      if (peerConnection.iceConnectionState == "disconnected") {
+        naviagte("/chat");
       }
     };
-
     share.current.addEventListener("click", async (e) => {
       await navigator.clipboard.writeText(roomID);
-      console.log("Copied id");
+      console.log("Copied id to clipboard share with friend");
     });
-  }, [isCameraOn, isMicrophoneOn, params.roomID, navigate, db]);
+  });
 
   useEffect(() => {
     init();
-  }, [init]);
-
+  }, []);
   return (
     <>
-      <VideoComponent
-        you={you}
-        friend={friend}
-        isCameraOn={isCameraOn} 
-      />
+      <VideoComponent you={you} friend={friend} />
       <FooterComponent
         VideoToggle={VideoToggle}
         mute={mute}
         DisconnectCall={DisconnectCall}
         share={share}
-        toggleCamera={() => setIsCameraOn((prevState) => !prevState)} 
-        toggleMicrophone={() => setIsMicrophoneOn((prevState) => !prevState)}
       />
     </>
   );
