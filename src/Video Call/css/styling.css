@@ -66,8 +66,9 @@ body {
 
 .participants img {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+  object-fit: fill;
 }
 
 @media (max-width: 800px) {
@@ -135,7 +136,7 @@ body {
 }
 
 .card {
-  background: #3c4043;
+  background: #353b48;
   border-radius: 10px;
   display: flex;
   justify-content: center;

@@ -43,7 +43,7 @@ function App() {
     },
     {
       path: "/call/:roomID",
-      element: <VideoCall  />,
+      element: <VideoCall />,
     },
   ]);
 
@@ -56,7 +56,6 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/chat" element={<TestPage />} />
-          <Route path="/call/create" element={<Navigate to="/call/create" />} />
         </Routes>
       </RouterProvider>
     </ThemeProvider>
