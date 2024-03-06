@@ -43,7 +43,7 @@ const Chat = ({ toggleSidebar }) => {
                 type="text"
                 value={roomId}
                 onChange={(e) => setRoomId(e.target.value)}
-                placeholder="Paste in your meeting ID"
+                placeholder="meeting Id"
               />
               {/* button for join room */}
               <button type="button" onClick={handleJoin}>
