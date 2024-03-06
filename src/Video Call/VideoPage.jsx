@@ -17,9 +17,10 @@ export default function VideoCall() {
   const friend = useRef(null);
   const you = useRef(null);
   const mute = useRef(null);
-  const VideoToggle = useRef(null); // VideoToggle
-  const DisconnectCall = useRef(null); //DisconnectCall
-  const share = useRef(null);
+  const VideoToggle = useRef(null); 
+  const DisconnectCall = useRef(null); 
+  const share = useRef(null);//
+
   const naviagte = useNavigate();
   let server = {
     iceServers: [
@@ -41,17 +42,21 @@ export default function VideoCall() {
       },
       audio: true,
     });
+    
+    console.log("created ");
     const remoteStream = new MediaStream();
     friend.current.srcObject = remoteStream;
     you.current.srcObject = localStream;
     localStream.getTracks().forEach((track) => {
       peerConnection.addTrack(track, localStream);
     });
+
     peerConnection.ontrack = (e) => {
       e.streams[0].getTracks().forEach((track) => {
         remoteStream.addTrack(track);
       });
     };
+
     let roomID = params.roomID;
     if (params.roomID == "create") {
       const docRef = await addDoc(collection(db, "calls"), {});
@@ -63,6 +68,7 @@ export default function VideoCall() {
           });
         }
       };
+
       const offer = await peerConnection.createOffer();
       await peerConnection.setLocalDescription(offer);
     } else {
@@ -76,9 +82,11 @@ export default function VideoCall() {
           });
         }
       };
+      
       const answer = await peerConnection.createAnswer();
       await peerConnection.setLocalDescription(answer);
     }
+
     onSnapshot(doc(db, "calls", roomID), async (doc) => {
       if (doc.data().answer && !peerConnection.currentRemoteDescription) {
         await peerConnection.setRemoteDescription(
@@ -108,13 +116,13 @@ export default function VideoCall() {
         VideoToggle.current.style.backgroundColor = "green";
       }
     });
+
     mute.current.addEventListener("click", async () => {
       const track = localstream
         .getTracks()
         .find((track) => track.kind == "audio");
       if (track.enabled) {
         track.enabled = false;
-
         mute.current.style.backgroundColor = "red";
       } else {
         track.enabled = true;
@@ -127,9 +135,10 @@ export default function VideoCall() {
         naviagte("/chat");
       }
     };
+
     share.current.addEventListener("click", async (e) => {
       await navigator.clipboard.writeText(roomID);
-      console.log("Copied id to clipboard share with friend");
+      console.log("Copied id");
     });
   });
 

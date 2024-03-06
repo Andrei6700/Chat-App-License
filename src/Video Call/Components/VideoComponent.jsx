@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 
-export const VideoComponent = ({ you, friend, isCameraOn }) => {
+export const VideoComponent = ({ you, friend }) => {
   const { currentUser } = useContext(AuthContext);
   const { data } = useContext(ChatContext);
 
-  console.log("user 2 camera: " + (data.cameraCreated ? "on" : "off"));
+  // console.log("user 2 camera: " + (data.cameraCreated ? "on" : "off"));
 
   return (
     <div className="videoscreenUsers">
@@ -25,7 +25,7 @@ export const VideoComponent = ({ you, friend, isCameraOn }) => {
         <div className="participant">
           {/* user 2 */}
           <div className="card">
-          <video className="video" autoPlay playsInline id="friend" ref={friend}></video>
+          <video className="video" playsInline autoPlay ref={friend} id="friend"></video>
             {/* <div className="avatar">
               <img src={data.user?.photoURL} alt="" />
             </div> */}

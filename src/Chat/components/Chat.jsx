@@ -12,14 +12,11 @@ import { useNavigate } from "react-router";
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
   const { theme } = useTheme();
-  const [value] = useState("");
+  const [roomId, setRoomId] = useState(""); //id room
 
   const navigate = useNavigate();
-  useEffect(() => {
-    console.log(value);
-  }, [value]);
 
-  const handleJoin = (roomId) => {
+  const handleJoin = () => {
     if (roomId.length !== 20) return;
     navigate(`/call/${roomId}`);
   };
@@ -41,12 +38,19 @@ const Chat = ({ toggleSidebar }) => {
               <span>{data.user?.displayName}</span>
             </div>
             <div className="chatIcons">
-              {/* btn join room */}
-              <button type="button" onClick={() => handleJoin(value)}>
+              {/* Input pentru ID-ul camerei */}
+              <input
+                type="text"
+                value={roomId}
+                onChange={(e) => setRoomId(e.target.value)}
+                placeholder="Paste in your meeting ID"
+              />
+              {/* button for join room */}
+              <button type="button" onClick={handleJoin}>
                 Join
               </button>
 
-              {/* btn create room */}
+              {/* button for create  new room */}
               <button
                 onClick={() => {
                   navigate(`/call/create`);
