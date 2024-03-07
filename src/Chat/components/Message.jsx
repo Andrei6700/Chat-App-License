@@ -50,7 +50,7 @@ const Message = ({ message, showDate }) => {
           <span>
             {message.senderId === currentUser.uid &&
               (message.read ? "Seen" : "Unseen")}
-          </span>{" "}
+          </span>
         </div>
       </div>
     </div>

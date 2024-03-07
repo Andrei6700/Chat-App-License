@@ -378,6 +378,8 @@ img {
 }
 
 .message.owner .messageContent {
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
 }
 
@@ -952,3 +954,4 @@ img {
   flex-wrap: nowrap;
   color: #e9edef;
 }
+
