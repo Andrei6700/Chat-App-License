@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import Attach from "../../img/paperclip.svg";
-import Mic from "../../img/mic.svg";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import {
@@ -106,7 +105,6 @@ const Input = () => {
           &times;
         </div>
       )}
-      <img src={Mic} alt="" />
       <input
         type="file"
         style={{ display: "none" }}

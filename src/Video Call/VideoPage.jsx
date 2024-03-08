@@ -33,6 +33,9 @@ export default function VideoCall() {
     ],
   };
   let peerConnection = new RTCPeerConnection(server);
+  
+  const [localstream, setLocalstream] = useState(null);
+  const [isMuted, setIsMuted] = useState(false);
 
   const init = useCallback(async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({
@@ -42,7 +45,7 @@ export default function VideoCall() {
       },
       audio: true,
     });
-    
+    setLocalstream(localStream);
     console.log("created ");
     const remoteStream = new MediaStream();
     friend.current.srcObject = remoteStream;
@@ -58,7 +61,7 @@ export default function VideoCall() {
     };
 
     let roomID = params.roomID;
-    if (params.roomID == "create") {
+    if (params.roomID === "create") {
       const docRef = await addDoc(collection(db, "calls"), {});
       roomID = docRef.id;
       peerConnection.onicecandidate = async (e) => {
@@ -107,7 +110,7 @@ export default function VideoCall() {
     VideoToggle.current.addEventListener("click", async (e) => {
       const track = localstream
         .getTracks()
-        .find((track) => track.kind == "video");
+        .find((track) => track.kind === "video");
       if (track.enabled) {
         track.enabled = false;
         VideoToggle.current.style.backgroundColor = "red";
@@ -120,7 +123,7 @@ export default function VideoCall() {
     mute.current.addEventListener("click", async () => {
       const track = localstream
         .getTracks()
-        .find((track) => track.kind == "audio");
+        .find((track) => track.kind === "audio");
       if (track.enabled) {
         track.enabled = false;
         mute.current.style.backgroundColor = "red";
@@ -131,7 +134,7 @@ export default function VideoCall() {
     });
 
     peerConnection.oniceconnectionstatechange = function () {
-      if (peerConnection.iceConnectionState == "disconnected") {
+      if (peerConnection.iceConnectionState === "disconnected") {
         naviagte("/chat");
       }
     };
