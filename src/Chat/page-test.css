@@ -64,12 +64,13 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 1%;
 }
 .messageDate {
   background-color: hsla(0, 0%, 100%, 0.95);
-    padding: 5px 12px 6px;
-    border-radius: 10px;
-    color: #54656F;
+  padding: 5px 12px 6px;
+  border-radius: 10px;
+  color: #54656f;
 }
 
 hr {
@@ -327,7 +328,7 @@ img {
 }
 
 .messages {
-  background-color: /*#fff*/#c3bcbc;
+  background-color: /*#fff*/ #c3bcbc;
   height: calc(100% - 140px);
   overflow: scroll;
 }
@@ -940,7 +941,7 @@ img {
 }
 
 .blankPageCenter {
-  /* display: flex;
+  /* display: flex;.messageDate-Container
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
@@ -954,4 +955,3 @@ img {
   flex-wrap: nowrap;
   color: #e9edef;
 }
-
