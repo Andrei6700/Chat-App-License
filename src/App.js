@@ -22,7 +22,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <BrowserRouter> {/* Schimbare aici */}
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/main" />} />
           <Route path="/main" element={<MainPage />} />
@@ -31,7 +31,7 @@ function App() {
           <Route path="/chat" element={<TestPage />} />
           <Route path="/call/:roomID" element={<VideoCall />} />
         </Routes>
-      </BrowserRouter> {/* Schimbare aici */}
+      </BrowserRouter> 
     </ThemeProvider>
   );
 }
