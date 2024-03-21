@@ -33,55 +33,65 @@ const Input = () => {
     if (encryptedText === "") {
       return;
     }
-    if (img) {
-      const storageRef = ref(storage, uuid());
-
-      const uploadTask = uploadBytesResumable(storageRef, img);
-
-      uploadTask.on(
-        (error) => {},
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "chats", data.chatId), {
-              messages: arrayUnion({
-                id: uuid(),
-                text,
-                senderId: currentUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          });
-        }
-      );
-    } else {
-      await updateDoc(doc(db, "chats", data.chatId), {
-        messages: arrayUnion({
-          id: uuid(),
-          text: encryptedText, // mesajul criptat
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
+    // message without encryption
+    console.log("Message sent:", text); 
+    // message with encryption
+    console.log("Message sent:", encryptedText); 
+    // Check if the message is intended for 04Tb6Cy8X0Rtn9wjgDUkKUmhGTu1 aka chatbot
+    if (data.user.uid === "04Tb6Cy8X0Rtn9wjgDUkKUmhGTu1") {
+      // Send the message to the server
+      console.log("Sending message to server:", text); // Print the message being sent to the server
+      const response = await fetch('http://localhost:5000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question: text }) // body: JSON.stringify({ question: encryptedText })
       });
+  
+      const responseData = await response.json();
+      console.log(responseData);
+  
+      // Handle the response from the server 
+    } else {
+      // Send the message to the Firebase database
+      if (img) {
+        const storageRef = ref(storage, uuid());
+  
+        const uploadTask = uploadBytesResumable(storageRef, img);
+  
+        uploadTask.on(
+          (error) => {},
+          () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+              await updateDoc(doc(db, "chats", data.chatId), {
+                messages: arrayUnion({
+                  id: uuid(),
+                  text:encryptedText, //the message it s encrypted in data base 
+                  senderId: currentUser.uid,
+                  date: Timestamp.now(),
+                  img: downloadURL,
+                }),
+              });
+            });
+          }
+        );
+      } else {
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text: encryptedText,
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+          }),
+        });
+      }
     }
-
-    await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-
-    await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
-        text,
-      },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
-
+  
     setText("");
     setImg(null);
   };
+  
 
   const handleKey = (e) => {
     if (e.code == "Enter" && text.trim() !== "") {
