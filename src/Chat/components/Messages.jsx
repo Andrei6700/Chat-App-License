@@ -54,15 +54,16 @@ const Messages = () => {
   return (
     <div className={`messages ${theme}`}>
     {messages.map((message, index) => {
-      const decryptedMessage = decrypt(message.text);
-      return (
-        <Message
-          key={index}
-          message={{...message, text: decryptedMessage}}
-          showDate={shouldShowDate(index)}
-        />
-      );
-    })}
+  const decryptedMessage = decrypt(message.text);
+  //  console.log('Decrypted message:', decryptedMessage); 
+  return (
+    <Message
+      key={index}
+      message={{...message, text: decryptedMessage}} 
+      showDate={shouldShowDate(index)}
+    />
+  );
+})}
       <div ref={messagesEndRef} />
     </div>
   );
