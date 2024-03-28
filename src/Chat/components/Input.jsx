@@ -33,58 +33,71 @@ const Input = () => {
     if (encryptedText === "") {
       return;
     }
+  
     if (img) {
       const storageRef = ref(storage, uuid());
-
       const uploadTask = uploadBytesResumable(storageRef, img);
-
-      uploadTask.on(
-        (error) => {},
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-            await updateDoc(doc(db, "chats", data.chatId), {
-              messages: arrayUnion({
-                id: uuid(),
-                text,
-                senderId: currentUser.uid,
-                date: Timestamp.now(),
-                img: downloadURL,
-              }),
-            });
-          });
-        }
-      );
+  
+      try {
+        const snapshot = await uploadTask;
+        const downloadURL = await getDownloadURL(snapshot.ref);
+  
+        await updateDoc(doc(db, "chats", data.chatId), {
+          messages: arrayUnion({
+            id: uuid(),
+            text: encryptedText, // mesajul criptat
+            senderId: currentUser.uid,
+            date: Timestamp.now(),
+            img: downloadURL,
+          }),
+        });
+  
+        await updateLastMessage(data.chatId, encryptedText);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
     } else {
-      await updateDoc(doc(db, "chats", data.chatId), {
-        messages: arrayUnion({
-          id: uuid(),
-          text: encryptedText, // mesajul criptat
-          senderId: currentUser.uid,
-          date: Timestamp.now(),
-        }),
-      });
+      await sendMessage(encryptedText);
     }
-
+  
+    setText("");
+    setImg(null);
+  };
+  
+  const sendMessage = async (encryptedText) => {
+    await updateDoc(doc(db, "chats", data.chatId), {
+      messages: arrayUnion({
+        id: uuid(),
+        text: encryptedText, // mesajul criptat
+        senderId: currentUser.uid,
+        date: Timestamp.now(),
+      }),
+    });
+  
+    await updateLastMessage(data.chatId, text);
+  };
+  
+  const updateLastMessage = async (chatId, text) => {
     await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [data.chatId + ".lastMessage"]: {
+      [chatId + ".lastMessage"]: {
         text,
       },
-      [data.chatId + ".date"]: serverTimestamp(),
+      [chatId + ".date"]: serverTimestamp(),
     });
-
+  
     await updateDoc(doc(db, "userChats", data.user.uid), {
-      [data.chatId + ".lastMessage"]: {
+      [chatId + ".lastMessage"]: {
         text,
       },
-      [data.chatId + ".date"]: serverTimestamp(),
-    });
+      [chatId + ".date"]: serverTimestamp(),
+    });  
 
     setText("");
     setImg(null);
   };
 
   const handleKey = (e) => {
-    if (e.code == "Enter" && text.trim() !== "") {
+    if (e.code === "Enter" && text.trim() !== "") {
       handleSend();
     }
   };
