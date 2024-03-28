@@ -8,13 +8,30 @@ import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
 import { useNavigate } from "react-router";
+import Sidebar from "./Sidebar"
 
+// https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react documentation for display width
 const Chat = ({ toggleSidebar }) => {
   const { data } = useContext(ChatContext);
   const { theme } = useTheme();
   const [roomId, setRoomId] = useState(""); //id room
+  const [windowWidth, setWindowWidth] = useState(null);
 
   const navigate = useNavigate();
+  const isWindow = typeof window !== 'undefined';
+  const getWidth = () => isWindow ? window.innerWidth : windowWidth;
+
+  const resize = () => setWindowWidth(getWidth());
+
+  useEffect(() => {
+    if (isWindow) {
+      setWindowWidth(getWidth());
+      window.addEventListener('resize', resize);
+      return () => window.removeEventListener('resize', resize);
+    }
+  }, [isWindow]);
+
+  console.log("screen width", windowWidth);
 
   const handleJoin = () => {
     if (roomId.length !== 20) return;
@@ -68,7 +85,7 @@ const Chat = ({ toggleSidebar }) => {
           <Input />
         </>
       ) : (
-        <BlankPage />
+        <>{/*windowWidth >= 764 &&*/ <BlankPage />}</>
       )}
     </div>
   );
