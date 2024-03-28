@@ -29,36 +29,41 @@ const Search = () => {
 
   const handleSearch = async () => {
     setErr(false);
-
+  
+    const caseInsensitiveUsername = removeDiacritics(username).toLowerCase();
     let q = query(
       collection(db, "users"),
-      where("displayName", "==", removeDiacritics(username).toLowerCase())
+      where("displayName", ">=", caseInsensitiveUsername),
+      where("displayName", "<=", caseInsensitiveUsername + "\uf8ff")
     );
-
-
+  
     const users = [];
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-
-      if (users.length === 0) {
+      // filtering the user we are looking for, which contains the name suffix
+      const filteredUsers = users.filter(user =>
+        removeDiacritics(user.displayName).toLowerCase().includes(caseInsensitiveUsername)
+      );
+  
+      if (filteredUsers.length === 0) {
         setErr(true);
         setTimeout(() => {
           setErr(false);
-        }, 5000);
+        }, 3000);
       } else {
-        setUser(users[0]);
+        // choose the first user found 
+        setUser(filteredUsers[0]);
         setTimeout(() => {
           setUser(null);
-        }, 100000);
+        }, 3000);
       }
     } catch (err) {
       console.error("error 404 :)", err);
     }
-  };
-
+  };  
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
@@ -143,7 +148,7 @@ const Search = () => {
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <div className="userChatInfo">
-            <span style={{background:'#2a3942'}}>{user.displayName}</span>
+            <span>{user.displayName}</span>
           </div>
         </div>
       )}
