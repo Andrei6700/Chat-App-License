@@ -42,7 +42,7 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
         </div>
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">
-            <h1 className="text-center">Sign U</h1>
+            <h1 className="text-center">Sign Up</h1>
             <h2 className="text-xl py-4">text</h2>
             {/* <form
               onSubmit={formHandleSubmit(OnSubmit)}
