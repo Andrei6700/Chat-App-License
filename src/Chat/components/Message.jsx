@@ -45,8 +45,7 @@ const Message = ({ message, showDate }) => {
           <span>{formattedHour}</span>
         </div>
         <div className="messageContent">
-          <p className="ResponsiveTextChat">{message.text} {message.img && <img src={message.img} style={{width:'330px'}} alt="" />}</p>
-          
+          <p className="ResponsiveTextChat">{message.text} {message.img && <img src={message.img} alt="" />}</p>
           <span>
             {message.senderId === currentUser.uid &&
               (message.read ? "Seen" : "Unseen")}

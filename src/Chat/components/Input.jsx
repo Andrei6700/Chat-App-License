@@ -30,7 +30,7 @@ const Input = () => {
 
   const handleSend = async () => {
     const encryptedText = encrypt(text.trim()); 
-    if (encryptedText === "") {
+    if (!text.trim() && !img) {
       return;
     }
   
@@ -112,6 +112,7 @@ const Input = () => {
         onKeyDown={handleKey}
         onChange={(e) => setText(e.target.value)}
         value={text}
+        required // Forțează completarea câmpului
       />
       {text && (
         <div className="clear-button" onClick={() => setText("")}>
