@@ -98,6 +98,7 @@ background-color: #202c33;
 
 .dark.searchForm input{
   background: border-box #202c33;
+  color:white;
 }
 
 .dark.inputChatPage{
