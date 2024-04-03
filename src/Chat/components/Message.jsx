@@ -48,7 +48,7 @@ const Message = ({ message, showDate }) => {
           <p className="ResponsiveTextChat">{message.text}</p>
           {message.img && (
             <p className="ResponsiveTextChat">
-              <img src={message.img} alt="" />
+              <img src={message.img} alt="" style={{width:'441px'}} />
             </p>
           )}
           <span>
