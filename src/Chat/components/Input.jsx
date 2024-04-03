@@ -112,7 +112,7 @@ const Input = () => {
         onKeyDown={handleKey}
         onChange={(e) => setText(e.target.value)}
         value={text}
-        required // Forțează completarea câmpului
+        required
       />
       {text && (
         <div className="clear-button" onClick={() => setText("")}>

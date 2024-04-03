@@ -31,7 +31,7 @@ const Chat = ({ toggleSidebar }) => {
     }
   }, [isWindow]);
 
-  console.log("screen width", windowWidth);
+  // console.log("screen width", windowWidth);
 
   const handleJoin = () => {
     if (roomId.length !== 20) return;

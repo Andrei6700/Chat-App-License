@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Message from "./Message";
+ import Message from "./Message";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 import { doc, onSnapshot } from "firebase/firestore";
@@ -10,6 +10,7 @@ import { updateDoc } from "firebase/firestore";
 import { decrypt } from '../../AES Encryption/decrypt';
 
 const Messages = () => {
+  // const Message = React.lazy(()=> import("./Message") )
   const { currentUser } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
@@ -57,11 +58,13 @@ const Messages = () => {
   const decryptedMessage = decrypt(message.text);
   //  console.log('Decrypted message:', decryptedMessage); 
   return (
+    //  <React.Suspense fallback={<div>Loading...</div>} key={index}>
     <Message
       key={index}
       message={{...message, text: decryptedMessage}} 
       showDate={shouldShowDate(index)}
     />
+     /* </React.Suspense>  */
   );
 })}
       <div ref={messagesEndRef} />
