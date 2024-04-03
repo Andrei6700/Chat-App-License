@@ -28,7 +28,6 @@ const Message = ({ message, showDate }) => {
         </div>
       )}
       <div
-        ref={ref}
         className={`message ${
           message.senderId === currentUser.uid && "owner"
         } ${theme}`}
@@ -45,7 +44,7 @@ const Message = ({ message, showDate }) => {
           <span>{formattedHour}</span>
         </div>
         <div className="messageContent">
-          <p className="ResponsiveTextChat">{message.text}</p>
+          {message.text && <p className="ResponsiveTextChat">{message.text}</p>}
           {message.img && (
             <p className="ResponsiveTextChat">
               <img src={message.img} alt="" style={{width:'441px'}} />
