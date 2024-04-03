@@ -45,7 +45,9 @@ const Chats = () => {
                 <div className={`userChatInfo ${theme}`}>
                   <span>{chat[1].userInfo?.displayName}</span>
                   <p className={`responsiveP ${theme}`}>
-                    {chat[1].lastMessage?.text}
+                    {chat[1].lastMessage?.text?.startsWith("encrypted:")
+                      ? "[Image]"
+                      : chat[1].lastMessage?.text}
                   </p>
                 </div>
               </div>
