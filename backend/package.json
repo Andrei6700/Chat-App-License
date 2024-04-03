@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "config.js",
+  "main": "config/config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon serverMailSender.js"
+    "start": "nodemon server-Mail/serverMailSender.js"
   },
   "keywords": [],
   "author": "",
