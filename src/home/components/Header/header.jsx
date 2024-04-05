@@ -2,7 +2,7 @@ import react from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 import ReactSwitch from "react-switch";
-import { ThemeContext, useTheme } from "../../context/dark-mode";
+import { ThemeContext, useTheme } from "../../../context/dark-mode";
 
 export const Header = () => {
   const { theme, toggleTheme } = useTheme();

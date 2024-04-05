@@ -1,0 +1,15 @@
+.Content1-Container {
+    width: -webkit-fill-available;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.Content1-Container-Text {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+
+.Content1-Text {
+    width: min-content;
+}
