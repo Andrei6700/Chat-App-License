@@ -6,10 +6,9 @@
 
 .Content1-Container-Text {
     display: flex;
-    justify-content: center; 
-    align-items: center;
+    justify-content: flex-end;
   }
 
 .Content1-Text {
-    width: min-content;
+ 
 }

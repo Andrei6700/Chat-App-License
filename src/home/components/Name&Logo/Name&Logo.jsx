@@ -24,7 +24,7 @@ const NameAndLogo = () => {
           <div className="Name-Style">ChatApp</div>
         </div>
       </div>
-      <motion.h2 style={{ y }}>Hello !!! </motion.h2>
+      <motion.h2 style={{ y }}>Hello </motion.h2>
     </div>
   );
 };

@@ -14,9 +14,6 @@ const Content1 = () => {
            <img src={Phone} alt="" />
          </div>
        </div>
-            <motion.h2 style={{ y }}>
-            <div>text</div>
-          </motion.h2>
     </div>
   );
 };
