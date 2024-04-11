@@ -16,27 +16,29 @@ import { ChatContext } from "../../context/ChatContext";
 import { useTheme } from "../../context/dark-mode";
 
 const Search = () => {
+  // State hooks for managing user input, selected user, and error handling
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
   const [err, setErr] = useState(false);
+  // Context hooks for accessing global state
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const { theme } = useTheme();
-
+  // Function to remove diacritics from strings for better search matching
   const removeDiacritics = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   };
-
+  // Function to handle user search
   const handleSearch = async () => {
     setErr(false);
-  
+
     const caseInsensitiveUsername = removeDiacritics(username).toLowerCase();
     let q = query(
       collection(db, "users"),
       where("displayName", ">=", caseInsensitiveUsername),
       where("displayName", "<=", caseInsensitiveUsername + "\uf8ff")
     );
-  
+
     const users = [];
     try {
       const querySnapshot = await getDocs(q);
@@ -44,17 +46,19 @@ const Search = () => {
         users.push(doc.data());
       });
       // filtering the user we are looking for, which contains the name suffix
-      const filteredUsers = users.filter(user =>
-        removeDiacritics(user.displayName).toLowerCase().includes(caseInsensitiveUsername)
+      const filteredUsers = users.filter((user) =>
+        removeDiacritics(user.displayName)
+          .toLowerCase()
+          .includes(caseInsensitiveUsername)
       );
-  
+
       if (filteredUsers.length === 0) {
         setErr(true);
         setTimeout(() => {
           setErr(false);
         }, 3000);
       } else {
-        // choose the first user found 
+        // choose the first user found
         setUser(filteredUsers[0]);
         setTimeout(() => {
           setUser(null);
@@ -63,11 +67,12 @@ const Search = () => {
     } catch (err) {
       console.error("error 404 :)", err);
     }
-  };  
+  };
+  // Function to handle key press events
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
-
+  // Function to handle user selection
   const handleSelect = async () => {
     const combinedId =
       currentUser.uid > user.uid
@@ -78,7 +83,7 @@ const Search = () => {
       const chatDocRef = doc(db, "chats", combinedId);
       const chatDoc = await getDoc(chatDocRef);
 
-      // deschidrea chatului cu x
+      // Dispatch action to change the current chat user
       dispatch({
         type: "CHANGE_USER",
         payload: {
@@ -87,7 +92,7 @@ const Search = () => {
           photoURL: user.photoURL,
         },
       });
-
+      // Create or update chat document
       if (!chatDoc.exists()) {
         await setDoc(chatDocRef, { messages: [] });
 
@@ -143,7 +148,7 @@ const Search = () => {
         />
       </div>
       {err && <span>User {`${username}`} not found!</span>}
-      
+
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />

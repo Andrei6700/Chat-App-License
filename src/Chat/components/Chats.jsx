@@ -4,29 +4,37 @@ import { db } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 import { ChatContext } from "../../context/ChatContext";
 import { useTheme } from "../../context/dark-mode";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 
 const Chats = () => {
+  // State to store the chats data
   const [chats, setChats] = useState([]);
+  // Custom hook to get the current theme (dark or light)
   const { theme } = useTheme();
+  // Context to access the current user's information
   const { currentUser } = useContext(AuthContext);
+  // Context to dispatch actions related to chat
   const { dispatch } = useContext(ChatContext);
 
+  // Effect hook to fetch chats data from Firebase Firestore
   useEffect(() => {
     const getChats = () => {
+      // "Subscribe" to the userChats document in Firestore
       const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        // "Subscribe" to the userChats document in Firestore
         setChats(doc.data());
       });
-
+      // Cleanup function to unsubscribe from the document when the component unmounts
       return () => {
         unsub();
       };
     };
-
+    // Only run the getChats function if currentUser.uid is available
     currentUser.uid && getChats();
   }, [currentUser?.uid]);
-
+  // Function to handle selecting a chat
   const handleSelect = (u) => {
+    // Dispatch an action to change the current user in the chat context
     dispatch({ type: "CHANGE_USER", payload: u });
   };
 
