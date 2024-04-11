@@ -1,3 +1,6 @@
+html {
+  scroll-snap-type: y mandatory;
+}
 
 .container-Home{
   scroll-behavior: smooth;

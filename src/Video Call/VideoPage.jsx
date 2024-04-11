@@ -121,15 +121,21 @@ export default function VideoCall() {
     });
 
     mute.current.addEventListener("click", async () => {
-      const track = localstream
-        .getTracks()
-        .find((track) => track.kind === "audio");
-      if (track.enabled) {
-        track.enabled = false;
+      const audioTrack = localstream.getTracks().find(track => track.kind === "audio");
+      if (audioTrack.enabled) {
+        audioTrack.enabled = false;
         mute.current.style.backgroundColor = "red";
+        // Remove the audio track from the peer connection
+        peerConnection.getSenders().forEach(sender => {
+          if (sender.track.kind === "audio") {
+            peerConnection.removeTrack(sender);
+          }
+        });
       } else {
-        track.enabled = true;
+        audioTrack.enabled = true;
         mute.current.style.backgroundColor = "green";
+        // Add the audio track back to the peer connection
+        peerConnection.addTrack(audioTrack, localstream);
       }
     });
 

@@ -1,0 +1,5 @@
+.Content3-Container{
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: center;
+}

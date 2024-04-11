@@ -7,7 +7,7 @@ const Content2 = () => {
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useTransform(scrollYProgress, [0, 1], [-300, 350]);
   return (
-    <div
+    <div data-aos="zoom-in-up"
       className="ba"
       ref={ref}
       style={{
