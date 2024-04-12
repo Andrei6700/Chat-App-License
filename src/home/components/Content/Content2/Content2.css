@@ -1,0 +1,48 @@
+.ba {
+  /* change the name*/
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.content2-ContainerText {
+  margin: "0% 20% ";
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+}
+
+@media (max-width: 575.98px) {
+  .content2-ContainerText {
+    margin: 0% 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .h2_Content2 {
+    padding-top: "10%";
+    padding-bottom: "10%";
+  }
+
+  .text_Content2 {
+    color: black;
+    line-height: 220%;
+    font-family: inherit;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+ 
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+@media (min-width: 1200px) {
+}

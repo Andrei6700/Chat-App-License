@@ -8,6 +8,7 @@ import TestPage from './Chat/page-test';
 import SignUp from "./Sign Up/pages/SignUp";
 import LoginPage from "./Log In/page/LogIn";
 import VideoCall from "./Video Call/VideoPage";
+// import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const { currentUser } = useContext(AuthContext);

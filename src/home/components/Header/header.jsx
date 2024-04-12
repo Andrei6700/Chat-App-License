@@ -2,19 +2,20 @@ import react from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 import ReactSwitch from "react-switch";
-import { ThemeContext, useTheme } from "../../context/dark-mode";
+import { ThemeContext, useTheme } from "../../../context/dark-mode";
 
 export const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <div className={`header ${theme === "dark" ? "dark" : ""}`}>
+      <div className="Container-header-items">
       <div>Logo</div>
       <div>imagine logo</div>
       <div>
         <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
       </div>
-
+      </div>
       <div className="marginLeft">
         <Link to="/signup" style={{ textDecoration: "none" }}>
           <button className="button-signup">
@@ -38,7 +39,7 @@ export const Header = () => {
           </button>
         </Link>
         <Link to="/login" style={{ textDecoration: "none" }}>
-          <button className="button">
+          <button className="button-login">
             <svg
               className="login"
               width="24px"
@@ -63,4 +64,3 @@ export const Header = () => {
     </div>
   );
 };
-    

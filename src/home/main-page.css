@@ -1,9 +1,41 @@
+html {
+  scroll-snap-type: y mandatory;
+}
 
-.aplicatie{
-  width: 100%;
-  color: wheat;
+.container-Home{
+  scroll-behavior: smooth;
+  background: radial-gradient(circle, rgb(245 222 179) 50%, rgb(211 190 149) 100%);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  color: black;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 575.98px) {
+
+  .Description_Phone {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+ 
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+ 
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  
+}
+
+@media (min-width: 1200px) {
+ 
 }

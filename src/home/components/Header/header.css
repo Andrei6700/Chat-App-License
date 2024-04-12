@@ -1,6 +1,6 @@
 
 .header{
-  position: fixed;
+  /* position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -12,6 +12,25 @@
   gap: 5%;
   padding: 10px;
   background-color: wheat;
+  box-sizing: content-box; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: -webkit-fill-available;
+  display: flex;
+  z-index: 10000;
+  align-items: center;
+  gap: 5%;
+  padding: 10px;
+  background-color: wheat;
+
+}
+
+.Container-header-items{
+  display: flex;
+  width: 50%;
+  justify-content: flex-start;
+  gap: 5%;
 }
 
 .marginLeft { 
@@ -23,7 +42,7 @@
   margin-right: 3%;
  }
 
- .button {
+ .button-login {
   width: 130px;
   height: 37px;
   display: flex;
@@ -34,7 +53,7 @@
   background-color: rgb(37 173 54);
   border-radius: 8px;
   color: white;
-  border: none;
+  /* border: none; */
   transition-duration: .3s;
 }
 
@@ -48,7 +67,7 @@
   padding: 0px 12px;
   background-color: wheat;
   border-radius: 8px;
-  border: none;
+  /* border: none; */
   transition-duration: .3s;
 }
 
@@ -79,4 +98,27 @@
 .button-signup:active {
   transform: translate(1px, 1px);
   transition-duration: .3s;
+}
+
+
+@media (max-width: 575.98px) {
+.Container-header-items{
+
+}
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+}
+
+@media (min-width: 1200px) {
+
 }
