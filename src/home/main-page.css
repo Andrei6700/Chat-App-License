@@ -10,6 +10,7 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: overlay;
 }
 
 @media (max-width: 575.98px) {

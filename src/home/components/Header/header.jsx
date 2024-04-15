@@ -1,17 +1,17 @@
-import react from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
 import ReactSwitch from "react-switch";
 import { ThemeContext, useTheme } from "../../../context/dark-mode";
-
+import Logo from "../../../img/logo2-removebg-preview.png";
 export const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <div className={`header ${theme === "dark" ? "dark" : ""}`}>
       <div className="Container-header-items">
-      <div>Logo</div>
-      <div>imagine logo</div>
+      <div>
+        <img src={Logo} alt="logo" className="Logo_Header" />
+      </div>
       <div>
         <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
       </div>
