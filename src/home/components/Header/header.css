@@ -111,7 +111,7 @@
     width: 50%;
     gap: 5%;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
   
 }
@@ -124,7 +124,6 @@
   }
 
   .Container-header-items {
-    align-items: center;
 }
 
 
@@ -142,7 +141,6 @@
     width: 50%;
     gap: 5%;
     align-items: center;
-    justify-content: center;
 }
 }
 
@@ -158,7 +156,6 @@
     width: 50%;
     gap: 5%;
     align-items: center;
-    justify-content: center;
 }
 }
 
@@ -174,6 +171,5 @@
     width: 50%;
     gap: 5%;
     align-items: center;
-    justify-content: center;
 }
 }

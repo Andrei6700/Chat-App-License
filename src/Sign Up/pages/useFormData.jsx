@@ -11,6 +11,10 @@ const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Invalid form"),
   password: yup
     .string()
+    .matches(
+      /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,64}$/,
+      "Password must contain at least one special character"
+    )
     .min(8, "Minimum 8 characters")
     .max(64, "Maximum 64 characters")
     .required("Invalid form"),

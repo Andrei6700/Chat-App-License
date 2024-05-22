@@ -29,14 +29,14 @@ const Search = () => {
 
   const handleSearch = async () => {
     setErr(false);
-  
+
     const caseInsensitiveUsername = removeDiacritics(username).toLowerCase();
     let q = query(
       collection(db, "users"),
       where("displayName", ">=", caseInsensitiveUsername),
       where("displayName", "<=", caseInsensitiveUsername + "\uf8ff")
     );
-  
+
     const users = [];
     try {
       const querySnapshot = await getDocs(q);
@@ -44,17 +44,19 @@ const Search = () => {
         users.push(doc.data());
       });
       // filtering the user we are looking for, which contains the name suffix
-      const filteredUsers = users.filter(user =>
-        removeDiacritics(user.displayName).toLowerCase().includes(caseInsensitiveUsername)
+      const filteredUsers = users.filter((user) =>
+        removeDiacritics(user.displayName)
+          .toLowerCase()
+          .includes(caseInsensitiveUsername)
       );
-  
+
       if (filteredUsers.length === 0) {
         setErr(true);
         setTimeout(() => {
           setErr(false);
         }, 3000);
       } else {
-        // choose the first user found 
+        // choose the first user found
         setUser(filteredUsers[0]);
         setTimeout(() => {
           setUser(null);
@@ -63,22 +65,29 @@ const Search = () => {
     } catch (err) {
       console.error("error 404 :)", err);
     }
-  };  
+  };
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
 
+  // asynchronous function 
   const handleSelect = async () => {
+    // Create a combinedId by concatenating currentUser's uid and user's uid
+    // If currentUser's uid is greater than user's uid, the order is currentUser.uid + user.uid
+    // Otherwise, the order is user.uid + currentUser.uid
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
 
     try {
+      // Create a reference to the document in the "chats" collection in the database with the id as combinedId
       const chatDocRef = doc(db, "chats", combinedId);
+
+      // Fetch the document from the database using the document reference
       const chatDoc = await getDoc(chatDocRef);
 
-      // deschidrea chatului cu x
+      //open the chat wit x person
       dispatch({
         type: "CHANGE_USER",
         payload: {
@@ -143,7 +152,7 @@ const Search = () => {
         />
       </div>
       {err && <span>User {`${username}`} not found!</span>}
-      
+
       {user && (
         <div className="userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />

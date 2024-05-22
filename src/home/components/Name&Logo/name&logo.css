@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: -webkit-fill-available;
+  width: 100%;
 }
 
 .NameLogo-Positioning {
@@ -41,7 +41,7 @@
 
 .Img_NameLogo{
   width: 500px;
-  height: 500px ;
+  height: auto ;
 }
 
 

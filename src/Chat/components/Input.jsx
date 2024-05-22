@@ -64,18 +64,24 @@ const Input = () => {
     setImg(null);
   };
   
-  const sendMessage = async (encryptedText) => {
-    await updateDoc(doc(db, "chats", data.chatId), {
-      messages: arrayUnion({
-        id: uuid(),
-        text: encryptedText, // mesajul criptat
-        senderId: currentUser.uid,
-        date: Timestamp.now(),
-      }),
-    });
-  
-    await updateLastMessage(data.chatId, text);
-  };
+// Define an asynchronous function called sendMessage that takes encryptedText as a parameter
+const sendMessage = async (encryptedText) => {
+  // Use updateDoc to update a document in the "chats" collection in the database
+  // The document has an id of data.chatId
+  // The update operation adds a new message to the "messages" array in the document
+  // The new message has a unique id, the encrypted text, the id of the sender, and the current timestamp
+  await updateDoc(doc(db, "chats", data.chatId), {
+    messages: arrayUnion({
+      id: uuid(),
+      text: encryptedText, // the encrypted message
+      senderId: currentUser.uid,
+      date: Timestamp.now(),
+    }),
+  });
+
+  // Call the updateLastMessage function with the chatId and the original (unencrypted) text
+  await updateLastMessage(data.chatId, text);
+};
   
   const updateLastMessage = async (chatId, text) => {
     await updateDoc(doc(db, "userChats", currentUser.uid), {
