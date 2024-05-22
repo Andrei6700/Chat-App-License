@@ -34,6 +34,9 @@ const Input = () => {
       return;
     }
   
+    // Verificăm dacă destinatarul mesajului este ChatBot
+    const isChatBotRecipient = data.user.uid === '7BVlKy0cHwVc4brvfjQmsKsICdF2';
+
     if (img) {
       const storageRef = ref(storage, uuid());
       const uploadTask = uploadBytesResumable(storageRef, img);
@@ -45,7 +48,7 @@ const Input = () => {
         await updateDoc(doc(db, "chats", data.chatId), {
           messages: arrayUnion({
             id: uuid(),
-            text: encryptedText, // mesajul criptat
+            text: encryptedText,
             senderId: currentUser.uid,
             date: Timestamp.now(),
             img: downloadURL,
@@ -53,49 +56,82 @@ const Input = () => {
         });
   
         await updateLastMessage(data.chatId, encryptedText);
+
+        if (isChatBotRecipient) {
+          await sendMessageToChatBot(text); // Trimite mesajul original către ChatBot
+        }
       } catch (error) {
         console.error("Error uploading image:", error);
       }
     } else {
       await sendMessage(encryptedText);
+
+      if (isChatBotRecipient) {
+        await sendMessageToChatBot(text); // Trimite mesajul original către ChatBot
+      }
     }
   
     setText("");
     setImg(null);
   };
-  
-// Define an asynchronous function called sendMessage that takes encryptedText as a parameter
-const sendMessage = async (encryptedText) => {
-  // Use updateDoc to update a document in the "chats" collection in the database
-  // The document has an id of data.chatId
-  // The update operation adds a new message to the "messages" array in the document
-  // The new message has a unique id, the encrypted text, the id of the sender, and the current timestamp
-  await updateDoc(doc(db, "chats", data.chatId), {
-    messages: arrayUnion({
-      id: uuid(),
-      text: encryptedText, // the encrypted message
-      senderId: currentUser.uid,
-      date: Timestamp.now(),
-    }),
-  });
 
-  // Call the updateLastMessage function with the chatId and the original (unencrypted) text
-  await updateLastMessage(data.chatId, text);
-};
+  // Funcție pentru a trimite mesajul către ChatBot.py
+  const sendMessageToChatBot = async (messageText) => {
+    try {
+      const response = await fetch('http://localhost:5000/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: messageText }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message to ChatBot');
+      }
+
+      console.log('Message sent to ChatBot successfully!');
+    } catch (error) {
+      console.error('Error sending message to ChatBot:', error);
+    }
+  };
+
+  // Define an asynchronous function called sendMessage that takes encryptedText as a parameter
+  const sendMessage = async (encryptedText) => {
+    // Use updateDoc to update a document in the "chats" collection in the database
+    // The document has an id of data.chatId
+    // The update operation adds a new message to the "messages" array in the document
+    // The new message has a unique id, the encrypted text, the id of the sender, and the current timestamp
+    await updateDoc(doc(db, "chats", data.chatId), {
+      messages: arrayUnion({
+        id: uuid(),
+        text: encryptedText,
+        senderId: currentUser.uid,
+        date: Timestamp.now(),
+      }),
+    });
+
+    // Call the updateLastMessage function with the chatId and the original (unencrypted) text
+    await updateLastMessage(data.chatId, text);
+  };
   
   const updateLastMessage = async (chatId, text) => {
     await updateDoc(doc(db, "userChats", currentUser.uid), {
-      [chatId + ".lastMessage"]: {
-        text,
+      [chatId]: {
+        lastMessage: {
+          text,
+        },
+        date: serverTimestamp(),
       },
-      [chatId + ".date"]: serverTimestamp(),
     });
   
     await updateDoc(doc(db, "userChats", data.user.uid), {
-      [chatId + ".lastMessage"]: {
-        text,
+      [chatId]: {
+        lastMessage: {
+          text,
+        },
+        date: serverTimestamp(),
       },
-      [chatId + ".date"]: serverTimestamp(),
     });  
 
     setText("");
