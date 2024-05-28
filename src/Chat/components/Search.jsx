@@ -16,40 +16,45 @@ import { ChatContext } from "../../context/ChatContext";
 import { useTheme } from "../../context/dark-mode";
 
 const Search = () => {
+  // state variables
   const [username, setUsername] = useState("");
   const [foundUsers, setFoundUsers] = useState([]);
   const [err, setErr] = useState(false);
+  // Get the current user and dispatch function from context
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
   const { theme } = useTheme();
-
+  //remove diacritics from a string
   const removeDiacritics = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   };
 
   const handleSearch = async () => {
     setErr(false);
-
+    // Create a case-insensitive version of the username
     const caseInsensitiveUsername = removeDiacritics(username).toLowerCase();
+    // a query to get users with a matching display name
     let q = query(
       collection(db, "users"),
       where("displayName", ">=", caseInsensitiveUsername),
       where("displayName", "<=", caseInsensitiveUsername + "\uf8ff")
     );
-
+    //an array to hold the users
     const users = [];
+    // Execute the query
     try {
+      // Add each user to the array
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-
+      // Filter the users to only include those with a matching display name
       const filteredUsers = users.filter((user) =>
         removeDiacritics(user.displayName)
           .toLowerCase()
           .includes(caseInsensitiveUsername)
       );
-
+      // If no users were found, set an error and clear the found users
       if (filteredUsers.length === 0) {
         setErr(true);
         setFoundUsers([]);
@@ -57,8 +62,10 @@ const Search = () => {
           setErr(false);
         }, 3000);
       } else {
+        // If users were found, set them as the found users
         setFoundUsers(filteredUsers);
       }
+      //error :()
     } catch (err) {
       console.error("error 404 :)", err);
       setErr(true);
@@ -68,17 +75,20 @@ const Search = () => {
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
-
+  // handle selecting a user
   const handleSelect = async (user) => {
+    // Combine the user IDs in a specific order
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
 
     try {
+      // Get a reference to the chat document
       const chatDocRef = doc(db, "chats", combinedId);
+      // Get the chat document
       const chatDoc = await getDoc(chatDocRef);
-
+      // Dispatch an action to change the user
       dispatch({
         type: "CHANGE_USER",
         payload: {
@@ -87,7 +97,7 @@ const Search = () => {
           photoURL: user.photoURL,
         },
       });
-
+      // If the chat document doesn't exist, create it and update the user chats
       if (!chatDoc.exists()) {
         await setDoc(chatDocRef, { messages: [] });
 
@@ -148,7 +158,11 @@ const Search = () => {
       {foundUsers.length > 0 && (
         <div className="userList">
           {foundUsers.map((user) => (
-            <div key={user.uid} className="userChat" onClick={() => handleSelect(user)}>
+            <div
+              key={user.uid}
+              className="userChat"
+              onClick={() => handleSelect(user)}
+            >
               <img src={user.photoURL} alt="" />
               <div className="userChatInfo">
                 <span>{user.displayName}</span>
