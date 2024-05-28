@@ -17,7 +17,7 @@ import { useTheme } from "../../context/dark-mode";
 
 const Search = () => {
   const [username, setUsername] = useState("");
-  const [user, setUser] = useState(null);
+  const [foundUsers, setFoundUsers] = useState([]);
   const [err, setErr] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const { dispatch } = useContext(ChatContext);
@@ -43,7 +43,7 @@ const Search = () => {
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-      // filtering the user we are looking for, which contains the name suffix
+
       const filteredUsers = users.filter((user) =>
         removeDiacritics(user.displayName)
           .toLowerCase()
@@ -52,42 +52,33 @@ const Search = () => {
 
       if (filteredUsers.length === 0) {
         setErr(true);
+        setFoundUsers([]);
         setTimeout(() => {
           setErr(false);
         }, 3000);
       } else {
-        // choose the first user found
-        setUser(filteredUsers[0]);
-        setTimeout(() => {
-          setUser(null);
-        }, 3000);
+        setFoundUsers(filteredUsers);
       }
     } catch (err) {
       console.error("error 404 :)", err);
+      setErr(true);
     }
   };
+
   const handleKey = (e) => {
     e.code === "Enter" && handleSearch();
   };
 
-  // asynchronous function 
-  const handleSelect = async () => {
-    // Create a combinedId by concatenating currentUser's uid and user's uid
-    // If currentUser's uid is greater than user's uid, the order is currentUser.uid + user.uid
-    // Otherwise, the order is user.uid + currentUser.uid
+  const handleSelect = async (user) => {
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
         : user.uid + currentUser.uid;
 
     try {
-      // Create a reference to the document in the "chats" collection in the database with the id as combinedId
       const chatDocRef = doc(db, "chats", combinedId);
-
-      // Fetch the document from the database using the document reference
       const chatDoc = await getDoc(chatDocRef);
 
-      //open the chat wit x person
       dispatch({
         type: "CHANGE_USER",
         payload: {
@@ -124,9 +115,10 @@ const Search = () => {
       }
     } catch (err) {
       console.error("error", err);
-      setUser(null);
-      setUsername("");
     }
+
+    setFoundUsers([]);
+    setUsername("");
   };
 
   return (
@@ -153,12 +145,16 @@ const Search = () => {
       </div>
       {err && <span>User {`${username}`} not found!</span>}
 
-      {user && (
-        <div className="userChat" onClick={handleSelect}>
-          <img src={user.photoURL} alt="" />
-          <div className="userChatInfo">
-            <span>{user.displayName}</span>
-          </div>
+      {foundUsers.length > 0 && (
+        <div className="userList">
+          {foundUsers.map((user) => (
+            <div key={user.uid} className="userChat" onClick={() => handleSelect(user)}>
+              <img src={user.photoURL} alt="" />
+              <div className="userChatInfo">
+                <span>{user.displayName}</span>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
