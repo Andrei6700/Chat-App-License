@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef, useCallback } from "react";
 import Message from "./Message";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
@@ -10,63 +10,73 @@ import { updateDoc } from "firebase/firestore";
 import { decrypt } from "../../AES Encryption/decrypt";
 
 const Messages = () => {
-  // const Message = React.lazy(()=> import("./Message") )
+  // Using the AuthContext to get the current user
   const { currentUser } = useContext(AuthContext);
+  // State to store the messages
   const [messages, setMessages] = useState([]);
+  // Using the ChatContext to get the chat data
   const { data } = useContext(ChatContext);
+  // Using the useTheme hook to get the current theme
   const { theme } = useTheme();
+  // Ref to the end of the messages list, used to scroll into view
   const messagesEndRef = useRef(null);
-
-  // Use the useEffect hook to run side effects after render
-  useEffect(() => {
-    // Create a real-time listener on the chat document with id data.chatId in the database
-    // The listener is unsubscribed when the component is unmounted
+  // State to store the limit of messages to fetch
+  const [limit, setLimit] = useState(20);
+// fetch messages from the Firestore
+  const fetchMessages = useCallback(() => {
     const unSub = onSnapshot(doc(db, "chats", data.chatId), async (docData) => {
-      // Check if the document exists
       if (docData.exists()) {
-        // Map over the messages in the document
-        // If the sender of the message is not the current user and the message is not read,
-        // return a new object with the same properties as the message and read set to true
-        // Otherwise, return the message as is
-        const newMessages = docData.data().messages.map((message) => {
+        const allMessages = docData.data().messages;
+                // Mark messages as read if they are not sent by the current user and are unread
+        const newMessages = allMessages.map((message) => {
           if (message.senderId !== currentUser.uid && !message.read) {
             return { ...message, read: true };
           }
           return message;
         });
-        // Update the state with the new messages
-        setMessages(newMessages);
-        // Update the messages in the document in the database with the new messages
+                // Update the document in Firestore with the new messages
         await updateDoc(doc(db, "chats", data.chatId), {
           messages: newMessages,
         });
+                // Update the messages state with the new messages, limited by the limit state
+        setMessages(newMessages.slice(-limit)); 
       }
     });
-    // Return a cleanup function that unsubscribes the listener when the component is unmounted
+    return unSub;
+  }, [data.chatId, currentUser.uid, limit]);
+
+  // Fetch messages on component mount and clean up on unmount
+  useEffect(() => {
+    const unSub = fetchMessages();
     return () => {
       unSub();
     };
-    // The effect depends on data.chatId and currentUser.uid, and will run again if either of them changes
-  }, [data.chatId, currentUser.uid]);
+  }, [fetchMessages]);
+
+    // Scroll to the end of the messages list whenever the messages state changes
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Handle scroll event on the messages list
+  const handleScroll = (e) => {
+    // If the user has scrolled to the top, increase the limit to fetch more messages
+    if (e.target.scrollTop === 0) {
+      setLimit((prevLimit) => prevLimit + 20);
+    }
+  };
 
   const shouldShowDate = (index) => {
     if (index === 0) return true;
     const currentDate = messages[index].date.toDate();
     const previousDate = messages[index - 1].date.toDate();
-    return (
-      format(currentDate, "dd/MM/yyyy") !== format(previousDate, "dd/MM/yyyy")
-    );
+    return format(currentDate, "dd/MM/yyyy") !== format(previousDate, "dd/MM/yyyy");
   };
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
   return (
-    <div className={`messages ${theme}`}>
+    <div className={`messages ${theme}`} onScroll={handleScroll}>
       {messages.map((message, index) => {
         const decryptedMessage = decrypt(message.text);
-        //  console.log('Decrypted message:', decryptedMessage);
         return (
           <Message
             key={index}
