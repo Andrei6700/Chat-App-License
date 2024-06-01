@@ -1,8 +1,8 @@
 import React from "react";
 import logo_light from "../../../img/logo_light.png";
 import logo_dark from "../../../img/logo_dark.png";
-import { useEffect, useRef } from "react";
-import { motion, useTransform, useScroll } from "framer-motion";
+import { useRef } from "react";
+import {  useTransform, useScroll } from "framer-motion";
 import { useTheme } from "../../../context/dark-mode";
 import "./name&logo.css";
 
@@ -24,7 +24,6 @@ const NameAndLogo = () => {
           <div className="Name-Style">ChatApp</div>
         </div>
       </div>
-      <motion.h2 style={{ y }}>Hello </motion.h2>
     </div>
   );
 };

@@ -43,7 +43,7 @@
  }
 
  .button-login {
-  width: 130px;
+  width: -webkit-fill-available;
   height: 37px;
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@
 }
 
 .button-signup{
-  width: 130px;
+  width: -webkit-fill-available;
   height: 37px;
   display: flex;
   align-items: center;
@@ -123,8 +123,8 @@
     padding-top: 10%;
   }
 
-  .Container-header-items {
-}
+  /* .Container-header-items {
+} */
 
 
 }

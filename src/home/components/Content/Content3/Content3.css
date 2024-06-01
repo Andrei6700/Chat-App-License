@@ -1,32 +1,115 @@
-.Content3-Container{
-    display: flex;
-    width: -webkit-fill-available;
-    justify-content: center;
+.Content3-Container {
+  display: flex;
+  width: -webkit-fill-available;
+  justify-content: center;
+  margin: 0% 0% 30% 0%;
 }
 
-.Content3-Image{
-    width: 80%;
+.Content3-Image {
+  width: 80%;
+}
+
+:root {
+  --duration: 5s;
+  --duration-double: 10s;
+}
+
+.first-slide {
+  overflow: hidden;
+  position: absolute;
+}
+
+.first-slide span {
+  display: inline-block;
+  animation-name: slide-then-hide;
+  animation-duration: var(--duration);
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.words {
+  margin: 0 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  width: -webkit-fill-available;
+}
+
+.words span {
+  display: inline-block;
+  padding-left: 100%;
+  animation-name: slide;
+  animation-duration: var(--duration-double);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.words--second span {
+  animation-delay: var(--duration);
+}
+
+@keyframes slide-then-hide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    display: none;
+    transform: translate(-100%, 0);
+  }
+}
+
+@keyframes slide {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
 }
 
 @media (max-width: 575.98px) {
-    .Content3-Image{
-        width: 100%;
-        object-fit: cover;
-    }
+  .Content3-Image {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
+
 @media (min-width: 576px) and (max-width: 767.98px) {
- 
-}
+    .home-img{
+       width:  auto; 
+    }
+} 
+
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   
+  .home-img{
+    width: 70px;
+    height: 70px;
+  }
+
+  .messageContent p {
+    font-size: medium;
+  }
 }
 
+
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  
+  .messageInfo img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .messageContent p {
+    font-size: large;
+}
 }
 
 @media (min-width: 1200px) {
- 
-}
+  .Content3-Container {
+  margin: 0% 0% 10% 0%;
+  }
+} 

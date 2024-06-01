@@ -1,17 +1,6 @@
 .ba {
-  /* change the name*/
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  justify-content: center;
-}
-
-.content2-ContainerText {
-  margin: "0% 20% ";
-  display: "flex";
-  flex-direction: "column";
-  align-items: "center";
+margin: 0;
+padding: 0;
 }
 
 @media (max-width: 575.98px) {
@@ -22,7 +11,7 @@
     align-items: center;
   }
 
-  .h2_Content2 {
+  .h2_Content {
     padding-top: "10%";
     padding-bottom: "10%";
   }
@@ -34,58 +23,60 @@
   }
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
- .content2-ContainerText{
+/* @media (min-width: 576px) and (max-width: 767.98px) {
 
- }
-
- .h2_Content2{
-
- }
-
- .text_Content2{
-
- }
-}
+} */
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .content2-ContainerText{
 
+  .p-home{
+    font-size: 1.5rem;
   }
- 
-  .h2_Content2{
- 
+
+  .h2_Content {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10%;
   }
  
   .text_Content2{
-   
+    margin: 10%;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .content2-ContainerText{
-
-  }
- 
-  .h2_Content2{
- 
-  }
- 
-  .text_Content2{
-   
-  }
+.ba{
+  font-size: medium;
+  margin: 0px;
 }
 
-@media (min-width: 1200px) {
-  .content2-ContainerText{
-
-  }
- 
-  .h2_Content2{
- 
-  }
- 
-  .text_Content2{
-   
-  }
+.h2_Content {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10%;
 }
+  .messageInfo img {
+    width: 80px;
+    height: 80px;
+}
+
+.messageContent p {
+  font-size: x-large;
+}
+
+}
+@media (min-width: 1200px)
+{
+.h2_Content{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8%;
+}
+
+.ba{
+  margin: 10% 0% 10% 10%;
+}
+
+}
+
+

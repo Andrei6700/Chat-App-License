@@ -14,26 +14,32 @@ html {
 }
 
 @media (max-width: 575.98px) {
-  .Description_Phone {
+  /* .Description_Phone {
       width: 100%;  
       display: flex;
       flex-direction: column-reverse;
       align-items: center;
-  }
+  } */
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
+/* @media (min-width: 576px) and (max-width: 767.98px) {
  
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   
 }
+}*/
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  
+  .Description_Phones{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 }
 
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
  
-}
+}  */

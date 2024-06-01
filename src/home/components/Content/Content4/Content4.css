@@ -1,0 +1,74 @@
+.Content4-Container{
+    display: flex;
+    width: -webkit-fill-available;
+    justify-content: center;
+}
+
+.Content4-Image{
+    width: 80%;
+}
+
+@media (max-width: 575.98px) {
+    .Content4-Image{
+        width: 90%;
+        object-fit: cover;
+    }
+}
+
+/* @media (min-width: 576px) and (max-width: 767.98px) {
+ 
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  
+} */
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .Content1-Image{
+    width: -webkit-fill-available;
+  }
+
+  .content2-ContainerText{
+    font-size: medium;
+  }
+
+  .p-home {
+    font-size: smaller;
+}
+
+  .text_Content2 {
+    margin: 0% 0% 10% 10%;
+}
+
+.Content3-Container {
+  margin: 0% 0% 20% 0%;
+}
+
+}
+
+@media (min-width: 1200px) {
+  .Description_Phone {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.ba{
+  margin: 10% -10% 10% 10%;
+  font-size: medium;
+}
+
+.p-home{
+  font-size: medium;
+}
+
+.messageInfo img {
+    width: 80px;
+    height: 80px;
+}
+
+.messageContent p {
+  font-size: x-large;
+}
+}

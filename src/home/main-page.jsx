@@ -11,7 +11,7 @@ import { useInView } from 'react-intersection-observer';
 const Content1 = React.lazy(() => import('./components/Content/Content1/Content1'));
 const Content2 = React.lazy(() => import('./components/Content/Content2/Content2'));
 const Content3 = React.lazy(() => import('./components/Content/Content3/Content3'));
-
+const Content4 = React.lazy(() => import('./components/Content/Content4/Content4'));
 export const MainPage = () => {
   const { theme } = useTheme();
   const [ref, inView] = useInView({
@@ -34,6 +34,7 @@ return (
           {inView && <Content2 />}
         </div>
         {inView && <Content3 />}
+        {inView && <Content4 />}
         {inView && <FooterMain />}
       </Suspense>
     </div>

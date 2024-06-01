@@ -33,10 +33,10 @@
 }
 
 .Description_Phone {
-  width: "100%";
-  display: "flex";
-  flex-direction: "row-reverse";
-  align-items: "center";
+  width: 100%;
+  /* display: flex; */
+  /* flex-direction: row-reverse; */
+  /* align-items: center; */
 }
 
 .Img_NameLogo{
@@ -81,17 +81,8 @@ width: 130px;
   .Name-Style{
     font-size: calc(10vh/2);
   }
-
-  .NameLogo-Container{
-
-  }
-
   .NameLogo-Positioning{
     flex-direction: column;
-  }
-
-  .Image-Container{
-    
   }
 
   .Name-Container {
@@ -101,80 +92,61 @@ width: 130px;
   .Img_NameLogo{
     width: 750px;
   }
+
+  .Description_Phone{
+    width: 100%;
+  }
    
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .Name-Style{
+    font-size: 74px;
+    margin-right: 50px;
   }
 
-  .NameLogo-Container{
+  .Content1-Image{
+    width: 650px;
 
   }
+
+  .h2-Content2{
+    align-items: center;
+        display: flex;
+        justify-content: center;
+  }
+
+  .text_Content2{
+    font-size: x-large;
+  }
+
 
   .NameLogo-Positioning{
-
+    display: flex;
+    align-items: center;
   }
-
-  .Image-Container{
-
-  }
-
-  .Name-Container {
-
-  }
-
+  
   .Img_NameLogo{
-
+    width: -webkit-fill-available;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .Name-Style{
-  }
 
-  .NameLogo-Container{
-
-  }
-
-  .NameLogo-Positioning{
-
-  }
-
-  .Image-Container{
-
-  }
-
-  .Name-Container {
-
-  }
-
-  .Img_NameLogo{
-    
-  }
+  .NameLogo-Positioning {
+    display: flex;
+    flex-direction: column-reverse;
 }
 
-@media (min-width: 1200px) {
-  .Name-Style{
-  }
-
-  .NameLogo-Container{
-
-  }
-
-  .NameLogo-Positioning{
-
-  }
-
-  .Image-Container{
-
-  }
-
   .Name-Container {
+    padding-top: 10%;
+}
 
-  }
+.Description_Phone {
+  width: 100%;
+  display: flex; 
+   flex-direction: row-reverse; 
+   align-items: center;
+}
 
-  .Img_NameLogo{
-    
-  }
 }
