@@ -1020,3 +1020,43 @@ img {
   flex-wrap: nowrap;
   color: #e9edef;
 }
+
+
+.toggle-darkmode {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.input {
+  display: none;
+}
+
+.icon {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  transition: transform 500ms;
+}
+
+.svg--moon {
+  transition-delay: 200ms;
+}
+
+.svg--sun {
+  transform: scale(0);
+}
+
+#switch:checked + .svg--moon {
+  transform: rotate(360deg) scale(0);
+}
+
+#switch:checked ~ .svg--sun {
+  transition-delay: 200ms;
+  transform: scale(1) rotate(360deg);
+}
+
