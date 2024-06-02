@@ -8,6 +8,7 @@ import animation from "../../img/Messaging.gif";
 import { OnSubmit } from "../SignUpHandlers/SignUpHandlers";
 import useFormData from "../pages/useFormData";
 //https://storyset.com/ animatie ca sa nu uit
+import Logo from "../../img/logo2-removebg-preview.png";
 
 const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
   const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
@@ -22,28 +23,27 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
   return (
     <div className="font-sans bg-grey-lighter flex flex-col w-full">
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
+        <div className="container-SignUp mx-auto px-4">
+          <div className="navbar-items-Signup flex items-center justify-between py-4" style={{flexDirection:'row'}}>
             <div className="w-1/4 md:w-auto text-center text-2xl font-medium">
-              logo
+            <img src={Logo} alt="logo" className="Logo_Header" />
             </div>
 
             <div className="w-1/4 md:w-auto md:flex text-right">
+              <Link to="/main">
               <div>Home-page</div>
-              <div>About us</div>
-              <div>Contact us</div>
+              </Link>
             </div>
           </div>
         </div>
       </div>
       <div className="flex flex-col md:flex-row">
         <div className="hidden md:block w-full md:w-1/2 bg-white">
-          <img className="opacity-75 pl-8 md:ml-32" src={animation} alt="" />
+          <img className="img-SingUp" src={animation} alt="" />
         </div>
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">
             <h1 className="text-center">Sign Up</h1>
-            <h2 className="text-xl py-4">text</h2>
             {/* <form
               onSubmit={formHandleSubmit(OnSubmit)}
               id="form"

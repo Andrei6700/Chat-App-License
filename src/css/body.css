@@ -35,9 +35,6 @@
   display: block
 }
 
-.inline-block{
-  display: inline-block
-}
 
 .flex{
   display: flex
@@ -352,4 +349,95 @@ margin-right: 10px;
 
 .email input.invalid-input {
 margin-right: 10px;
+}
+
+.container-SignUp{
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@media (max-width: 575.98px) {
+
+  .inline-block{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .img-SingUp{
+    display: none;
+  }
+  .md\:w-1\/2 {
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+}
+
+ }
+
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+.img-SingUp{
+  width: -webkit-fill-available;
+}
+.md\:flex-row {
+  flex-direction: column-reverse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0%;
+}
+
+.img-SingUp{
+  display: none;
+}
+
+.pt-12 {
+  padding-top: 0rem;
+}
+
+.inline-block{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.img-SingUp{
+  height: 700px;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .justify-between {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.navbar-items-Signup{
+  display: flex;
+    flex-direction: row;
+}
+}
+
+@media (min-width: 1200px) {
+  .img-SingUp{
+    height: 700px;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.pt-12 {
+  padding-top: 0rem;
+}
+
+.md\:flex-row {
+  padding-top: 0%;
+  align-items: center;
+}
 }

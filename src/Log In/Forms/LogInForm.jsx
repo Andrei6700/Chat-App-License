@@ -5,6 +5,7 @@ import animation from "../../img/Texting (1).gif";
 import { useTheme } from "../../context/dark-mode";
 import useFormData from "../page/useFormData";
 import InputErrorField from "../components/InputErrorField";
+import Logo from "../../img/logo2-removebg-preview.png";
 
 const LoginForm = ({ handleSubmit, loading, err }) => {
   const { register, handleSubmit: formHandleSubmit, errors } = useFormData();
@@ -20,16 +21,16 @@ const LoginForm = ({ handleSubmit, loading, err }) => {
   return (
     <div className={`font-sans bg-grey-lighter flex flex-col w-full ${theme}`}>
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
+        <div className="container-SignUp mx-auto px-4">
+          <div className="navbar-items-Signup flex items-center justify-between py-4" style={{flexDirection:'row'}}>
             <div className="w-1/4 md:w-auto text-center text-2xl font-medium">
-              Logo
+            <img src={Logo} alt="logo" className="Logo_Header" />
             </div>
 
             <div className="w-1/4 md:w-auto md:flex text-right">
+            <Link to="/main">
               <div>Home-page</div>
-              <div>About us</div>
-              <div>Contact us</div>
+              </Link>
             </div>
           </div>
         </div>
@@ -49,9 +50,8 @@ const LoginForm = ({ handleSubmit, loading, err }) => {
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">
             <h1 className="text-center">Log in</h1>
-            <h2 className="text-xl py-4">text</h2>
             <form onSubmit={formHandleSubmit(handleSubmit)}
-  className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
+  className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8" style={{overflow:'unset'}}
 >
               <InputErrorField
                 register={register}

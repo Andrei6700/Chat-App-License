@@ -2,23 +2,27 @@
 ::after,
 ::before {
   box-sizing: border-box;
-  overflow: overlay;
+
 }
 
 .sidebar-small-screen-hidden {
   display: none;
+  overflow: overlay;
 }
 
 .sidebar-small-screen-visible {
   display: block;
+  overflow: overlay;
 }
 
 .sidebar.visible {
   display: block;
+  overflow: overlay;
 }
 
 .toggle-sidebar-button {
   display: none;
+  overflow: overlay;
 }
 
 body {
@@ -31,6 +35,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
+  overflow: overlay;
 }
 
 .h1,
@@ -50,6 +55,7 @@ h6 {
   font-weight: 500;
   line-height: 1.2;
   color: inherit;
+  overflow: overlay;
 }
 
 .test {
@@ -58,6 +64,7 @@ h6 {
   vertical-align: baseline;
   background: #fff;
   transition: 0.3s ease;
+  overflow: overlay;
 }
 
 .messageDate-Container {
@@ -65,12 +72,14 @@ h6 {
   justify-content: center;
   align-items: center;
   padding-top: 1%;
+  overflow: overlay;
 }
 .messageDate {
   background-color: hsla(0, 0%, 100%, 0.95);
   padding: 5px 12px 6px;
   border-radius: 10px;
   color: #54656f;
+  overflow: overlay;
 }
 
 hr {
@@ -81,6 +90,7 @@ hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
+  overflow: overlay;
 }
 
 .formContainer {
@@ -89,6 +99,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: overlay;
 }
 
 .responsiveP {
@@ -97,6 +108,7 @@ hr {
   line-height: 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: overlay;
 }
 
 .formWrapper {
@@ -107,23 +119,27 @@ hr {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  overflow: overlay;
 }
 
 .logo {
   color: #5d5b8d;
   font-weight: bold;
   font-size: 24px;
+  overflow: overlay;
 }
 
 .title {
   color: #5d5b8d;
   font-size: 12px;
+  overflow: overlay;
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  overflow: overlay;
 }
 
 /* button {
@@ -142,16 +158,19 @@ label {
   color: #8da4f1;
   font-size: 12px;
   cursor: pointer;
+  overflow: overlay;
 }
 
 label img {
   width: 32px;
+  overflow: overlay;
 }
 
 p {
   color: black;
   font-size: 12px;
   margin-top: 10px;
+  overflow: overlay;
 }
 
 .home {
@@ -159,6 +178,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: overlay;
 }
 
 .container {
@@ -166,6 +186,7 @@ p {
   height: 100%;
   display: flex;
   overflow: hidden;
+  overflow: overlay;
 }
 
 .sidebar {
@@ -173,6 +194,7 @@ p {
   background-color: #fff;
   position: relative;
   border-right: 1px solid #dee2e6;
+  overflow: overlay;
 }
 
 .navbar {
@@ -186,10 +208,12 @@ p {
   flex-wrap: wrap;
   align-content: center;
   flex-direction: column;
+  overflow: overlay;
 }
 
 .logo {
   font-weight: bold;
+  overflow: overlay;
 }
 
 .user {
@@ -198,12 +222,14 @@ p {
   gap: 2%;
   flex-direction: row;
   align-items: center;
+  overflow: overlay;
 }
 
 .user img {
   width: 50px;
   height: 50px;
   border-radius: 40px;
+  overflow: overlay;
 }
 
 /* .user button {
@@ -217,10 +243,12 @@ p {
 .search {
   background: #fafafa;
   padding: 10px 13px;
+  overflow: overlay;
 }
 
 .searchForm {
   padding: 10px;
+  overflow: overlay;
 }
 
 .inputChatPage {
@@ -231,16 +259,19 @@ p {
   font-size: inherit;
   line-height: inherit;
   height: 40px;
+  overflow: overlay;
 }
 
 .searchForm input {
   color: black;
   outline: none;
   padding: 10px 13px;
+  overflow: overlay;
 }
 
 .searchForm input::placeholder {
   color: lightgray;
+  overflow: overlay;
 }
 
 .userChat {
@@ -252,10 +283,12 @@ p {
   align-items: center;
   cursor: pointer;
   gap: 4%;
+  overflow: overlay;
 }
 
 .userChat:hover {
   background-color: #fafafa;
+  overflow: overlay;
 }
 
 .userChat img {
@@ -263,21 +296,25 @@ p {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  overflow: overlay;
 }
 
 .userChatInfo span {
   overflow: hidden;
   font-size: 17px;
   font-weight: 400;
+  overflow: overlay;
 }
 
 .userChatInfo {
   padding-left: 2%;
+  overflow: overlay;
 }
 
 .userChatInfo p {
   font-size: 14px;
   color: black;
+  overflow: overlay;
 }
 
 .chat {
@@ -289,6 +326,7 @@ p {
   width: 100%;
   min-height: 1px;
   background: #fff;
+  overflow: overlay;
 }
 
 .chats {
@@ -296,12 +334,14 @@ p {
   overflow-y: scroll;
   position: relative;
   height: 100%;
+  overflow: overlay;
 }
 
 img {
   vertical-align: middle;
   border-style: none;
   object-fit: cover;
+  overflow: overlay;
 }
 
 .chatInfo {
@@ -312,6 +352,7 @@ img {
   display: flex;
   vertical-align: baseline;
   transition: 0.3s ease;
+  overflow: overlay;
 }
 
 .chatIcons {
@@ -320,11 +361,13 @@ img {
   width: 100%;
   justify-content: flex-end;
   align-items: center;
+  overflow: overlay;
 }
 
 .chatIcons img {
   height: initial;
   cursor: pointer;
+  overflow: overlay;
 }
 
 .messages {
@@ -337,6 +380,7 @@ img {
   display: flex;
   margin: 20px 0px 20px 0px;
   padding: 0 20px;
+  overflow: overlay;
 }
 
 .messageInfo {
@@ -344,6 +388,7 @@ img {
   flex-direction: column;
   font-weight: 300;
   align-items: center;
+  overflow: overlay;
 }
 
 .messageInfo img {
@@ -351,6 +396,7 @@ img {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  overflow: overlay;
 }
 
 .messageContent {
@@ -361,6 +407,7 @@ img {
   animation: fadeIn 1s ease-in;
   padding-right: 0;
   padding-left: 0;
+  overflow: overlay;
 }
 
 .messageContent p {
@@ -368,26 +415,31 @@ img {
   padding: 10px 20px;
   border-radius: 0px 10px 10px 10px;
   max-width: fit-content;
+  overflow: overlay;
 }
 
 .messageContent img {
   width: 100%;
+  overflow: overlay;
 }
 
 .message.owner {
   flex-direction: row-reverse;
+  overflow: overlay;
 }
 
 .message.owner .messageContent {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  overflow: overlay;
 }
 
 .message.owner .messageContent p {
   background-color: #8da4f1;
   color: white;
   border-radius: 10px 0px 10px 10px;
+  overflow: overlay;
 }
 
 .bodyinput {
@@ -402,6 +454,7 @@ img {
   background: rgb(238, 238, 238);
   width: -webkit-fill-available;
   position: fixed;
+  overflow: overlay;
 }
 
 .inputChatPage-container {
@@ -411,6 +464,7 @@ img {
   border: 1px solid #ccc;
   border-radius: 30px;
   padding: 5px;
+  overflow: overlay;
 }
 
 .inputChatPage {
@@ -419,6 +473,7 @@ img {
   flex: 1;
   padding: 6px 10px;
   border-radius: 30px;
+  overflow: overlay;
 }
 
 /* .clear-button {
@@ -430,21 +485,25 @@ img {
 .input input {
   margin: 0 10px;
   padding: 6px 2px;
+  overflow: overlay;
 }
 
 .input input::placeholder {
   color: lightgray;
+  overflow: overlay;
 }
 
 .input .send {
   display: flex;
   align-items: center;
   gap: 10px;
+  overflow: overlay;
 }
 
 .input .send img {
   height: 24px;
   cursor: pointer;
+  overflow: overlay;
 }
 
 /* .input .send button {
@@ -457,6 +516,7 @@ img {
 
 ::-webkit-scrollbar {
   width: 0.1em;
+  overflow: overlay;
 }
 
 .Btn-sign-body {
@@ -472,6 +532,7 @@ img {
   overflow: hidden;
   transition-duration: .3s;
   background-color: rgb(136, 136, 136);
+  overflow: overlay;
 }
 
 .btn-sign-svg {
@@ -480,14 +541,17 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: overlay;
 }
 
 .sibtn-sign-svggn svg {
   width: 17px;
+  overflow: overlay;
 }
 
 .btn-sign-svg svg path {
   fill: white;
+  overflow: overlay;
 }
 /* text */
 .Btn-sign-text {
@@ -499,18 +563,21 @@ img {
   font-size: 1.2em;
   font-weight: 600;
   transition-duration: .3s;
+  overflow: overlay;
 }
 /* hover effect on button width */
 .Btn-sign-body:hover {
   width: 125px;
   border-radius: 40px;
   transition-duration: .3s;
+  overflow: overlay;
 }
 
 .Btn-sign-body:hover .btn-sign-svg {
   width: 30%;
   transition-duration: .3s;
   padding-left: 20px;
+  overflow: overlay;
 }
 
 .Btn-sign-body:hover .Btn-sign-text {
@@ -518,17 +585,21 @@ img {
   width: 70%;
   transition-duration: .3s;
   padding-right: 10px;
+  overflow: overlay;
 }
 
 .Btn-sign-body:active {
   transform: translate(2px ,2px);
+  overflow: overlay;
 }
 
 ::-webkit-scrollbar-thumb {
+  overflow: overlay;
   display: none;
 }
 
 ::-webkit-scrollbar-track {
+  overflow: overlay;
   background: transparent;
 }
 
@@ -996,6 +1067,7 @@ img {
 
 /*   */
 .blankPageContainer {
+  overflow: overlay;
   width: 100%;
   display: flex;
   height: 100%;
@@ -1013,6 +1085,7 @@ img {
   align-items: center;
   color: rgba(233, 237, 239, 0.88); */
 
+  overflow: overlay;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1023,6 +1096,7 @@ img {
 
 
 .toggle-darkmode {
+  overflow: overlay;
   background-color: #fff;
   width: 40px;
   height: 40px;
@@ -1034,28 +1108,34 @@ img {
 }
 
 .input {
+  overflow: overlay;
   display: none;
 }
 
 .icon {
+  overflow: overlay;
   grid-column: 1 / 1;
   grid-row: 1 / 1;
   transition: transform 500ms;
 }
 
 .svg--moon {
+  overflow: overlay;
   transition-delay: 200ms;
 }
 
 .svg--sun {
+  overflow: overlay;
   transform: scale(0);
 }
 
 #switch:checked + .svg--moon {
+  overflow: overlay;
   transform: rotate(360deg) scale(0);
 }
 
 #switch:checked ~ .svg--sun {
+  overflow: overlay;
   transition-delay: 200ms;
   transform: scale(1) rotate(360deg);
 }
