@@ -1,7 +1,7 @@
 import React from "react";
 import { useRef } from "react";
 import { useTransform, useScroll } from "framer-motion";
-import DeviceScreen from "../../../../img/device-screen-resize.png";
+import DeviceScreen from "../../../../img/device-screen-resize-1.png";
 import './Content4.css';
 
 const Content4 =()=>{

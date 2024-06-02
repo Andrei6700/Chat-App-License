@@ -1,7 +1,7 @@
 import {  useRef } from "react";
 import {  useTransform, useScroll } from "framer-motion";
 import "./Content1.css";
-import Phone from "../../../../img/phone.png";
+import Phone from "../../../../img/phone-home.png";
 
 const Content1 = () => {
   const ref = useRef(null);
