@@ -67,7 +67,7 @@ const LoginForm = ({ handleSubmit, loading, err }) => {
             width: "50%",
           }}
         >
-          <img className="opacity-75 pl-8 md:ml-32" src={animation} alt="" />
+          <img className="img-LogIn" src={animation} alt="" />
         </div>
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">

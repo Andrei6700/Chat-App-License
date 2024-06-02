@@ -363,6 +363,10 @@ margin-right: 10px;
     display: flex;
     flex-direction: column;
   }
+
+  .img-LogIn{
+    display: none;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -374,6 +378,9 @@ margin-right: 10px;
     display: flex;
     justify-content: center;
 }
+.img-LogIn{
+  display: none;
+}
 
  }
 
@@ -382,6 +389,11 @@ margin-right: 10px;
 .img-SingUp{
   width: -webkit-fill-available;
 }
+
+.img-LogIn{
+  display: none;
+}
+
 .md\:flex-row {
   flex-direction: column-reverse;
   display: flex;
