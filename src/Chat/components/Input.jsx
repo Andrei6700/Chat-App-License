@@ -178,7 +178,7 @@ const Input = () => {
       <label htmlFor="file">
         <img src={Attach} alt="" />
       </label>
-      <button onClick={handleSend}>Send</button>
+      <button className="button-signup" style={{width:'5%', background:'white',color:'black',justifyContent:'center'}} onClick={handleSend}>Send</button>
     </div>
   );
 };

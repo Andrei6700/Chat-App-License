@@ -50,18 +50,12 @@
 }
 */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .Content1-Container{
 
-  }
 
   .Content1-Container-Text{
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-end;
-  }
-
-  .Content1-Image{
-   
   }
 }
 /*

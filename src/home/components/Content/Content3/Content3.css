@@ -112,4 +112,11 @@
   .Content3-Container {
   margin: 0% 0% 10% 0%;
   }
+
+  .NameLogo-Positioning{
+    justify-content: center;
+  }
+  .Name-Style{
+    font-size: 170px;;
+  }
 } 

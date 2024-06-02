@@ -104,9 +104,9 @@
   border-top-width: 1px
 }
 
-.bg-white{
+.bg-white-bg{
   --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+  background-color: #eee;
 }
 
 .fill-current{

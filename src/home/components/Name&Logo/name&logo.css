@@ -72,7 +72,7 @@ width: 130px;
 }
 
 .Name-Style {
-  font-size: calc(10vh/2);
+  font-size: calc(8vh/2);
 }
 
 }
@@ -148,5 +148,4 @@ width: 130px;
    flex-direction: row-reverse; 
    align-items: center;
 }
-
 }

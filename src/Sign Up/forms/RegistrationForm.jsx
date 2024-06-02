@@ -22,7 +22,7 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
 
   return (
     <div className="font-sans bg-grey-lighter flex flex-col w-full">
-      <div className="bg-white border-b">
+      <div className="bg-white-bg border-b">
         <div className="container-SignUp mx-auto px-4">
           <div className="navbar-items-Signup flex items-center justify-between py-4" style={{flexDirection:'row'}}>
             <div className="w-1/4 md:w-auto text-center text-2xl font-medium">
@@ -30,8 +30,27 @@ const RegistrationForm = ({ handleSubmit, loading, err, type }) => {
             </div>
 
             <div className="w-1/4 md:w-auto md:flex text-right">
-              <Link to="/main">
-              <div>Home-page</div>
+              <Link to="/main"style={{ textDecoration: "none" }}>
+          <button className="button-login">
+            <svg
+              className="login"
+              width="24px"
+              height="24px"
+              strokeWidth="1.5"
+              viewBox="0 0 24 24"
+              fill="none"
+              color="#000000"
+            >
+              <path
+                d="M12 12h7m0 0l-3 3m3-3l-3-3M19 6V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2v-1"
+                stroke="#000000"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+            Home Page
+          </button>
               </Link>
             </div>
           </div>
