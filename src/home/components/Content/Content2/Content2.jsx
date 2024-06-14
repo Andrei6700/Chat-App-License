@@ -11,7 +11,7 @@ const Content2 = () => {
     <div data-aos="zoom-in-up" className="ba" ref={ref} style={{ y }}>
       <div className="content2-ContainerText">
         <h1 className="h2_Content">
-          <h1>Ce este ChatApp?</h1>
+          <h1 className="h1-content2">Ce este ChatApp?</h1>
         </h1>
         <div className="text_Content2">
           <p className="p-home">

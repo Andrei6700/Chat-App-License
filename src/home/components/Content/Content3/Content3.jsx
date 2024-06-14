@@ -10,7 +10,7 @@ const Content3 = () => {
 
       <p className="words words--first">
         <span>
-        <div class="message false light"><div class="messageInfo"><img className="home-img" src="https://firebasestorage.googleapis.com/v0/b/licenta-chatapp.appspot.com/o/elisei1716930564238?alt=media&token=036b7883-e4ea-4563-9e9d-44fe5685d22f" alt=""/></div><div class="messageContent"><p class="ResponsiveTextChat">ahahaha nu stiu ce sa zic</p></div></div>
+        <div class="message false light"><div class="messageInfo"><img className="home-img" src="https://firebasestorage.googleapis.com/v0/b/licenta-chatapp.appspot.com/o/elisei1716930564238?alt=media&token=036b7883-e4ea-4563-9e9d-44fe5685d22f" alt=""/></div><div class="messageContent"><p class="ResponsiveTextChat">Socializez cu toți prietenii mei aici. :3</p></div></div>
           &nbsp;
         </span>
       </p>

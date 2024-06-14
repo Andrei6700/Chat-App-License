@@ -84,9 +84,6 @@ background-color: #202c33;
   background-color: rgba(134,150,160,0.15);
 }
 
-.dark{
-  color: #e9edef;
-}
 
 .dark.messageContent p{
   background-color: #202c33;
@@ -111,6 +108,13 @@ background-color: #202c33;
 
 
 /*------------------------  main-page.jsx -------------------*/
+.dark.h1-content2{
+  color:  #2a3942;
+}
+
+.dark.p-home{
+  color:  #2a3942;
+}
 
 
 /*------------------------  RegistrationForm.jsx -------------------*/

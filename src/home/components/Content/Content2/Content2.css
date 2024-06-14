@@ -2,6 +2,13 @@
 margin: 0;
 padding: 0;
 }
+.h1-content2{
+  color:  #2a3942;
+}
+
+.dark.p-home{
+  color:  #2a3942;
+}
 
 @media (max-width: 575.98px) {
   .content2-ContainerText {
