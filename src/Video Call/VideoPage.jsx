@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router";
 import "./css/styling.css";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useContext } from "react";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc, arrayUnion, Timestamp, getDoc, onSnapshot, collection, addDoc } from "firebase/firestore";
 import FooterComponent from "./Components/FooterComponents";
 import VideoComponent from "./Components/VideoComponent";
 import { firebaseConfig } from "../firebase/firebase";
+import { AuthContext } from "../context/AuthContext";
+import { ChatContext } from "../context/ChatContext";
+import { v4 as uuid } from "uuid";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -21,7 +23,10 @@ export default function VideoCall() {
   const DisconnectCall = useRef(null); // Ref for disconnect call button
   const share = useRef(null); // Ref for share button
 
-  const naviagte = useNavigate(); // Hook for navigatio
+  const navigate = useNavigate(); // Hook for navigation
+  const { data } = useContext(ChatContext);
+  const { currentUser } = useContext(AuthContext);
+
   let server = {
     iceServers: [
       {
@@ -36,6 +41,33 @@ export default function VideoCall() {
 
   const [localstream, setLocalstream] = useState(null); // State to hold local media stream
   const [isMuted, setIsMuted] = useState(false); // State to track mute status
+
+  // Function to send room ID as a message in the chat
+  const sendMessageToChat = async (roomID) => {
+    const message = `Video call room created. Join using this ID: ${roomID}`;
+    await updateDoc(doc(db, "chats", data.chatId), {
+      messages: arrayUnion({
+        id: uuid(),
+        text: message,
+        senderId: currentUser.uid,
+        date: Timestamp.now(),
+      }),
+    });
+
+    // Update the last message in the user chats
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [`${data.chatId}.lastMessage`]: {
+        text: message,
+      },
+      [`${data.chatId}.date`]: Timestamp.now(),
+    });
+    await updateDoc(doc(db, "userChats", data.user.uid), {
+      [`${data.chatId}.lastMessage`]: {
+        text: message,
+      },
+      [`${data.chatId}.date`]: Timestamp.now(),
+    });
+  };
 
   // Callback function to initialize media and connection
   const init = useCallback(async () => {
@@ -85,6 +117,8 @@ export default function VideoCall() {
       const offer = await peerConnection.createOffer();
       await peerConnection.setLocalDescription(offer);
 
+      // Send roomID to chat
+      sendMessageToChat(roomID);
     } else {
       // For an existing call, set the remote description from the stored offer.
       await peerConnection.setRemoteDescription(
@@ -93,7 +127,7 @@ export default function VideoCall() {
       // Handle ICE candidates for the existing call.
       peerConnection.onicecandidate = async (e) => {
         if (e.candidate) {
-          await setDoc(doc(db, "calls", roomID), {
+          await updateDoc(doc(db, "calls", roomID), {
             answer: JSON.stringify(peerConnection.localDescription),
           });
         }
@@ -120,7 +154,7 @@ export default function VideoCall() {
         track.stop();
       });
       peerConnection.close();
-      naviagte("/chat");
+      navigate("/chat");
     });
     // Event listener for toggling video
     VideoToggle.current.addEventListener("click", async (e) => {
@@ -151,7 +185,7 @@ export default function VideoCall() {
     // Handle changes in ICE connection state
     peerConnection.oniceconnectionstatechange = function () {
       if (peerConnection.iceConnectionState === "disconnected") {
-        naviagte("/chat");
+        navigate("/chat");
       }
     };
     // Event listener for sharing the room ID
@@ -160,10 +194,12 @@ export default function VideoCall() {
       console.log("Copied id");
     });
   });
+
   // Effect hook to initialize the component
   useEffect(() => {
     init();
   }, []);
+
   return (
     <>
       <VideoComponent you={you} friend={friend} />
