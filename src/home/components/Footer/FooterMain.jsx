@@ -9,7 +9,7 @@ const FooterMain =()=>{
   };
 
   return (
-    <div className="Footer-Container"  style={{width:'-webkit-fill-available'}}>
+    <div className="Footer-Container"  style={{width:'-webkit-fill-available',color:'black'}}>
       <footer className="Footer-Items">
         <aside className="Footer-Left">
           <h3 className="h3_Footer">ChatApp</h3>

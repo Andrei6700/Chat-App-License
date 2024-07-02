@@ -20,8 +20,8 @@ const Content2 = () => {
             platformă, utilizatorii înregistrați pot interacționa cu o
             comunitate vastă, creând noi prietenii și legături sociale.
           </p>
-          <h7>ChatApp oferă multiple modalități de comunicare:</h7>
-          <ul>
+          <h7 className="exclude-dark-mode">ChatApp oferă multiple modalități de comunicare:</h7>
+          <ul className="exclude-dark-mode">
             <li>
               <strong>Mesaje text:</strong> Puteți trimite mesaje instantanee
               prietenilor și noilor contacte.

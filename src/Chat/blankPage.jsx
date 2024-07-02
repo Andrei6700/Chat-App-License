@@ -9,7 +9,7 @@ const BlankPage = () => {
     <div className={`blankPageContainer ${theme}`}>
       <div className={`blankPageCenter ${theme}`}>
         <img src={logoDarkWhite} alt="" />
-        <h2 style={{ fontSize: "36px", fontWeight: "300" }}>
+        <h2 style={{ fontSize: "36px", fontWeight: "800",textShadow:' #ad9b51 1px 0 10px'}}>
           Chat App for Windows
         </h2>
         <p

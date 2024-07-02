@@ -21,7 +21,7 @@ const NameAndLogo = () => {
           <img className="Img_NameLogo" src={logo} alt="" />
         </div>
         <div className="Name-Container">
-          <div className="Name-Style">ChatApp</div>
+          <div className="Name-Style" style={{color:'black'}}>ChatApp</div>
         </div>
       </div>
     </div>

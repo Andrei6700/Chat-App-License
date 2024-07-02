@@ -3,6 +3,10 @@
   margin-right: auto
 }
 
+.dark{   color: #e9edef; }
+
+.exclude-dark-mode{   color: black; }
+
 .mb-2{
   margin-bottom: 0.5rem
 }

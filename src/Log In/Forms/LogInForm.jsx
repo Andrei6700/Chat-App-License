@@ -71,7 +71,7 @@ const LoginForm = ({ handleSubmit, loading, err }) => {
         </div>
         <div className="w-full md:w-1/2 bg-white">
           <div className="flex flex-col items-center pt-12">
-            <h1 className="text-center">Log in</h1>
+            <h1 className="text-center" style={{color:'black', overflow:'visible'}}>Log in</h1>
             <form
               onSubmit={formHandleSubmit(handleSubmit)}
               className="w-full md:w-1/2 bg-white md:border shadow-lg px-8 pt-6 pb-8"
