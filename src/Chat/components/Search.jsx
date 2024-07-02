@@ -55,12 +55,11 @@ const Search = () => {
           .includes(caseInsensitiveUsername)
       );
       // If no users were found, set an error and clear the found users
-      if (filteredUsers.length === 0) {
-        setErr(true);
-        setFoundUsers([]);
+      if (filteredUsers.length > 0) {
+        setFoundUsers(filteredUsers);
         setTimeout(() => {
-          setErr(false);
-        }, 3000);
+          setFoundUsers([]);
+        }, 4000);  // 4 sec
       } else {
         // If users were found, set them as the found users
         setFoundUsers(filteredUsers);

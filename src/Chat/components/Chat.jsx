@@ -8,7 +8,7 @@ import more from "./../../img/menu.svg";
 import { useTheme } from "../../context/dark-mode";
 import BlankPage from "../blankPage.jsx";
 import { useNavigate } from "react-router";
-import Sidebar from "./Sidebar"
+import Sidebar from "./Sidebar";
 
 // https://stackoverflow.com/questions/44480053/how-to-detect-if-screen-size-has-changed-to-mobile-in-react documentation for display width
 const Chat = ({ toggleSidebar }) => {
@@ -18,16 +18,16 @@ const Chat = ({ toggleSidebar }) => {
   const [windowWidth, setWindowWidth] = useState(null);
 
   const navigate = useNavigate();
-  const isWindow = typeof window !== 'undefined';
-  const getWidth = () => isWindow ? window.innerWidth : windowWidth;
+  const isWindow = typeof window !== "undefined";
+  const getWidth = () => (isWindow ? window.innerWidth : windowWidth);
 
   const resize = () => setWindowWidth(getWidth());
 
   useEffect(() => {
     if (isWindow) {
       setWindowWidth(getWidth());
-      window.addEventListener('resize', resize);
-      return () => window.removeEventListener('resize', resize);
+      window.addEventListener("resize", resize);
+      return () => window.removeEventListener("resize", resize);
     }
   }, [isWindow]);
 
@@ -58,17 +58,23 @@ const Chat = ({ toggleSidebar }) => {
               {/* Input pentru ID-ul camerei */}
               <input
                 type="text"
+                style={{ borderRadius: "8px" }}
                 value={roomId}
                 onChange={(e) => setRoomId(e.target.value)}
                 placeholder="meeting Id"
               />
               {/* button for join room */}
-              <button type="button" onClick={handleJoin}>
+              <button
+                style={{ borderRadius: "8px" }}
+                type="button"
+                onClick={handleJoin}
+              >
                 Join
               </button>
 
               {/* button for create  new room */}
               <button
+                style={{ borderRadius: "8px" }}
                 onClick={() => {
                   navigate(`/call/create`);
                 }}
@@ -76,9 +82,9 @@ const Chat = ({ toggleSidebar }) => {
                 <img src={Cam} alt="" />
               </button>
 
-              <button>
+              {/* <button>
                 <img src={More} alt="" />
-              </button>
+              </button> */}
             </div>
           </div>
           <Messages />
